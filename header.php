@@ -17,14 +17,24 @@
                     get_header('desktop');
                 }
                 ?> -->
-        <?php wp_nav_menu(array('menu' => 'primary_menu')); ?>
-        <a href="index.php"> <img src="./logo.png" alt="Mon logo"></a>
+
+        <a href="/">
+            <img src="<?php the_field('logo_header', 'option'); ?>" alt="Logo La Sasson">
+        </a>
+
         <ul>
-            <li><a href="">Qui sommes-nous ?</a></li>
-            <li><a href="">Nos dispositifs</a></li>
-            <li><a href="">Notre actualité</a></li>
-            <li><a href="">Infos pratiques</a></li>
-            <li><a href="">Nous contacter</a></li>
+            <?php if (have_rows('menu_items', 'option')) : ?>
+                <?php while (have_rows('menu_items', 'option')) : the_row(); ?>
+                    <li>
+                        <a href="<?php the_sub_field('lien'); ?>">
+                            <?php the_sub_field('texte'); ?>
+                        </a>
+                    </li>
+                <?php endwhile; ?>
+            <?php endif; ?>
         </ul>
-        <a href="">>Recrutement</a>
+
+        <a href="<?php the_field('bouton_recrutement_lien', 'option'); ?>" class="btn-recrutement">
+            <?php the_field('bouton_recrutement_texte', 'option'); ?>
+        </a>
     </header>
