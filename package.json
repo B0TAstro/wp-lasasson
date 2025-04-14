@@ -1,7 +1,7 @@
 {
   "name": "wp-theme",
   "version": "1.0.0",
-  "author": "Vas-y Paulette",
+  "author": "Astro",
   "description": "WordPress Theme",
   "directories": {
     "test": "tests"
