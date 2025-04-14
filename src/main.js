@@ -1,15 +1,15 @@
-// Very important for webpack, overtwise the bundle won't make the good link between assets (bad urls)
-__webpack_public_path__ = window.WP.publicPath; // WP.publicPath come from functions.php
+// Très important pour webpack, sinon le bundle ne fera pas le bon lien entre les assets (mauvaises URLs)
+__webpack_public_path__ = window.WP.publicPath;
 
 import './main.scss'
 import Router from './utils/Router'
 
-// Small router inspired from Sage framework, which use body class from WordPress
-// can be a class or a simple function, class can be called dynamically, just need a init method 
+// Petit routeur inspiré du framework Sage, qui utilise les classes de body de WordPress
+// Peut être une classe ou une simple fonction, une classe peut être appelée dynamiquement, il suffit d'avoir une méthode init 
 const routes = {
-  common: () => import('./pages/Common'), // need an init method inside the class
+  common: () => import('./pages/Common'), // nécessite une méthode init dans la classe
   home: () => {
-    console.log('init home')
+    console.log('init home') // Initialisation de la page d'accueil
   }, 
 };
 
@@ -17,27 +17,29 @@ const App = (() => {
   const router = new Router(routes);
 
   return {
+    // Démarre l'application et charge les événements du routeur
     start: () => {
       console.log('Start App');
       router.loadEvents();
     },
+    // Arrête l'application et nettoie le routeur
     stop: () => {
       console.log('Stop App');
-      //in HMR mode clean router before restart app 
       router.destroy();
     }
   }
 })();
 
-
+// Gestion du mode HMR (Hot Module Replacement)
 if (module.hot) {
+  // Nettoie l'application avant de la redémarrer
   module.hot.dispose(() => {
     App.stop();
   });
+  // Accepte les mises à jour des modules
   module.hot.accept((err, {moduleId, module}) => {
     console.log(err, {moduleId, module})
   });
 }
-
 
 App.start();
