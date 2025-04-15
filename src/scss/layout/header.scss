@@ -9,17 +9,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 4px 0px 0px g.$primary-color;
-    flex-shrink: 0;
-
-    .burger {
-        display: none;
-        font-size: 2rem;
-        background: none;
-        border: none;
-        color: g.$color-black;
-        cursor: pointer;
-    }
+    box-shadow: 0 4px 0 0 g.$primary-color;
+    flex-wrap: wrap;
 
     .logo_header {
         img {
@@ -28,74 +19,112 @@ header {
         }
     }
 
-    .menu {
+    .menu-toggle {
+        display: none;
+    }
+
+    .burger {
+        display: none;
+        width: 30px;
+        height: 25px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1001;
+
+        span {
+            display: block;
+            height: 3px;
+            background: g.$color-black;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+    }
+
+    .nav-wrapper {
         display: flex;
         align-items: center;
         gap: 25px;
-        list-style: none;
 
-        li {
-            a {
-                color: g.$color-black;
-                text-decoration: none;
-                font-family: g.$font-family-base;
-                font-size: 16px;
-                font-weight: g.$font-weight-medium;
-                transition: color 0.1s;
+        nav {
+            .menu {
+                display: flex;
+                gap: 25px;
+                list-style: none;
 
-                &:hover {
-                    color: g.$primary-color;
-                    text-decoration: underline;
+                li a {
+                    color: g.$color-black;
+                    text-decoration: none;
+                    font-family: g.$font-family-base;
+                    font-size: 16px;
+                    font-weight: g.$font-weight-medium;
+                    transition: color 0.1s;
+
+                    &:hover {
+                        color: g.$primary-color;
+                        text-decoration: underline;
+                    }
                 }
+            }
+        }
+
+        .btn-recrutement {
+            background-color: g.$primary-color;
+            color: g.$color-black;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-family: g.$font-family-base;
+            font-size: 16px;
+            font-weight: g.$font-weight-bold;
+            transition: background-color 0.1s;
+
+            &:hover {
+                background-color: g.$color-black;
+                color: g.$color-white;
             }
         }
     }
 
-    .btn-recrutement {
-        background-color: g.$primary-color;
-        color: g.$color-black;
-        padding: 5px 10px;
-        text-decoration: none;
-        font-family: g.$font-family-base;
-        font-size: 16px;
-        font-weight: g.$font-weight-bold;
-        transition: background-color 0.1s;
-
-        &:hover {
-            background-color: g.$color-black;
-            color: g.$color-white;
-        }
-    }
-
-    // Mobile
-    @media (max-width: 48rem) {
-        flex-wrap: wrap;
-
+    @media (max-width: 768px) {
         .burger {
             display: block;
         }
 
         .nav-wrapper {
-            display: none;
-            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
             flex-direction: column;
             align-items: flex-start;
-            margin-top: 1rem;
-        }
-
-        &.menu-open {
-            .nav-wrapper {
-                display: flex;
-            }
-        }
-
-        nav .menu {
-            flex-direction: column;
             gap: 1rem;
+            display: none;
+            width: 100%;
+            background-color: g.$primary-color;
+        }
+
+        .menu {
+            flex-direction: column;
+            gap: 10px;
         }
 
         .btn-recrutement {
             margin-top: 1rem;
+        }
+
+        .menu-toggle:checked~.nav-wrapper {
+            display: flex;
+        }
+
+        // Animation burger
+        .menu-toggle:checked+.burger span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle:checked+.burger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle:checked+.burger span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
     }
 }

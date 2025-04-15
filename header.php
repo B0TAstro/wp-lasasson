@@ -16,18 +16,19 @@
             <img loading="lazy" src="<?php echo esc_url($logo['url']); ?>" alt="<?php echo esc_attr($logo['alt']); ?>">
         </a>
 
-        <button class="burger" aria-label="Toggle Menu">
-            <span class="burger-line"></span>
-            <span class="burger-line"></span>
-            <span class="burger-line"></span>
-        </button>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+        <label for="menu-toggle" class="burger" aria-label="Menu mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
 
-        <nav>
+        <nav class="nav-wrapper">
             <?php wp_nav_menu(array('menu' => 'menu-principal')); ?>
-        </nav>
 
-        <?php $btn = get_field('bouton_recrutement_lien', 'option'); ?>
-        <a class="btn-recrutement" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
-            <?php echo esc_html($btn['title']); ?>
-        </a>
+            <?php $btn = get_field('bouton_recrutement_lien', 'option'); ?>
+            <a class="btn-recrutement" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
+                <?php echo esc_html($btn['title']); ?>
+            </a>
+        </nav>
     </header>
