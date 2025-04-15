@@ -1,10 +1,14 @@
 <?php
+/**
+ * Template Name: Accueil
+ */
+
 get_header();
 ?>
 
 <main>
     <section>
-        Index.php
+        <h1>Page d’accueil – contenu visible ?</h1>
     </section>
 </main>
 

@@ -1,40 +1,44 @@
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php bloginfo('name'); ?></title>
+    <title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
     <?php wp_head(); ?>
 </head>
 
 <body>
     <header>
-        <!-- <?php
-                if (wp_is_mobile()) {
-                    get_header('mobile');
-                } else {
-                    get_header('desktop');
-                }
-                ?> -->
+        <?php $logo = get_field('logo_header', 'option'); ?>
+        <?php if ($logo): ?>
+            <a href="/">
+                <img src="<?php echo esc_url($logo); ?>" alt="Logo">
+            </a>
+        <?php endif; ?>
 
-        <a href="/">
-            <img src="<?php the_field('logo_header', 'option'); ?>" alt="Logo La Sasson">
-        </a>
+        <nav>
+            <ul>
+                <?php if (have_rows('menu_items', 'option')) :
+                    while (have_rows('menu_items', 'option')) : the_row();
+                        $link = get_sub_field('lien');
+                        if ($link): ?>
+                            <li>
+                                <a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target']); ?>">
+                                    <?php echo esc_html($link['title']); ?>
+                                </a>
+                            </li>
+                <?php endif;
+                    endwhile;
+                endif; ?>
+            </ul>
+        </nav>
 
-        <ul>
-            <?php if (have_rows('menu_items', 'option')) : ?>
-                <?php while (have_rows('menu_items', 'option')) : the_row(); ?>
-                    <li>
-                        <a href="<?php the_sub_field('lien'); ?>">
-                            <?php the_sub_field('texte'); ?>
-                        </a>
-                    </li>
-                <?php endwhile; ?>
-            <?php endif; ?>
-        </ul>
-
-        <a href="<?php the_field('bouton_recrutement_lien', 'option'); ?>" class="btn-recrutement">
-            <?php the_field('bouton_recrutement_texte', 'option'); ?>
-        </a>
+        <?php $btn = get_field('bouton_recrutement_lien', 'option'); ?>
+        <?php if ($btn): ?>
+            <a class="btn-recrutement" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
+                <?php echo esc_html($btn['title']); ?>
+            </a>
+        <?php endif; ?>
     </header>

@@ -77,24 +77,24 @@ const config = {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: {
-                sourceMap: true,
-            },
+            options: { sourceMap: true }
           },
           {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-            }
+            loader: "postcss-loader",
+            options: { sourceMap: true }
           },
           {
             loader: "sass-loader",
             options: {
               sourceMap: true,
+              implementation: require('sass'),
+              sassOptions: {
+                // Options ici
+              },
             },
-          }
+          }          
         ],
-      },
+      },      
       {
         test: /\.(png|svg|jpe?g|gif)$/i,
         type: 'asset/resource',

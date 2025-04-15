@@ -32,14 +32,14 @@ add_action('after_setup_theme', 'custom_register_nav_menu', 0);
 
 // ADD MENU OPTION PAGES
 if (function_exists('acf_add_options_page')) {
-  // Page d'options directe pour Header/Footer (sans page parent)
   acf_add_options_page(array(
       'page_title'    => 'Options Header/Footer',
-      'menu_title'    => 'Options Header/Footer',
+      'menu_title'    => 'Options',
       'menu_slug'     => 'header-footer-options',
       'capability'    => 'edit_posts',
+      'redirect'      => false,
       'icon_url'      => 'dashicons-admin-generic',
-      'position'      => 59
+      'position'      => 60,
   ));
 }
 
