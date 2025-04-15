@@ -34,7 +34,7 @@ add_action('after_setup_theme', 'custom_register_nav_menu', 0);
 if (function_exists('acf_add_options_page')) {
   acf_add_options_page(array(
       'page_title'    => 'Options Header/Footer',
-      'menu_title'    => 'Options',
+      'menu_title'    => 'Header/Footer',
       'menu_slug'     => 'header-footer-options',
       'capability'    => 'edit_posts',
       'redirect'      => false,
@@ -54,4 +54,16 @@ add_theme_support('html5', array(
     'gallery',
     'caption',
 ));
+// FUNCTIONS DEBUG
+// Fonction qui permet d'afficher le contenue d'une varible de mainière lisible
+function p($args){
+  echo '<pre>';
+  var_dump($args);
+  echo '</pre>';
+}
+// Se base sur p mais ajoute un die() pour stopper l'execution du script
+function d($args){
+  p($args);
+  die();
+}
 ?>

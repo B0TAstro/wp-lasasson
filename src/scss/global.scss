@@ -1,0 +1,111 @@
+// src/scss/global.scss
+
+* {
+    outline: 1px solid red;
+}
+
+// Colors
+$color-white: #FFFFFF;
+$color-black: #000000;
+$color-gray: #D9D9D9;
+$primary-color: #FFCA22;
+$secondary-color: #28B04E;
+$primary-contrast-color: #FFDD70;
+
+// Font families
+$font-family-base: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-condensed: 'Helvetica Neue Condensed', Helvetica, Arial, sans-serif;
+
+// Font weights
+$font-weight-thin: 100;
+$font-weight-ultralight: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// Typography classes
+.text-regular {
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-style: normal;
+}
+
+.text-italic {
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-style: italic;
+}
+
+.text-thin {
+    font-family: $font-family-base;
+    font-weight: $font-weight-thin;
+    font-style: normal;
+}
+
+.text-thin-italic {
+    font-family: $font-family-base;
+    font-weight: $font-weight-thin;
+    font-style: italic;
+}
+
+.text-ultralight {
+    font-family: $font-family-base;
+    font-weight: $font-weight-ultralight;
+    font-style: normal;
+}
+
+.text-ultralight-italic {
+    font-family: $font-family-base;
+    font-weight: $font-weight-ultralight;
+    font-style: italic;
+}
+
+.text-light {
+    font-family: $font-family-base;
+    font-weight: $font-weight-light;
+    font-style: normal;
+}
+
+.text-light-italic {
+    font-family: $font-family-base;
+    font-weight: $font-weight-light;
+    font-style: italic;
+}
+
+.text-medium {
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-style: normal;
+}
+
+.text-medium-italic {
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-style: italic;
+}
+
+.text-bold {
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+    font-style: normal;
+}
+
+.text-bold-italic {
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+    font-style: italic;
+}
+
+.text-condensed-bold {
+    font-family: $font-family-condensed;
+    font-weight: $font-weight-bold;
+    font-style: normal;
+}
+
+.text-condensed-black {
+    font-family: $font-family-condensed;
+    font-weight: $font-weight-black;
+    font-style: normal;
+}
