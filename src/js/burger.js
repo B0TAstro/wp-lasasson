@@ -1,9 +1,10 @@
-function toggleMenu() {
-    const burger = document.querySelector('.burger');
-    const header = document.querySelector("header");
-  
-    burger.addEventListener("click", () => {
-      header.classList.toggle("menu-open");
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('menu-toggle');
+  const links = document.querySelectorAll('.nav-wrapper a');
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.checked = false;
     });
-  }
-toggleMenu();
+  });
+});
