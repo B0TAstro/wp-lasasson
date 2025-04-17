@@ -20,7 +20,7 @@ get_header();
     <?php
     $section1 = get_field('section1');
     ?>
-    <section class="section section-slider">
+    <section class="section-slider">
         <?php if ($section1['slider']) : ?>
             <div class="slider-container">
                 <div class="slider">
@@ -29,10 +29,6 @@ get_header();
                             <?php echo wp_get_attachment_image($slide['image']['ID'], 'full', false, array('class' => 'slide-image')); ?>
                         </div>
                     <?php endforeach; ?>
-                </div>
-                <div class="slider-nav">
-                    <button class="slider-prev">&lt;</button>
-                    <button class="slider-next">&gt;</button>
                 </div>
             </div>
         <?php endif; ?>
@@ -51,21 +47,21 @@ get_header();
     <?php
     $section2 = get_field('section2');
     ?>
-    <section class="section section-presentation">
+    <section class="section-presentation">
         <div class="container">
             <div class="presentation-content">
                 <?php if ($section2['title']) : ?>
-                    <h2 class="section-title"><?php echo $section2['title']; ?></h2>
+                    <h2><?php echo $section2['title']; ?></h2>
                 <?php endif; ?>
 
                 <?php if ($section2['paragraph']) : ?>
-                    <div class="section-text">
-                        <?php echo $section2['paragraph']; ?>
+                    <div class="section-text wysiwyg">
+                        <?php echo apply_filters('the_content', $section2['paragraph']); ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($section2['link']) : ?>
-                    <div class="section-cta">
+                    <div class="button-container">
                         <a href="<?php echo $section2['link']['url']; ?>" class="btn btn-primary"><?php echo $section2['link']['title']; ?></a>
                     </div>
                 <?php endif; ?>
@@ -91,7 +87,7 @@ get_header();
     $section3 = get_field('section3');
     if ($section3 && isset($section3['blocks']) && is_array($section3['blocks']) && count($section3['blocks']) > 0) :
     ?>
-        <section class="section section-info">
+        <section class="section-info">
             <div class="container">
                 <div class="info-blocks">
                     <?php foreach ($section3['blocks'] as $block) : ?>
@@ -105,8 +101,8 @@ get_header();
                             <?php endif; ?>
 
                             <?php if ($block['paragraph']) : ?>
-                                <div class="block-text">
-                                    <?php echo $block['paragraph']; ?>
+                                <div class="block-text wysiwyg">
+                                    <?php echo apply_filters('the_content', $block['paragraph']); ?>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -119,10 +115,10 @@ get_header();
     <?php
     $section4 = get_field('section4');
     ?>
-    <section class="section section-contact">
+    <section class="section-contact">
         <div class="container">
             <?php if ($section4['title']) : ?>
-                <h2 class="section-title"><?php echo $section4['title']; ?></h2>
+                <h2><?php echo $section4['title']; ?></h2>
             <?php endif; ?>
 
             <?php if ($section4['link']) : ?>
@@ -136,10 +132,10 @@ get_header();
     <?php
     $section5 = get_field('section5');
     ?>
-    <section class="section section-news">
+    <section class="section-news">
         <div class="container">
             <?php if ($section5['title']) : ?>
-                <h2 class="section-title"><?php echo $section5['title']; ?></h2>
+                <h2><?php echo $section5['title']; ?></h2>
             <?php endif; ?>
 
             <div class="news-grid">
@@ -156,11 +152,11 @@ get_header();
                 if ($news_query->have_posts()) :
                     while ($news_query->have_posts()) : $news_query->the_post();
                 ?>
-                        <article class="news-item">
+                        <article class="news-item <?php echo has_post_thumbnail() ? 'has-thumbnail' : 'no-thumbnail'; ?>">
                             <?php if (has_post_thumbnail()) : ?>
                                 <div class="news-thumbnail">
                                     <a href="<?php the_permalink(); ?>">
-                                        <?php the_post_thumbnail('medium'); ?>
+                                        <?php echo get_the_post_thumbnail(get_the_ID(), 'medium'); ?>
                                     </a>
                                 </div>
                             <?php endif; ?>

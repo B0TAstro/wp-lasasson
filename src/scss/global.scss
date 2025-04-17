@@ -1,8 +1,8 @@
 // src/scss/global.scss
 
-// * {
-//     outline: 1px solid red;
-// }
+* {
+    outline: 1px solid red;
+}
 
 // Colors
 $color-white: #FFFFFF;
@@ -24,15 +24,51 @@ $font-weight-medium: 500;
 $font-weight-bold: 700;
 $font-weight-black: 900;
 
+// Global styles
+.section {
+    padding: 0 30px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: $primary-color;
+    color: $color-black;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: $font-family-base;
+    font-size: 18px;
+    font-weight: $font-weight-regular;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: $primary-contrast-color;
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: $color-black;
+    color: $color-white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: $font-family-base;
+    font-size: 18px;
+    font-weight: $font-weight-regular;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: $color-white;
+    color: $color-black;
+}
+
 // Styles for Elements WYSIWYG Wp
 .wysiwyg {
     font-family: $font-family-base;
     font-size: 18px;
     color: $color-black;
-  
-    p {
-      margin-bottom: 1em;
-    }
+    gap: 1em;
   
     strong {
       font-weight: bold;
@@ -97,86 +133,86 @@ $font-weight-black: 900;
   
 
 // Typography classes
-.text-regular {
-    font-family: $font-family-base;
-    font-weight: $font-weight-regular;
-    font-style: normal;
-}
+// .text-regular {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-regular;
+//     font-style: normal;
+// }
 
-.text-italic {
-    font-family: $font-family-base;
-    font-weight: $font-weight-regular;
-    font-style: italic;
-}
+// .text-italic {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-regular;
+//     font-style: italic;
+// }
 
-.text-thin {
-    font-family: $font-family-base;
-    font-weight: $font-weight-thin;
-    font-style: normal;
-}
+// .text-thin {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-thin;
+//     font-style: normal;
+// }
 
-.text-thin-italic {
-    font-family: $font-family-base;
-    font-weight: $font-weight-thin;
-    font-style: italic;
-}
+// .text-thin-italic {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-thin;
+//     font-style: italic;
+// }
 
-.text-ultralight {
-    font-family: $font-family-base;
-    font-weight: $font-weight-ultralight;
-    font-style: normal;
-}
+// .text-ultralight {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-ultralight;
+//     font-style: normal;
+// }
 
-.text-ultralight-italic {
-    font-family: $font-family-base;
-    font-weight: $font-weight-ultralight;
-    font-style: italic;
-}
+// .text-ultralight-italic {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-ultralight;
+//     font-style: italic;
+// }
 
-.text-light {
-    font-family: $font-family-base;
-    font-weight: $font-weight-light;
-    font-style: normal;
-}
+// .text-light {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-light;
+//     font-style: normal;
+// }
 
-.text-light-italic {
-    font-family: $font-family-base;
-    font-weight: $font-weight-light;
-    font-style: italic;
-}
+// .text-light-italic {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-light;
+//     font-style: italic;
+// }
 
-.text-medium {
-    font-family: $font-family-base;
-    font-weight: $font-weight-medium;
-    font-style: normal;
-}
+// .text-medium {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-medium;
+//     font-style: normal;
+// }
 
-.text-medium-italic {
-    font-family: $font-family-base;
-    font-weight: $font-weight-medium;
-    font-style: italic;
-}
+// .text-medium-italic {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-medium;
+//     font-style: italic;
+// }
 
-.text-bold {
-    font-family: $font-family-base;
-    font-weight: $font-weight-bold;
-    font-style: normal;
-}
+// .text-bold {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-bold;
+//     font-style: normal;
+// }
 
-.text-bold-italic {
-    font-family: $font-family-base;
-    font-weight: $font-weight-bold;
-    font-style: italic;
-}
+// .text-bold-italic {
+//     font-family: $font-family-base;
+//     font-weight: $font-weight-bold;
+//     font-style: italic;
+// }
 
-.text-condensed-bold {
-    font-family: $font-family-condensed;
-    font-weight: $font-weight-bold;
-    font-style: normal;
-}
+// .text-condensed-bold {
+//     font-family: $font-family-condensed;
+//     font-weight: $font-weight-bold;
+//     font-style: normal;
+// }
 
-.text-condensed-black {
-    font-family: $font-family-condensed;
-    font-weight: $font-weight-black;
-    font-style: normal;
-}
+// .text-condensed-black {
+//     font-family: $font-family-condensed;
+//     font-weight: $font-weight-black;
+//     font-style: normal;
+// }
