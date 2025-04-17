@@ -154,23 +154,33 @@ get_header();
                 ?>
                         <article class="news-item <?php echo has_post_thumbnail() ? 'has-thumbnail' : 'no-thumbnail'; ?>">
                             <?php if (has_post_thumbnail()) : ?>
+                                <div class="news-content">
+                                    <h3 class="news-title">
+                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    </h3>
+                                    <div class="news-date"><?php echo get_the_date(); ?></div>
+                                    <div class="news-excerpt">
+                                        <?php the_excerpt(); ?>
+                                    </div>
+                                    <a href="<?php the_permalink(); ?>" class="news-link">Lire la suite</a>
+                                </div>
                                 <div class="news-thumbnail">
                                     <a href="<?php the_permalink(); ?>">
                                         <?php echo get_the_post_thumbnail(get_the_ID(), 'medium'); ?>
                                     </a>
                                 </div>
-                            <?php endif; ?>
-
-                            <div class="news-content">
-                                <h3 class="news-title">
-                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                </h3>
-                                <div class="news-date"><?php echo get_the_date(); ?></div>
-                                <div class="news-excerpt">
-                                    <?php the_excerpt(); ?>
+                            <?php else : ?>
+                                <div class="news-content">
+                                    <h3 class="news-title">
+                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    </h3>
+                                    <div class="news-date"><?php echo get_the_date(); ?></div>
+                                    <div class="news-excerpt">
+                                        <?php the_excerpt(); ?>
+                                    </div>
+                                    <a href="<?php the_permalink(); ?>" class="news-link">Lire la suite</a>
                                 </div>
-                                <a href="<?php the_permalink(); ?>" class="news-link">Lire la suite</a>
-                            </div>
+                            <?php endif; ?>
                         </article>
                 <?php
                     endwhile;
