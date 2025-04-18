@@ -1,3 +1,258 @@
 @use "../global" as g;
 
 /* Section 1 */
+.actualites-page {
+    padding: 2rem 0;
+    background-color: g.$secondary-color;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: g.$noir;
+        text-align: center;
+    }
+
+    .section-description {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    // Bouton commun pour les deux sections
+    .load-more-container {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .btn-load-more {
+        background-color: g.$jaune;
+        color: g.$noir;
+        padding: 0.75rem 2rem;
+        border-radius: 30px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: darken(g.$jaune, 10%);
+        }
+    }
+
+    // SECTION 1: Dernières actualités
+    .section-actus {
+        margin-bottom: 4rem;
+
+        .actus-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .actu-card {
+            background-color: g.$gris-clair;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+            .actu-header {
+                margin-bottom: 1rem;
+
+                h3 {
+                    margin-bottom: 0.5rem;
+                    font-size: 1.5rem;
+                }
+
+                .actu-date {
+                    font-size: 0.9rem;
+                    color: g.$gris-fonce;
+                }
+            }
+
+            .actu-content {
+                display: flex;
+                gap: 1.5rem;
+
+                @media (max-width: 767px) {
+                    flex-direction: column;
+                }
+
+                .actu-image {
+                    flex: 0 0 30%;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        object-fit: cover;
+                        border-radius: 5px;
+                    }
+                }
+
+                .actu-text {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+
+                    p {
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+        }
+
+        .btn-savoir {
+            align-self: flex-start;
+            background-color: g.$jaune;
+            color: g.$noir;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: auto;
+            display: inline-block;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: darken(g.$jaune, 10%);
+            }
+        }
+    }
+
+    // SECTION 2: Magazines de l'association
+    .section-magazines {
+        margin-bottom: 4rem;
+        padding: 2rem 0;
+        background-color: g.$gris-clair;
+
+        .magazines-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            
+            @media (max-width: 992px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            @media (max-width: 576px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .magazine-item {
+            padding: 0 15px;
+        }
+
+        .magazine-link {
+            display: block;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .magazine-cover {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .magazine-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+            img {
+                max-width: 50%;
+                height: auto;
+            }
+        }
+
+        .magazine-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            color: g.$noir;
+        }
+    }
+
+    // SECTION 3: Articles de presse
+    .section-presse {
+        margin-bottom: 4rem;
+
+        .presse-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+
+            @media (max-width: 992px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media (max-width: 576px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .presse-item {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+
+        .presse-link {
+            display: block;
+            height: 100%;
+            position: relative;
+
+            &:hover .presse-overlay {
+                opacity: 1;
+            }
+
+            &:hover .presse-image {
+                transform: scale(1.05);
+            }
+        }
+
+        .presse-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .presse-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+    }
+}

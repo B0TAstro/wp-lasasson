@@ -31,10 +31,25 @@ $font-size-md: 20px;
 $font-size-lg: 26px;
 $font-size-xl: 32px;
 $font-size-2xl: 42px;
+$font-size-4xl: 72px;
 
 // Global styles
 .section {
   padding: 0 30px;
+}
+
+h1 {
+  font-family: $font-family-base;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-black;
+  text-transform: uppercase;
+  line-height: 1;
+  height: auto;
+  background-color: $primary-color;
+  color: $color-white;
+  padding-left: 30px;
+  display: flex;
+  position: relative;
 }
 
 .btn-primary {

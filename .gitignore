@@ -31,3 +31,4 @@ wp-config.php
 node_modules
 dist
 *.map
+.DS_Store
