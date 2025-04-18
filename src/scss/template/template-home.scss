@@ -356,11 +356,12 @@
                 .news-item {
                     &.has-thumbnail {
                         flex-direction: column;
+                        padding: 30px;
+                        gap: 30px;
 
                         .news-thumbnail {
                             width: 100%;
                             height: auto;
-                            margin-bottom: 30px;
 
                             img {
                                 height: 250px;
