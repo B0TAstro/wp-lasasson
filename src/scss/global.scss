@@ -1,7 +1,7 @@
 // src/scss/global.scss
 
 * {
-    outline: 1px solid red;
+  outline: 1px solid red;
 }
 
 // Colors
@@ -23,196 +23,140 @@ $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
 $font-weight-black: 900;
+// Font sizes
+$font-size-xs: 14px;
+$font-size-sm: 16px;
+$font-size-base: 18px;
+$font-size-md: 20px;
+$font-size-lg: 26px;
+$font-size-xl: 32px;
+$font-size-2xl: 42px;
 
 // Global styles
 .section {
-    padding: 0 30px;
+  padding: 0 30px;
 }
 
 .btn-primary {
-    display: inline-block;
-    background-color: $primary-color;
-    color: $color-black;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-family: $font-family-base;
-    font-size: 18px;
-    font-weight: $font-weight-regular;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+  display: inline-block;
+  background-color: $primary-color;
+  color: $color-black;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: $font-family-base;
+  font-size: 18px;
+  font-weight: $font-weight-regular;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: $primary-contrast-color;
+  background-color: $primary-contrast-color;
 }
 
 .btn-secondary {
-    display: inline-block;
-    background-color: $color-black;
-    color: $color-white;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-family: $font-family-base;
-    font-size: 18px;
-    font-weight: $font-weight-regular;
-    transition: all 0.3s ease;
+  display: inline-block;
+  background-color: $color-black;
+  color: $color-white;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: $font-family-base;
+  font-size: 18px;
+  font-weight: $font-weight-regular;
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background-color: $color-white;
-    color: $color-black;
+  background-color: $color-white;
+  color: $color-black;
 }
 
 // Styles for Elements WYSIWYG Wp
 .wysiwyg {
-    font-family: $font-family-base;
-    font-size: 18px;
-    color: $color-black;
-    gap: 1em;
-  
-    strong {
-      font-weight: bold;
-    }
-  
-    em {
-      font-style: italic;
-    }
-  
-    a {
-      color: $primary-color;
-      text-decoration: underline;
-  
-      &:hover {
-        color: $primary-contrast-color;
-      }
-    }
-  
-    ul,
-    ol {
-      margin-left: 1.5rem;
-      margin-bottom: 1em;
-    }
-  
-    ul {
-      list-style-type: disc;
-    }
-  
-    ol {
-      list-style-type: decimal;
-    }
-  
-    li {
-      margin-bottom: 0.5em;
-    }
-  
-    blockquote {
-      font-style: italic;
-      border-left: 4px solid $primary-color;
-      padding-left: 1rem;
-      margin: 1em 0;
-      color: $color-gray;
-    }
-  
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  
-    h1, h2, h3, h4, h5, h6 {
-      margin: 1em 0 0.5em;
-      font-weight: $font-weight-bold;
-    }
-  
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.5rem; }
-    h4 { font-size: 1.25rem; }
-    h5 { font-size: 1.1rem; }
-    h6 { font-size: 1rem; }
+  font-family: $font-family-base;
+  font-size: 18px;
+  color: $color-black;
+  gap: 1em;
+
+  strong {
+    font-weight: bold;
   }
-  
 
-// Typography classes
-// .text-regular {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-regular;
-//     font-style: normal;
-// }
+  em {
+    font-style: italic;
+  }
 
-// .text-italic {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-regular;
-//     font-style: italic;
-// }
+  a {
+    color: $primary-color;
+    text-decoration: underline;
 
-// .text-thin {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-thin;
-//     font-style: normal;
-// }
+    &:hover {
+      color: $primary-contrast-color;
+    }
+  }
 
-// .text-thin-italic {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-thin;
-//     font-style: italic;
-// }
+  ul,
+  ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1em;
+  }
 
-// .text-ultralight {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-ultralight;
-//     font-style: normal;
-// }
+  ul {
+    list-style-type: disc;
+  }
 
-// .text-ultralight-italic {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-ultralight;
-//     font-style: italic;
-// }
+  ol {
+    list-style-type: decimal;
+  }
 
-// .text-light {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-light;
-//     font-style: normal;
-// }
+  li {
+    margin-bottom: 0.5em;
+  }
 
-// .text-light-italic {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-light;
-//     font-style: italic;
-// }
+  blockquote {
+    font-style: italic;
+    border-left: 4px solid $primary-color;
+    padding-left: 1rem;
+    margin: 1em 0;
+    color: $color-gray;
+  }
 
-// .text-medium {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-medium;
-//     font-style: normal;
-// }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 
-// .text-medium-italic {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-medium;
-//     font-style: italic;
-// }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 1em 0 0.5em;
+    font-weight: $font-weight-bold;
+  }
 
-// .text-bold {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-bold;
-//     font-style: normal;
-// }
+  h1 {
+    font-size: 2rem;
+  }
 
-// .text-bold-italic {
-//     font-family: $font-family-base;
-//     font-weight: $font-weight-bold;
-//     font-style: italic;
-// }
+  h2 {
+    font-size: 1.75rem;
+  }
 
-// .text-condensed-bold {
-//     font-family: $font-family-condensed;
-//     font-weight: $font-weight-bold;
-//     font-style: normal;
-// }
+  h3 {
+    font-size: 1.5rem;
+  }
 
-// .text-condensed-black {
-//     font-family: $font-family-condensed;
-//     font-weight: $font-weight-black;
-//     font-style: normal;
-// }
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  h5 {
+    font-size: 1.1rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+}

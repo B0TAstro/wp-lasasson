@@ -97,7 +97,7 @@ get_header();
                             <?php endif; ?>
 
                             <?php if ($block['subtitle']) : ?>
-                                <h4 class="block-subtitle"><?php echo $block['subtitle']; ?></h4>
+                                <p class="block-subtitle"><?php echo $block['subtitle']; ?></p>
                             <?php endif; ?>
 
                             <?php if ($block['paragraph']) : ?>
@@ -155,12 +155,14 @@ get_header();
                         <article class="news-item <?php echo has_post_thumbnail() ? 'has-thumbnail' : 'no-thumbnail'; ?>">
                             <?php if (has_post_thumbnail()) : ?>
                                 <div class="news-content">
-                                    <h3 class="news-title">
-                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                    </h3>
-                                    <div class="news-date"><?php echo get_the_date(); ?></div>
-                                    <div class="news-excerpt">
-                                        <?php the_excerpt(); ?>
+                                    <div>
+                                        <h3>
+                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        </h3>
+                                        <div class="news-date"><?php echo get_the_date(); ?></div>
+                                        <div class="news-excerpt">
+                                            <?php the_excerpt(); ?>
+                                        </div>
                                     </div>
                                     <a href="<?php the_permalink(); ?>" class="news-link">Lire la suite</a>
                                 </div>
@@ -171,12 +173,14 @@ get_header();
                                 </div>
                             <?php else : ?>
                                 <div class="news-content">
-                                    <h3 class="news-title">
-                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                    </h3>
-                                    <div class="news-date"><?php echo get_the_date(); ?></div>
-                                    <div class="news-excerpt">
-                                        <?php the_excerpt(); ?>
+                                    <div>
+                                        <h3>
+                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        </h3>
+                                        <div class="news-date"><?php echo get_the_date(); ?></div>
+                                        <div class="news-excerpt">
+                                            <?php the_excerpt(); ?>
+                                        </div>
                                     </div>
                                     <a href="<?php the_permalink(); ?>" class="news-link">Lire la suite</a>
                                 </div>
