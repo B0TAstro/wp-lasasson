@@ -96,25 +96,29 @@ get_header();
 
         <?php if (have_rows('section2_magazines')) : ?>
             <div class="magazines-container">
-                <?php
-                while (have_rows('section2_magazines')) : the_row();
-                    $pdf = get_sub_field('fichier_pdf');
-                    $cover = get_sub_field('image_couverture');
-                    $numero = get_sub_field('numero');
-                ?>
-                    <div class="magazine-item">
-                        <a href="<?php echo esc_url($pdf['url']); ?>" target="_blank" class="magazine-link">
-                            <?php if ($cover) : ?>
-                                <img src="<?php echo esc_url($cover['url']); ?>" alt="Magazine <?php echo esc_attr($numero); ?>" class="magazine-cover">
-                            <?php else : ?>
-                                <div class="magazine-placeholder">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-icon.png" alt="PDF">
-                                </div>
-                            <?php endif; ?>
-                            <span class="magazine-number"><?php echo esc_html($numero); ?></span>
-                        </a>
-                    </div>
-                <?php endwhile; ?>
+                <button class="magazines-prev" aria-label="Magazine précédent">&lt;</button>
+
+                <div class="magazines-slider">
+                    <?php
+                    while (have_rows('section2_magazines')) : the_row();
+                        $pdf = get_sub_field('fichier_pdf');
+                        $cover = get_sub_field('image_couverture');
+                        $numero = get_sub_field('numero');
+                    ?>
+                        <div class="magazine-item">
+                            <a href="<?php echo esc_url($pdf['url']); ?>" target="_blank" class="magazine-link">
+                                <?php if ($cover) : ?>
+                                    <img class="magazine-cover" src="<?php echo esc_url($cover['url']); ?>" alt="<?php echo esc_attr($numero); ?>">
+                                <?php else : ?>
+                                    <img class="magazine-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-icon.png" alt="Cover">
+                                <?php endif; ?>
+                                <p class="magazine-number"><?php echo esc_html($numero); ?></p>
+                            </a>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+
+                <button class="magazines-next" aria-label="Magazine suivant">&gt;</button>
             </div>
         <?php endif; ?>
     </section>
