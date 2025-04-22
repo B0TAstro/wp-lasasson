@@ -38,7 +38,7 @@ get_header();
             </div>
 
             <div class="slider-cta">
-                <a href="<?php echo $section1['link']['url']; ?>" class="btn btn-primary"><?php echo $section1['link']['title']; ?></a>
+                <a href="<?php echo $section1['link']['url']; ?>" class="btn-primary"><?php echo $section1['link']['title']; ?></a>
             </div>
         </div>
     </section>
@@ -61,7 +61,7 @@ get_header();
 
                 <?php if ($section2['link']) : ?>
                     <div class="button-container">
-                        <a href="<?php echo $section2['link']['url']; ?>" class="btn btn-primary"><?php echo $section2['link']['title']; ?></a>
+                        <a href="<?php echo $section2['link']['url']; ?>" class="btn-primary"><?php echo $section2['link']['title']; ?></a>
                     </div>
                 <?php endif; ?>
             </div>
@@ -122,7 +122,7 @@ get_header();
 
             <?php if ($section4['link']) : ?>
                 <div class="section-cta">
-                    <a href="<?php echo $section4['link']['url']; ?>" class="btn btn-secondary"><?php echo $section4['link']['title']; ?></a>
+                    <a href="<?php echo $section4['link']['url']; ?>" class="btn-secondary"><?php echo $section4['link']['title']; ?></a>
                 </div>
             <?php endif; ?>
         </div>
@@ -194,7 +194,7 @@ get_header();
 
             <?php if ($section5['link']) : ?>
                 <div class="section-cta">
-                    <a href="<?php echo $section5['link']['url']; ?>" class="btn btn-primary"><?php echo $section5['link']['title']; ?></a>
+                    <a href="<?php echo $section5['link']['url']; ?>" class="btn-primary"><?php echo $section5['link']['title']; ?></a>
                 </div>
             <?php endif; ?>
         </div>
