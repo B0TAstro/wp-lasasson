@@ -1,3 +1,103 @@
 @use "../global" as g;
 
 /* Section 1 */
+
+.section-numero-urgence {
+    padding: 90px 260px;
+
+    .container-infos-pratiques {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .numero-durgence {
+            margin-bottom: 30px;
+
+            h2 {
+                font-family: g.$font-family-base;
+                font-size: g.$font-size-xl;
+                font-weight: g.$font-weight-bold;
+            }
+        }
+
+    .Paragraphe-numero-durgence {
+        font-size: g.$font-size-md;
+        font-weight: g.$font-weight-regular;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        line-height: 1.1;
+
+        p {
+            text-align: center;
+        }
+    }
+}
+
+/* Section 2 */
+
+.section-rapport-dactivite{
+    padding: 90px 260px;
+
+    .container-infos-pratiques{
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+        justify-content: center;
+    }
+
+        h2 {
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-xl;
+            font-weight: g.$font-weight-bold;
+        }
+
+            .titre-rapport-dactivite{
+                margin-bottom:25px;
+            }
+
+    .Paragraphe-rapport-dactivite{
+            font-size: g.$font-size-md;
+            font-weight: g.$font-weight-regular;
+            text-align: center;
+            line-height: 1.1;
+    }         
+}
+
+/* Section 3 */
+
+.section-nos-financeurs-et-partenaires{
+    padding:30px 20px;
+
+    .bloc-nosfinanceurs{
+        text-align: center;
+        margin-bottom: 40px;
+
+        h2{
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-xl;
+            font-weight: g.$font-weight-bold;
+            
+        }
+    }
+
+    .bloc-nos-partenaires{
+        text-align: center;
+        h2{
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-xl;
+            font-weight: g.$font-weight-bold;
+        }
+    }
+
+    .Paragraphe-nos-partenaire{
+        font-size: g.$font-size-md;
+        font-weight: g.$font-weight-regular;
+        text-align: center;
+        line-height: 1.1;
+    }
+}
