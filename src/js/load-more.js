@@ -24,14 +24,24 @@ jQuery(document).ready(function ($) {
             }
         });
     });
-
     // Chargement des articles de presse
+    function getPerPage() {
+        const width = window.innerWidth;
+        if (width <= 640) return 3;
+        if (width <= 1064) return 2;
+        return 3;
+    }
+    
     $('#load-more-presse').on('click', function () {
         const button = $(this);
-        const page = button.data('page') + 1;
-        const perPage = button.data('per-page');
-        const total = button.data('total');
-        const loaded = button.data('loaded');
+
+        if (button.hasClass('loading')) return;
+        button.addClass('loading');
+
+        const page = parseInt(button.data('page'));
+        const perPage = getPerPage();
+        const total = parseInt(button.data('total'));
+        const loaded = parseInt(button.attr('data-loaded'));
         const pageId = button.data('page-id');
 
         $.ajax({
@@ -49,13 +59,17 @@ jQuery(document).ready(function ($) {
                 if (response.success && response.data) {
                     $('.presse-container').append(response.data);
 
-                    button.data('page', page);
                     const newLoaded = loaded + perPage;
-                    button.data('loaded', newLoaded);
-                    if (newLoaded >= total) button.hide();
-                } else {
-                    console.warn('Réponse AJAX invalide :', response);
+                    button.attr('data-loaded', newLoaded);
+                    button.attr('data-page', page + 1);
+
+                    if (newLoaded >= total) {
+                        button.hide();
+                    }
                 }
+            },
+            complete: function () {
+                button.removeClass('loading');
             }
         });
     });

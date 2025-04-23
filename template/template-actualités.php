@@ -134,37 +134,31 @@ get_header();
         <p><?php echo $section3['description_presse']; ?></p>
 
         <?php
-        $articles_presse = get_field('section3')['articles_presse'];
+        $articles_presse = $section3['articles_presse'];
         $total_articles = count($articles_presse);
         $initial_display = 6;
         ?>
         <div class="presse-container">
             <?php
-            $count = 0;
-            foreach ($articles_presse as $article) :
-                if ($count < $initial_display) :
-                    $titre_article = $article['titre_article'];
-                    $image = $article['image_article'];
-                    $lien = $article['lien_article'];
+            for ($i = 0; $i < min($initial_display, $total_articles); $i++) :
+                $article = $articles_presse[$i];
+                $titre_article = $article['titre_article'];
+                $image = $article['image_article'];
+                $lien = $article['lien_article'];
             ?>
-                    <div class="presse-item">
-                        <a href="<?php echo esc_url($lien); ?>" target="_blank" class="presse-link">
-                            <?php if ($image) : ?>
-                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" class="presse-image">
-                            <?php else : ?>
-                                <img class="presse-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-press-icon.png" alt="Cover">
-                            <?php endif; ?>
-                            <div class="overlay">
-                                <p class="article-title"><?php echo esc_html($titre_article); ?></p>
-                                <span class="read-more">En savoir plus ➝</span>
-                            </div>
-                        </a>
-                    </div>
-            <?php
-                endif;
-                $count++;
-            endforeach;
-            ?>
+                <div class="presse-item">
+                    <a href="<?php echo esc_url($lien); ?>" target="_blank" class="presse-link">
+                        <?php if ($image) : ?>
+                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" class="presse-image">
+                        <?php else : ?>
+                            <img class="presse-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-press-icon.png" alt="Cover">
+                        <?php endif; ?>
+                        <div class="overlay">
+                            <p class="article-title"><?php echo esc_html($titre_article); ?></p>
+                        </div>
+                    </a>
+                </div>
+            <?php endfor; ?>
         </div>
 
         <?php if ($total_articles > $initial_display) : ?>

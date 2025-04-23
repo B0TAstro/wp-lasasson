@@ -5,7 +5,6 @@ import './main.scss'
 import './js/burger.js'
 import './js/home-slider.js'
 import './js/magazine-slider.js'
-import './js/effect-hover-press.js'
 import './js/load-more.js'
 import Router from './utils/Router'
 

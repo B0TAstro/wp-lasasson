@@ -66,6 +66,7 @@ add_theme_support('html5', array(
 // ================= AJAX ACTUALITÉS =================
 add_action('wp_ajax_load_more_actus', 'load_more_actus');
 add_action('wp_ajax_nopriv_load_more_actus', 'load_more_actus');
+
 function load_more_actus()
 {
   check_ajax_referer('load_more_nonce');
@@ -85,7 +86,6 @@ function load_more_actus()
 
   if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post();
-      // Tu peux aussi utiliser get_template_part()
 ?>
       <article class="news-item <?php echo has_post_thumbnail() ? 'has-thumbnail' : 'no-thumbnail'; ?>">
         <?php if (has_post_thumbnail()) : ?>
@@ -146,6 +146,7 @@ function load_more_presse()
   ob_start();
 
   for ($i = $start; $i < $end; $i++) {
+    if (!isset($articles[$i])) continue;
     $article = $articles[$i];
     $image = $article['image_article'];
     $lien = $article['lien_article'];
@@ -158,7 +159,9 @@ function load_more_presse()
         <?php else : ?>
           <img class="presse-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-press-icon.png" alt="Cover">
         <?php endif; ?>
-        <p class="article-title"><?php echo esc_html($titre_article); ?></p>
+        <div class="overlay">
+          <p class="article-title"><?php echo esc_html($titre_article); ?></p>
+        </div>
       </a>
     </div>
 <?php
