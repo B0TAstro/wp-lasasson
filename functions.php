@@ -1,9 +1,10 @@
 <?php
+// Enqueue styles/scripts + localisation AJAX
 add_action('wp_enqueue_scripts', 'load_scripts_and_style');
-
 function load_scripts_and_style()
 {
   $template_directory_uri = get_template_directory_uri();
+
   wp_enqueue_style('theme-style', $template_directory_uri . '/style.css', [], filemtime(get_template_directory() . '/style.css'));
 
   if (file_exists(get_template_directory() . '/dist/main.css')) {
@@ -11,42 +12,49 @@ function load_scripts_and_style()
   }
 
   if (file_exists(get_template_directory() . '/dist/main.js')) {
-    wp_enqueue_script('js-bundle', $template_directory_uri . '/dist/main.js', [], filemtime(get_template_directory() . '/dist/main.js'), true);
+    wp_enqueue_script('js-bundle', $template_directory_uri . '/dist/main.js', ['jquery'], filemtime(get_template_directory() . '/dist/main.js'), true);
   }
 
+  // AJAX load-more.js script
+  wp_enqueue_script('load-more-js', $template_directory_uri . '/src/js/load-more.js', ['jquery'], null, true);
+  wp_localize_script('load-more-js', 'ajaxVars', array(
+    'ajaxUrl' => admin_url('admin-ajax.php'),
+    'nonce'   => wp_create_nonce('load_more_nonce'),
+  ));
+
   wp_localize_script('js-bundle', 'WP', array(
-    'root' => esc_url_raw(rest_url()),
-    'nonce' => wp_create_nonce(),
-    'base' => get_site_url(),
+    'root'       => esc_url_raw(rest_url()),
+    'nonce'      => wp_create_nonce(),
+    'base'       => get_site_url(),
     'publicPath' => $template_directory_uri . "/dist/",
   ));
 }
 
+// Enregistrer les menus
+add_action('after_setup_theme', 'custom_register_nav_menu', 0);
 function custom_register_nav_menu()
 {
   register_nav_menus(array(
     'primary_menu' => 'Menu principal',
   ));
 }
-add_action('after_setup_theme', 'custom_register_nav_menu', 0);
 
-// ADD MENU OPTION PAGES
+// Options ACF
 if (function_exists('acf_add_options_page')) {
   acf_add_options_page(array(
-    'page_title'    => 'Options Header/Footer',
-    'menu_title'    => 'Header/Footer',
-    'menu_slug'     => 'header-footer-options',
-    'capability'    => 'edit_posts',
-    'redirect'      => false,
-    'icon_url'      => 'dashicons-admin-generic',
-    'position'      => 60,
+    'page_title'  => 'Options Header/Footer',
+    'menu_title'  => 'Header/Footer',
+    'menu_slug'   => 'header-footer-options',
+    'capability'  => 'edit_posts',
+    'redirect'    => false,
+    'icon_url'    => 'dashicons-admin-generic',
+    'position'    => 60,
   ));
 }
 
+// Thème supports
 add_theme_support('post-thumbnails');
-
 add_theme_support('title-tag');
-
 add_theme_support('html5', array(
   'search-form',
   'comment-form',
@@ -55,34 +63,37 @@ add_theme_support('html5', array(
   'caption',
 ));
 
-// FUNCTION Charger plus d'actu
+// ================= AJAX ACTUALITÉS =================
+add_action('wp_ajax_load_more_actus', 'load_more_actus');
+add_action('wp_ajax_nopriv_load_more_actus', 'load_more_actus');
 function load_more_actus()
 {
-  $page = $_POST['page'];
+  check_ajax_referer('load_more_nonce');
+
+  $page = intval($_POST['page']);
 
   $args = array(
-    'post_type' => 'post',
+    'post_type'      => 'post',
     'posts_per_page' => 5,
-    'paged' => $page,
-    'post_status' => 'publish'
+    'paged'          => $page,
+    'post_status'    => 'publish',
+    'orderby'        => 'date',
+    'order'          => 'DESC',
   );
 
-  $actus_query = new WP_Query($args);
+  $query = new WP_Query($args);
 
-  if ($actus_query->have_posts()) :
-    while ($actus_query->have_posts()) : $actus_query->the_post();
+  if ($query->have_posts()) :
+    while ($query->have_posts()) : $query->the_post();
+      // Tu peux aussi utiliser get_template_part()
 ?>
       <article class="news-item <?php echo has_post_thumbnail() ? 'has-thumbnail' : 'no-thumbnail'; ?>">
         <?php if (has_post_thumbnail()) : ?>
           <div class="news-content">
             <div>
-              <h3>
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              </h3>
+              <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
               <div class="news-date"><?php echo get_the_date(); ?></div>
-              <div class="news-excerpt">
-                <?php the_excerpt(); ?>
-              </div>
+              <div class="news-excerpt"><?php the_excerpt(); ?></div>
             </div>
             <a href="<?php the_permalink(); ?>" class="news-link">Lire la suite</a>
           </div>
@@ -94,13 +105,9 @@ function load_more_actus()
         <?php else : ?>
           <div class="news-content">
             <div>
-              <h3>
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              </h3>
+              <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
               <div class="news-date"><?php echo get_the_date(); ?></div>
-              <div class="news-excerpt">
-                <?php the_excerpt(); ?>
-              </div>
+              <div class="news-excerpt"><?php the_excerpt(); ?></div>
             </div>
             <a href="<?php the_permalink(); ?>" class="news-link">Lire la suite</a>
           </div>
@@ -111,52 +118,55 @@ function load_more_actus()
     wp_reset_postdata();
   endif;
 
-  die();
+  wp_die();
 }
-add_action('wp_ajax_load_more_actus', 'load_more_actus');
-add_action('wp_ajax_nopriv_load_more_actus', 'load_more_actus');
 
-// FUNCTION Charger plus d'articles de presse via AJAX
+// ================= AJAX PRESSE =================
 function load_more_presse()
 {
-  // $page variable removed as it's not being used
-  $loaded = $_POST['loaded'];
-  $per_page = $_POST['per_page'];
+  check_ajax_referer('load_more_nonce');
 
-  $articles_presse = get_field('section3', get_the_ID())['articles_presse'];
+  $loaded   = intval($_POST['loaded']);
+  $per_page = intval($_POST['per_page']);
 
-  $start_index = $loaded;
-  $end_index = min($loaded + $per_page, count($articles_presse));
+  $section3 = get_field('section3', get_the_ID());
+  $articles = $section3['articles_presse'];
 
-  for ($i = $start_index; $i < $end_index; $i++) {
-    $article = $articles_presse[$i];
+  if (!$articles || !is_array($articles)) wp_die();
+
+  $start = $loaded;
+  $end   = min($start + $per_page, count($articles));
+
+  for ($i = $start; $i < $end; $i++) {
+    $article = $articles[$i];
     $image = $article['image_article'];
     $lien = $article['lien_article'];
+    $titre_article = $article['titre_article'];
     ?>
     <div class="presse-item">
       <a href="<?php echo esc_url($lien); ?>" target="_blank" class="presse-link">
         <?php if ($image) : ?>
           <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" class="presse-image">
+        <?php else : ?>
+          <img class="presse-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-press-icon.png" alt="Cover">
         <?php endif; ?>
-        <span class="presse-overlay">+ LINK</span>
+        <p class="article-title"><?php echo esc_html($titre_article); ?></p>
+        <span class="presse-overlay"></span>
       </a>
     </div>
 <?php
   }
-  die();
-}
-add_action('wp_ajax_load_more_presse', 'load_more_presse');
-add_action('wp_ajax_nopriv_load_more_presse', 'load_more_presse');
 
-// FUNCTIONS DEBUG
-// Fonction qui permet d'afficher le contenue d'une varible de mainière lisible
+  wp_die(); 
+}
+
+// ================= DEBUG HELPERS =================
 function p($args)
 {
   echo '<pre>';
   var_dump($args);
   echo '</pre>';
 }
-// Se base sur p mais ajoute un die() pour stopper l'execution du script
 function d($args)
 {
   p($args);

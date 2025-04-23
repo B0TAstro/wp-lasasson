@@ -1,3 +1,5 @@
+// js/home-slider.js
+
 function initSlider() {
     const slider = document.querySelector('.slider');
     const slides = document.querySelectorAll('.slide');
@@ -23,5 +25,4 @@ function initSlider() {
     startAutoSlide();
 }
 
-// Initialize slider when DOM is ready
 document.addEventListener('DOMContentLoaded', initSlider);

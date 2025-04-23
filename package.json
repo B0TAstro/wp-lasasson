@@ -43,5 +43,8 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.2",
     "webpack-notifier": "^1.15.0"
+  },
+  "dependencies": {
+    "swiper": "^11.2.6"
   }
 }
