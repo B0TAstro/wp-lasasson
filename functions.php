@@ -17,10 +17,10 @@ function load_scripts_and_style()
 
   // AJAX load-more.js script
   wp_enqueue_script('load-more-js', $template_directory_uri . '/src/js/load-more.js', ['jquery'], null, true);
-  wp_localize_script('load-more-js', 'ajaxVars', array(
+  wp_localize_script('load-more-js', 'ajaxVars', [
     'ajaxUrl' => admin_url('admin-ajax.php'),
     'nonce'   => wp_create_nonce('load_more_nonce'),
-  ));
+  ]);
 
   wp_localize_script('js-bundle', 'WP', array(
     'root'       => esc_url_raw(rest_url()),
@@ -122,20 +122,28 @@ function load_more_actus()
 }
 
 // ================= AJAX PRESSE =================
+add_action('wp_ajax_load_more_presse', 'load_more_presse');
+add_action('wp_ajax_nopriv_load_more_presse', 'load_more_presse');
+
 function load_more_presse()
 {
   check_ajax_referer('load_more_nonce');
 
-  $loaded   = intval($_POST['loaded']);
-  $per_page = intval($_POST['per_page']);
+  $loaded   = isset($_POST['loaded']) ? intval($_POST['loaded']) : 0;
+  $per_page = isset($_POST['per_page']) ? intval($_POST['per_page']) : 3;
 
-  $section3 = get_field('section3', get_the_ID());
+  $page_id = isset($_POST['page_id']) ? intval($_POST['page_id']) : get_option('page_on_front');
+  $section3 = get_field('section3', $page_id);
   $articles = $section3['articles_presse'];
 
-  if (!$articles || !is_array($articles)) wp_die();
+  if (!$articles || !is_array($articles)) {
+    wp_send_json_error('Aucun article trouvé');
+  }
 
   $start = $loaded;
   $end   = min($start + $per_page, count($articles));
+
+  ob_start();
 
   for ($i = $start; $i < $end; $i++) {
     $article = $articles[$i];
@@ -151,13 +159,13 @@ function load_more_presse()
           <img class="presse-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-press-icon.png" alt="Cover">
         <?php endif; ?>
         <p class="article-title"><?php echo esc_html($titre_article); ?></p>
-        <span class="presse-overlay"></span>
       </a>
     </div>
 <?php
   }
 
-  wp_die(); 
+  $html = ob_get_clean();
+  wp_send_json_success($html);
 }
 
 // ================= DEBUG HELPERS =================

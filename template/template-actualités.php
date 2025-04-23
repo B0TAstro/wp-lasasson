@@ -154,7 +154,10 @@ get_header();
                             <?php else : ?>
                                 <img class="presse-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-press-icon.png" alt="Cover">
                             <?php endif; ?>
-                            <p class="article-title"><?php echo esc_html($titre_article); ?></p>
+                            <div class="overlay">
+                                <p class="article-title"><?php echo esc_html($titre_article); ?></p>
+                                <span class="read-more">En savoir plus ➝</span>
+                            </div>
                         </a>
                     </div>
             <?php
@@ -165,7 +168,7 @@ get_header();
         </div>
 
         <?php if ($total_articles > $initial_display) : ?>
-            <button class="btn-primary btn-load-more" id="load-more-presse" data-page="1" data-total="<?php echo $total_articles; ?>" data-per-page="3" data-loaded="<?php echo $initial_display; ?>">
+            <button class="btn-primary btn-load-more" id="load-more-presse" data-page="1" data-per-page="3" data-total="<?php echo $total_articles; ?>" data-loaded="<?php echo $initial_display; ?>" data-page-id="<?php echo get_the_ID(); ?>">
                 <?php echo get_field('section3')['texte_bouton_plus_presse']; ?>
             </button>
         <?php endif; ?>
