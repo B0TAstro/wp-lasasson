@@ -3,7 +3,9 @@ __webpack_public_path__ = window.WP.publicPath;
 
 import './main.scss'
 import './js/burger.js'
-import './js/slider.js'
+import './js/home-slider.js'
+import './js/magazine-slider.js'
+import './js/load-more.js'
 import Router from './utils/Router'
 
 // Petit routeur inspiré du framework Sage, qui utilise les classes de body de WordPress

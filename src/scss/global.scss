@@ -31,10 +31,93 @@ $font-size-md: 20px;
 $font-size-lg: 26px;
 $font-size-xl: 32px;
 $font-size-2xl: 42px;
+$font-size-4xl: 72px;
 
 // Global styles
 .section {
   padding: 0 30px;
+}
+
+h1 {
+  font-family: $font-family-base;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-black;
+  text-transform: uppercase;
+  line-height: 1;
+  height: auto;
+  background-color: $primary-color;
+  color: $color-white;
+  padding-left: 30px;
+  display: flex;
+  position: relative;
+}
+
+// Button "Soutenir"
+.btn-soutenir {
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: $secondary-color;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.25);
+  font-size: 18px;
+  color: $color-white;
+  font-family: $font-family-base;
+  font-weight: $font-weight-regular;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+
+  .icon {
+      width: 25px;
+      height: 25px;
+      position: relative;
+
+      img {
+          width: 100%;
+          height: auto;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: opacity 0.3s ease;
+      }
+
+      .heart-full {
+          opacity: 0;
+      }
+  }
+
+  .label {
+      opacity: 0;
+      max-width: 0;
+      transform: translateX(-10px);
+      overflow: hidden;
+      white-space: nowrap;
+      transition: opacity 0.3s ease, max-width 0.4s ease, transform 0.4s ease;
+  }
+
+  &:hover {
+      gap:10px;
+      
+      .icon {
+          .heart-empty {
+              opacity: 0;
+          }
+
+          .heart-full {
+              opacity: 1;
+          }
+      }
+
+      .label {
+          opacity: 1;
+          max-width: 200px;
+          transform: translateX(0);
+      }
+  }
 }
 
 .btn-primary {
