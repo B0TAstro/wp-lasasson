@@ -4,60 +4,49 @@
 .btn-infos:hover{
     background-color: g.$primary-color;
 }  
+.partenaire_item a {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
 /* Section 1 */
 
 .section-numero-urgence {
-    padding: 90px 260px;
-    box-shadow: 0 5px 0 0 #FFCA22;
+    padding: 90px 30px;
+    box-shadow: 0 5px 0 0 g.$primary-color;
 
     .container-infos-pratiques {
         display: flex;
         flex-direction: column;
+        width:75%;
         gap: 30px;
+        margin : 0 auto;
         align-items: center;
         justify-content: center;
-    }
-
-        .numero-durgence {
-            margin-bottom: 25px;
 
             h2 {
                 font-family: g.$font-family-base;
                 font-size: g.$font-size-xl;
                 font-weight: g.$font-weight-bold;
+                margin-bottom: 25px;
+            }
+    
+        .Paragraphe-numero-durgence {
+            font-size: g.$font-size-md;
+            font-weight: g.$font-weight-regular;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            p {
+                text-align: center;
             }
         }
-
-    .Paragraphe-numero-durgence {
-        font-size: g.$font-size-md;
-        font-weight: g.$font-weight-regular;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        line-height: 1.1;
-
-        p {
-            text-align: center;
-        }
-    }
-   
-}
-
-// Responsive
-@media (max-width: 1024px) {
-        .section-numero-urgence{
-            padding:90px 85px;
-        
-        .Paragraphe-numero-durgence{
-            font-size: g.$font-size-base;
-        }
     }
 }
 
 // Responsive
-@media (max-width: 768px) {
-    .section-numero-urgence{
-        padding:90px 65px;
+@media (max-width: 1024px) {      
+    .Paragraphe-numero-durgence{
+        font-size: g.$font-size-base;
     }
 }
 
@@ -65,60 +54,44 @@
 /* Section 2 */
 
 .section-rapport-dactivite{
-    padding: 90px 260px;
+    padding: 90px 30px;
     box-shadow: 0 5px 0 0 #FFCA22;
 
     .container-infos-pratiques{
         display: flex;
         flex-direction: column;
+        width:75%;
+        margin : 0 auto;
         gap: 35px;
         align-items: center;
         justify-content: center;
-    }
-
-        h2 {
-            font-family: g.$font-family-base;
-            font-size: g.$font-size-xl;
-            font-weight: g.$font-weight-bold;
-        }
-
-            .titre-rapport-dactivite{
+    
+            h2 {
+                font-family: g.$font-family-base;
+                font-size: g.$font-size-xl;
+                font-weight: g.$font-weight-bold;
                 margin-bottom:15px;
             }
-
-    .Paragraphe-rapport-dactivite{
-            font-size: g.$font-size-md;
-            font-weight: g.$font-weight-regular;
-            text-align: center;
-            line-height: 1.1;
-    } 
-       
+        .Paragraphe-rapport-dactivite{
+                font-size: g.$font-size-md;
+                font-weight: g.$font-weight-regular;
+                text-align: center;
+                line-height: 1.1;
+        } 
+    }     
 }
 
 // Responsive
 @media (max-width: 1024px) {
-
-        .section-rapport-dactivite{
-            padding:90px 85px;
-        
-        .Paragraphe-rapport-dactivite{
-            font-size: g.$font-size-base;
-        }
-    }
+    .Paragraphe-rapport-dactivite{
+        font-size: g.$font-size-base;
+    }  
 }
 
-// Responsive
-@media (max-width: 768px) {
-
-        .section-rapport-dactivite{
-            padding:90px 65px;
-    }
-}
 /* Section 3 */
 
 .section-nos-financeurs-et-partenaires{
-    padding:30px 20px;
-    margin-top: 40px;
+    padding:90px 30px;
 
     .bloc-nosfinanceurs{
         text-align: center;
@@ -131,67 +104,64 @@
             margin-bottom: 30px;
             
         }
-    }
+    
             .Paragraphe-nos-financeurs{
-                width: 100%;
-                max-width: 920px;
+                width: 75%;
                 margin:0 auto;
                 margin-bottom: 70px;
                 font-size: g.$font-size-md;
                 font-weight: g.$font-weight-regular;
-                line-height: 1.1;
             }
                 .nosfinanceurs_galerie {
                     display : grid;
                     grid-template-columns: repeat(4, 1fr);
+                    gap:15px;
                 }
 
                     .nosfinanceurs_galerie img {
-                        width: 330px;
-                        height: 330px;
-                        margin-bottom: 20px;
-                        transition: transform 0.4s ease, box-shadow 0.4s ease;
+                        width: 100%;
+                        height: auto;
+                        aspect-ratio: 1/1; /* Force un ratio d'aspect carré */
                     }
-                        .nosfinanceurs_galerie img:hover {
-                            transform: translateY(-5px);
-                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-                        }
-
+                .nosfinanceurs_galerie img:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                }
+    }
     .bloc-nos-partenaires{
         text-align: center;
         margin-bottom: 40px;
+
             h2{
                 font-family: g.$font-family-base;
                 font-size: g.$font-size-xl;
                 font-weight: g.$font-weight-bold;
                 margin-bottom: 30px;
             }
-    }
+    
+                    .Paragraphe-nos-partenaire{
+                        font-size: g.$font-size-md;
+                        font-weight: g.$font-weight-regular;
+                        width:75%;
+                        margin:0 auto;
+                        margin-bottom: 70px;
+                    }
 
-                .Paragraphe-nos-partenaire{
-                    font-size: g.$font-size-md;
-                    font-weight: g.$font-weight-regular;
-                    line-height: 1.1;
-                    width:100%;
-                    max-width: 920px;
-                    margin:0 auto;
-                    margin-bottom: 70px;
+                .nos-partenaire_galerie{
+                    display : grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap:15px
                 }
 
-            .nos-partenaire_galerie{
-                display : grid;
-                grid-template-columns: repeat(4, 1fr);
+            .nos-partenaire_galerie img{
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1/1; /* Force un ratio d'aspect carré */
             }
-
-        .nos-partenaire_galerie img{
-            width: 330px;
-            height: 330px;
-            margin-bottom: 20px;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        .nos-partenaire_galerie img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
-    .nos-partenaire_galerie img:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -202,12 +172,12 @@
             .nosfinanceurs_galerie {
                 display : grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap:10px;
+                gap:20px;
             }
                 .nosfinanceurs_galerie img {
                     width: 100%;
                     height: auto;
-                    margin-bottom: 10px;
+                    aspect-ratio: 1/1; /* Force un ratio d'aspect carré */
                 }
                 
              .Paragraphe-nos-financeurs {
@@ -220,12 +190,12 @@
             .nos-partenaire_galerie{
                 display : grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap:10px;
+                gap:20px;
             }
                     .nos-partenaire_galerie img{
                         width: 100%;
                         height: auto;
-                        margin-bottom: 10px; 
+                        aspect-ratio: 1/1; /* Force un ratio d'aspect carré */
                 }
 
             .Paragraphe-nos-partenaire{
