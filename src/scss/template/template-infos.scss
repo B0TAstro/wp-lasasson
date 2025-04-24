@@ -4,17 +4,18 @@
 
 .section-numero-urgence {
     padding: 90px 260px;
+    box-shadow: 0 5px 0 0 #FFCA22;
 
     .container-infos-pratiques {
         display: flex;
         flex-direction: column;
-        gap: 40px;
+        gap: 30px;
         align-items: center;
         justify-content: center;
     }
 
         .numero-durgence {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
 
             h2 {
                 font-family: g.$font-family-base;
@@ -28,7 +29,7 @@
         font-weight: g.$font-weight-regular;
         display: flex;
         flex-direction: column;
-        gap: 40px;
+        gap: 30px;
         line-height: 1.1;
 
         p {
@@ -37,15 +38,35 @@
     }
 }
 
+// Responsive
+@media (max-width: 1024px) {
+        .section-numero-urgence{
+            padding:90px 85px;
+        
+        .Paragraphe-numero-durgence{
+            font-size: g.$font-size-base;
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .section-numero-urgence{
+        padding:90px 35px;
+    }
+}
+
+
 /* Section 2 */
 
 .section-rapport-dactivite{
     padding: 90px 260px;
+    box-shadow: 0 5px 0 0 #FFCA22;
 
     .container-infos-pratiques{
         display: flex;
         flex-direction: column;
-        gap: 40px;
+        gap: 35px;
         align-items: center;
         justify-content: center;
     }
@@ -57,7 +78,7 @@
         }
 
             .titre-rapport-dactivite{
-                margin-bottom:25px;
+                margin-bottom:15px;
             }
 
     .Paragraphe-rapport-dactivite{
@@ -68,36 +89,167 @@
     }         
 }
 
+// Responsive
+@media (max-width: 1024px) {
+
+        .section-rapport-dactivite{
+            padding:90px 85px;
+        
+        .Paragraphe-rapport-dactivite{
+            font-size: g.$font-size-base;
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+
+        .section-rapport-dactivite{
+            padding:90px 35px;
+    }
+}
 /* Section 3 */
 
 .section-nos-financeurs-et-partenaires{
     padding:30px 20px;
+    margin-top: 40px;
 
     .bloc-nosfinanceurs{
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
 
         h2{
             font-family: g.$font-family-base;
             font-size: g.$font-size-xl;
             font-weight: g.$font-weight-bold;
+            margin-bottom: 30px;
             
         }
     }
+            .Paragraphe-nos-financeurs{
+                width: 100%;
+                max-width: 920px;
+                margin:0 auto;
+                margin-bottom: 70px;
+                font-size: g.$font-size-md;
+                font-weight: g.$font-weight-regular;
+                line-height: 1.1;
+            }
+                .nosfinanceurs_galerie {
+                    display : grid;
+                    grid-template-columns: repeat(4, 1fr);
+                }
+
+                    .nosfinanceurs_galerie img {
+                        width: 330px;
+                        height: 330px;
+                        margin-bottom: 20px;
+                    }
 
     .bloc-nos-partenaires{
         text-align: center;
-        h2{
-            font-family: g.$font-family-base;
-            font-size: g.$font-size-xl;
-            font-weight: g.$font-weight-bold;
-        }
+        margin-bottom: 40px;
+            h2{
+                font-family: g.$font-family-base;
+                font-size: g.$font-size-xl;
+                font-weight: g.$font-weight-bold;
+                margin-bottom: 30px;
+            }
     }
 
-    .Paragraphe-nos-partenaire{
-        font-size: g.$font-size-md;
-        font-weight: g.$font-weight-regular;
-        text-align: center;
-        line-height: 1.1;
+            .Paragraphe-nos-partenaire{
+                font-size: g.$font-size-md;
+                font-weight: g.$font-weight-regular;
+                line-height: 1.1;
+                width:100%;
+                max-width: 920px;
+                margin:0 auto;
+                margin-bottom: 70px;
+            }
+
+        .nos-partenaire_galerie{
+            display : grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+    .nos-partenaire_galerie img{
+        width: 330px;
+        height: 330px;
+        margin-bottom: 20px;
     }
 }
+
+// Responsive
+@media (max-width: 1024px) {
+    .section-nos-financeurs-et-partenaires{
+        .bloc-nosfinanceurs{
+            .nosfinanceurs_galerie {
+                display : grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap:10px;
+            }
+                .nosfinanceurs_galerie img {
+                    width: 100%;
+                    height: auto;
+                    margin-bottom: 10px;
+                }
+                
+             .Paragraphe-nos-financeurs {
+                width:auto;
+                font-size: g.$font-size-base;
+                padding:0px 40px;
+            }
+        }
+        .bloc-nos-partenaires{
+            .nos-partenaire_galerie{
+                display : grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap:10px;
+            }
+                .nos-partenaire_galerie img{
+                    width: 100%;
+                    height: auto;
+                    margin-bottom: 10px; 
+            }
+            .Paragraphe-nos-partenaire{
+                width:auto;
+                font-size: g.$font-size-base;
+                padding:0px 40px;
+            }
+        }   
+    }
+}
+
+@media (max-width: 768px){
+    .section-nos-financeurs-et-partenaires{
+        .bloc-nosfinanceurs{
+            .nosfinanceurs_galerie {
+                display : grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+                .nosfinanceurs_galerie img {
+                    width: 100%;
+                    height: auto;
+                }
+            .Paragraphe-nos-financeurs {
+                width:auto;
+                font-size: g.$font-size-base;
+            }
+        }
+        .bloc-nos-partenaires{
+            .nos-partenaire_galerie{
+                display : grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+                .nos-partenaire_galerie img{
+                    width: 100%;
+                    height: auto;
+                }
+            .Paragraphe-nos-partenaire{
+                width:auto;
+                font-size: g.$font-size-base;
+            }
+        }   
+    }
+}
+

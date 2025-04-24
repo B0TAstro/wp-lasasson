@@ -43,7 +43,7 @@ get_header();
 
                         <?php if ($bouton_numero_urgence): ?>
                             <div class="btn-numero-urgence">
-                                <a href="<?php echo esc_url($bouton_numero_urgence['url']); ?>" target="<?php echo esc_attr($bouton_numero_urgence['target'] ?? '_self'); ?>" class=" btn-secondary">
+                                <a href="<?php echo esc_url($bouton_numero_urgence['url']); ?>" target="_blank<?php echo esc_attr($bouton_numero_urgence['target'] ?? '_self'); ?>" class=" btn-secondary">
                                     <?php echo esc_html($bouton_numero_urgence['title']); ?>
                                 </a>
                             </div>
@@ -52,8 +52,6 @@ get_header();
                 </section>
             <?php endif; ?>
         <?php endif; ?>
-
-
 
         <?php
      
@@ -64,6 +62,7 @@ get_header();
                 $titre_rapport = $section_2['titre_section_rapport_dactivite'] ?? null;
                 $contenu_rapport = $section_2['texte_section_rapport_dactivite'] ?? null;
                 $fichier_pdf = $section_2['fichier_pdf_rapport_dactivite'] ?? null; 
+                $texte_bouton = $section_2['texte_bouton_pdf'] ?? null;
             ?>
 
             <?php if ($titre_rapport || $contenu_rapport || $fichier_pdf): ?>
@@ -82,9 +81,9 @@ get_header();
                     <?php endif; ?>
 
                     <?php if ($fichier_pdf): ?>
-                        <div class="telecharger-rapport">
-                            <a class="btn-rapport" href="<?php echo esc_url($fichier_pdf['url']); ?>" target="_blank" download>
-                                📄 Télécharger le rapport d’activité global 2024
+                        <div class="bouton-telecharger-rapport">
+                            <a class="btn-secondary" href="<?php echo esc_url($fichier_pdf['url']); ?>" target="_blank" download>
+                                <?php echo esc_html($texte_bouton); ?>
                             </a>
                         </div>
                     <?php endif; ?>
@@ -117,7 +116,7 @@ get_header();
                             <?php endif; ?>
 
                             <?php if ($contenu_nosfinanceurs): ?>
-                                <div class="Paragraphe-partenaire wysiwyg">
+                                <div class="Paragraphe-nos-financeurs wysiwyg">
                                     <?php echo $contenu_nosfinanceurs; ?>
                                 </div>
                             <?php endif; ?>
@@ -154,14 +153,14 @@ get_header();
 
                                 <?php if ($repeteur_nos_partenaire): ?>
                                     <div class="nos-partenaire_galerie">
-                                        <?php foreach ($repeteur_nos_partenaire as $nos_partenaire): ?>
+                                        <?php foreach ($repeteur_nos_partenaire as $nos_partenaires): ?>
                                             <?php
-                                                $image_nos_partenaire = $nos_partenaire['image_du_repeteur'] ?? null;
-                                                $lien_nos_partenaire = $nos_partenaire['lien_partenaire'] ?? null;
+                                                $image_nos_partenaires = $nos_partenaires['image_du_repeteur_nos_partenaires'] ?? null;
+                                                $lien_nos_partenaires = $nos_partenaires['lien_nos_partenaires'] ?? null;
                                             ?>
-                                            <?php if ($image_nos_partenaire): ?>
-                                                <a href="<?php echo esc_url($lien_nos_partenaire); ?>" target="_blank" class="nos-partenaire_item">
-                                                    <img src="<?php echo esc_url($image_nos_partenaire['url']); ?>" alt="<?php echo esc_attr($image_nos_partenaire['alt'] ?? ''); ?>">
+                                            <?php if ($image_nos_partenaires): ?>
+                                                <a href="<?php echo esc_url($lien_nos_partenaires); ?>" target="_blank" class="partenaire_item">
+                                                    <img src="<?php echo esc_url($image_nos_partenaires['url']); ?>" alt="<?php echo esc_attr($image_nos_partenaires['alt'] ?? ''); ?>">
                                                 </a>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
