@@ -23,8 +23,9 @@ function load_scripts_and_style()
   ]);
 
   wp_localize_script('js-bundle', 'WP', array(
-    'root'       => esc_url_raw(rest_url()),
+    'ajaxUrl'    => admin_url('admin-ajax.php'),
     'nonce'      => wp_create_nonce(),
+    'root'       => esc_url_raw(rest_url()),
     'base'       => get_site_url(),
     'publicPath' => $template_directory_uri . "/dist/",
   ));
@@ -63,13 +64,21 @@ add_theme_support('html5', array(
   'caption',
 ));
 
-// === PHP : Fonction AJAX générique (pour tous les formulaires) ===
+// === Fonction AJAX pour tous les formulaires ===
 add_action('wp_ajax_send_dynamic_form', 'send_dynamic_form');
 add_action('wp_ajax_nopriv_send_dynamic_form', 'send_dynamic_form');
 
-function send_dynamic_form() {
+function send_dynamic_form()
+{
   $fields = [
-    'nom', 'prenom', 'email', 'telephone', 'objet', 'service', 'message', 'consent'
+    'nom',
+    'prenom',
+    'email',
+    'telephone',
+    'objet',
+    'service',
+    'message',
+    'consent'
   ];
 
   foreach ($fields as $field) {
@@ -82,7 +91,7 @@ function send_dynamic_form() {
 
   $headers = [
     'Content-Type: text/html; charset=UTF-8',
-    "From: $prenom $nom <ne-pas-repondre@la-sasson.fr>",
+    "From: $prenom $nom <tom@famille-boullay.fr>", // Remplacez par l'email de l'expéditeur
     "Reply-To: $email"
   ];
 
@@ -94,12 +103,15 @@ function send_dynamic_form() {
   $body .= "<p><strong>Objet :</strong> $objet</p>";
   $body .= "<p><strong>Message :</strong><br>" . nl2br($message) . "</p>";
 
+  // DEBUG - COMMENTEZ OU SUPPRIMEZ CETTE LIGNE
+  // wp_send_json_success($debug);
+
   $sent = wp_mail($service, "Formulaire : $objet", $body, $headers);
 
   if ($sent) {
     wp_send_json_success("Votre message a bien été envoyé.");
   } else {
-    wp_send_json_error("Erreur lors de l'envoi du message.");
+    wp_send_json_error("Erreur lors de l'envoi du message. Vérifiez les logs ou les paramètres SMTP.");
   }
 }
 
