@@ -63,6 +63,46 @@ add_theme_support('html5', array(
   'caption',
 ));
 
+// === PHP : Fonction AJAX générique (pour tous les formulaires) ===
+add_action('wp_ajax_send_dynamic_form', 'send_dynamic_form');
+add_action('wp_ajax_nopriv_send_dynamic_form', 'send_dynamic_form');
+
+function send_dynamic_form() {
+  $fields = [
+    'nom', 'prenom', 'email', 'telephone', 'objet', 'service', 'message', 'consent'
+  ];
+
+  foreach ($fields as $field) {
+    $$field = sanitize_text_field($_POST[$field] ?? '');
+  }
+
+  if (!$nom || !$prenom || !$email || !$objet || !$service || !$message || !$consent) {
+    wp_send_json_error('Tous les champs obligatoires doivent être remplis.');
+  }
+
+  $headers = [
+    'Content-Type: text/html; charset=UTF-8',
+    "From: $prenom $nom <ne-pas-repondre@la-sasson.fr>",
+    "Reply-To: $email"
+  ];
+
+  $body = "<h2>Nouvelle demande</h2>";
+  $body .= "<p><strong>Nom :</strong> $nom</p>";
+  $body .= "<p><strong>Prénom :</strong> $prenom</p>";
+  $body .= "<p><strong>Email :</strong> $email</p>";
+  $body .= "<p><strong>Téléphone :</strong> $telephone</p>";
+  $body .= "<p><strong>Objet :</strong> $objet</p>";
+  $body .= "<p><strong>Message :</strong><br>" . nl2br($message) . "</p>";
+
+  $sent = wp_mail($service, "Formulaire : $objet", $body, $headers);
+
+  if ($sent) {
+    wp_send_json_success("Votre message a bien été envoyé.");
+  } else {
+    wp_send_json_error("Erreur lors de l'envoi du message.");
+  }
+}
+
 // ================= AJAX ACTUALITÉS =================
 add_action('wp_ajax_load_more_actus', 'load_more_actus');
 add_action('wp_ajax_nopriv_load_more_actus', 'load_more_actus');
