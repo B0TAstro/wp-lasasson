@@ -1,5 +1,9 @@
 @use "../global" as g;
 
+/*global styles*/
+.btn-infos:hover{
+    background-color: g.$primary-color;
+}  
 /* Section 1 */
 
 .section-numero-urgence {
@@ -36,6 +40,7 @@
             text-align: center;
         }
     }
+   
 }
 
 // Responsive
@@ -52,7 +57,7 @@
 // Responsive
 @media (max-width: 768px) {
     .section-numero-urgence{
-        padding:90px 35px;
+        padding:90px 65px;
     }
 }
 
@@ -86,7 +91,8 @@
             font-weight: g.$font-weight-regular;
             text-align: center;
             line-height: 1.1;
-    }         
+    } 
+       
 }
 
 // Responsive
@@ -105,7 +111,7 @@
 @media (max-width: 768px) {
 
         .section-rapport-dactivite{
-            padding:90px 35px;
+            padding:90px 65px;
     }
 }
 /* Section 3 */
@@ -144,7 +150,12 @@
                         width: 330px;
                         height: 330px;
                         margin-bottom: 20px;
+                        transition: transform 0.4s ease, box-shadow 0.4s ease;
                     }
+                        .nosfinanceurs_galerie img:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                        }
 
     .bloc-nos-partenaires{
         text-align: center;
@@ -157,25 +168,30 @@
             }
     }
 
-            .Paragraphe-nos-partenaire{
-                font-size: g.$font-size-md;
-                font-weight: g.$font-weight-regular;
-                line-height: 1.1;
-                width:100%;
-                max-width: 920px;
-                margin:0 auto;
-                margin-bottom: 70px;
+                .Paragraphe-nos-partenaire{
+                    font-size: g.$font-size-md;
+                    font-weight: g.$font-weight-regular;
+                    line-height: 1.1;
+                    width:100%;
+                    max-width: 920px;
+                    margin:0 auto;
+                    margin-bottom: 70px;
+                }
+
+            .nos-partenaire_galerie{
+                display : grid;
+                grid-template-columns: repeat(4, 1fr);
             }
 
-        .nos-partenaire_galerie{
-            display : grid;
-            grid-template-columns: repeat(4, 1fr);
+        .nos-partenaire_galerie img{
+            width: 330px;
+            height: 330px;
+            margin-bottom: 20px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-
-    .nos-partenaire_galerie img{
-        width: 330px;
-        height: 330px;
-        margin-bottom: 20px;
+    .nos-partenaire_galerie img:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -206,11 +222,12 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap:10px;
             }
-                .nos-partenaire_galerie img{
-                    width: 100%;
-                    height: auto;
-                    margin-bottom: 10px; 
-            }
+                    .nos-partenaire_galerie img{
+                        width: 100%;
+                        height: auto;
+                        margin-bottom: 10px; 
+                }
+
             .Paragraphe-nos-partenaire{
                 width:auto;
                 font-size: g.$font-size-base;

@@ -42,11 +42,9 @@ get_header();
                         <?php endif; ?>
 
                         <?php if ($bouton_numero_urgence): ?>
-                            <div class="btn-numero-urgence">
-                                <a href="<?php echo esc_url($bouton_numero_urgence['url']); ?>" target="_blank<?php echo esc_attr($bouton_numero_urgence['target'] ?? '_self'); ?>" class=" btn-secondary">
+                                <a href="<?php echo esc_url($bouton_numero_urgence['url']); ?>" target="_blank<?php echo esc_attr($bouton_numero_urgence['target'] ?? '_self'); ?>" class=" btn-secondary btn-infos">
                                     <?php echo esc_html($bouton_numero_urgence['title']); ?>
                                 </a>
-                            </div>
                         <?php endif; ?>
                     </div>
                 </section>
@@ -81,11 +79,9 @@ get_header();
                     <?php endif; ?>
 
                     <?php if ($fichier_pdf): ?>
-                        <div class="bouton-telecharger-rapport">
-                            <a class="btn-secondary" href="<?php echo esc_url($fichier_pdf['url']); ?>" target="_blank" download>
+                            <a class="btn-secondary btn-infos" href="<?php echo esc_url($fichier_pdf['url']); ?>" target="_blank" download>
                                 <?php echo esc_html($texte_bouton); ?>
                             </a>
-                        </div>
                     <?php endif; ?>
                 </div>
             </section>
