@@ -25,10 +25,9 @@ get_header();
         $why_support_text = $section_1['editor_pourquoi_nous_soutenir'] ;
         $dons_title = $section_1['titre_dons'] ;
 
-        // Champs du tableau
-        $column_1 = $section_1['colonne_1_repeteur_dons'];  // "Votre don"
-        $column_2 = $section_1['colonne_2_repeteur_action_impact'];  // "Son impact concret"
-        $rows = $section_1['repeteur_dons'];  // Le répéteur pour les lignes de dons et impacts
+        $column_1 = $section_1['colonne_1_repeteur_dons']; 
+        $column_2 = $section_1['colonne_2_repeteur_action_impact'];  
+        $rows = $section_1['repeteur_dons'];  
 
     ?>
     <section class="actu-section">
@@ -73,19 +72,56 @@ get_header();
     <?php 
         $section_2 = get_field('section_2');
         if ($section_2) :
-            $how_support_title = $section_2['titre_dons'] ;
-            $how_support_text1 = $section_2['editor_dons'] ;
-            $how_support_text2 = $section_2['image_dons'] ;
-            $how_support_button1 = $section_2['lien_du_bouton_dons'] ;
-            $how_support_button2 = $section_2['lien_du_bouton_dons'] ;
-            $object_donation_title = $section_2['editor_dons'] ;
-            $object_donation_text1 = $section_2['editor_dons'] ;
-            $object_donation_text2 = $section_2['editor_dons'] ;
+            $how_support_title = $section_2['titre_comment_nous_soutenir'] ;
+            $how_support_text1 = $section_2['texte_cheques'] ;
+            $how_support_text2 = $section_2['texte_virement_bancaire'] ;
+            $how_support_button1 = $section_2['lien_bouton_don_unique'] ;
+            $how_support_button2 = $section_2['lien_bouton_don_mensuel'] ;
+            $how_support_image = $section_2['image_comment_nous_soutenir'] ;
+            $object_donation_title = $section_2['titre_don_objets'] ;
+            $object_donation_text1 = $section_2['texte_accepte_don_objets'] ;
+            $object_donation_text2 = $section_2['texte_types_dobjets'] ;
+            $object_donation_image = $section_2['image_don_objets'] ;
             $advantages_title = $section_2['titre_avantages_fiscaux'] ;
             $advantages_text = $section_2['texte_avantages_fiscaux'] ;
             
     ?>
         <section class="actu-section">
+            <div class="actu-container">            
+                <h2><?php echo esc_html($how_support_title); ?></h2>
+                <div class="actu-paragraph wysiwyg">
+                    <?php echo $how_support_text1; ?>
+                </div>
+                <div class="actu-paragraph wysiwyg">
+                    <?php echo $how_support_text2; ?>
+                </div>
+
+                <a href="<?php echo esc_url($how_support_button1['url']); ?>" target="_blank<?php echo esc_attr($how_support_button1['target'] ?? '_self'); ?>" class=" btn-secondary btn-infos">
+                    <?php echo esc_html($how_support_button1['title']); ?>
+                </a>
+              
+                <a href="<?php echo esc_url($how_support_button2['url']); ?>" target="_blank<?php echo esc_attr($how_support_button2['target'] ?? '_self'); ?>" class=" btn-secondary btn-infos">
+                    <?php echo esc_html($how_support_button2['title']); ?>
+                </a>
+            </div>
+
+            <div class="actu-image">
+                <img src="<?php echo esc_url($how_support_image['url']); ?>" alt="<?php echo esc_attr($how_support_image['alt']); ?>">
+            </div>
+        
+            <div class="actu-container">            
+                <h2><?php echo esc_html($object_donation_title); ?></h2>
+                <div class="actu-paragraph wysiwyg">
+                    <?php echo $object_donation_text1; ?>
+                </div>
+                <div class="actu-paragraph wysiwyg">
+                    <?php echo $object_donation_text2; ?>
+                </div>
+                <div class="actu-image">
+                    <img src="<?php echo esc_url($object_donation_image['url']); ?>" alt="<?php echo esc_attr($object_donation_image['alt']); ?>">
+                </div>
+            </div>
+
             <div class="actu-container">            
                 <h2><?php echo esc_html($advantages_title); ?></h2>
                 <div class="actu-paragraph wysiwyg">
