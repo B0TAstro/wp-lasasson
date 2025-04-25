@@ -1,0 +1,223 @@
+@use "../global" as g;
+
+/* Gloabl Styles */
+.status-message {
+    font-family: g.$font-family-base;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Section 1 */
+.contact-form-section {
+    padding: 60px 0;
+    background-color: g.$color-gray;
+
+    .container {
+        max-width: 75%;
+        margin: 0 auto;
+
+        h2 {
+            text-align: center;
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-xl;
+            font-weight: g.$font-weight-bold;
+            color: g.$color-black;
+            margin-bottom: 30px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-base;
+            font-weight: g.$font-weight-light;
+            color: g.$color-black;
+            margin-bottom: 60px;
+        }
+
+        .required-note {
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-xs;
+            font-weight: g.$font-weight-light;
+            color: g.$color-black;
+            margin-bottom: 15px;
+        }
+
+        .contact-form {
+            .form-row {
+                margin-bottom: 30px;
+
+                &.two-columns {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 30px;
+
+                    .form-group {
+                        flex: 1;
+                    }
+
+                    @media (max-width: 1024px) {
+                        flex-direction: column;                    }
+                }
+
+                .form-group {
+
+                    input[type="text"],
+                    input[type="email"],
+                    input[type="tel"],
+                    select,
+                    textarea {
+                        width: 100%;
+                        padding: 12px 30px;
+                        border: none;
+                        border-radius: 5px;
+                        box-sizing: border-box;
+                        background-color: white;
+                        color: g.$color-black;
+                        font-family: g.$font-family-base;
+                        font-size: g.$font-size-base;
+                        font-weight: g.$font-weight-regular;
+                        transition: border-color 0.3s;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    &.checkbox {
+                        display: flex;
+                        align-items: center;
+
+                        input[type="checkbox"] {
+                            margin-top: 4px;
+                            margin-right: 10px;
+                        }
+
+                        label {
+                            margin-left: 10px;
+                            font-family: g.$font-family-base;
+                            font-size: g.$font-size-xs;
+                            font-weight: g.$font-weight-light;
+                            color: g.$color-black;
+                        }
+                    }
+
+                    .select-wrapper {
+                        position: relative;
+                        background-color: white;
+                        border-radius: 5px;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            right: 15px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 0;
+                            height: 0;
+                            border-left: 6px solid transparent;
+                            border-right: 6px solid transparent;
+                            border-top: 6px solid g.$color-black;
+                            pointer-events: none;
+                        }
+
+                        select {
+                            appearance: none;
+                            padding-right: 30px;
+                        }
+                    }
+                }
+            }
+
+            .btn-submit {
+                width: 100%;
+                font-weight: g.$font-weight-bold;
+                border: none;
+                cursor: pointer;
+                text-transform: uppercase;
+                margin-top: 60px;
+            }
+        }
+    }
+}
+
+/* Section 2 */
+.siege-section {
+    padding: 60px 30px;
+    background-color: white;
+    
+    h2 {
+        text-align: center;
+        font-family: g.$font-family-base;
+        font-size: g.$font-size-xl;
+        font-weight: g.$font-weight-bold;
+        color: g.$color-black;
+        margin-bottom: 60px;
+    }
+    
+    .siege-image {
+        margin-bottom: 30px;
+        border-radius: 8px;
+        overflow: hidden;
+        
+        img {
+            width: 100%;
+            height: auto;
+            max-height: 660px;
+            display: block;
+        }
+    }
+    
+    .siege-intro {
+        text-align: center;
+        font-family: g.$font-family-base;
+        font-size: g.$font-size-base;
+        font-weight: g.$font-weight-light;
+        color: g.$color-black;
+        max-width: 75%;
+        margin: 0 auto 30px;
+    }
+    
+    .siege-info {
+        display: flex;
+        gap: 30px;
+        font-family: g.$font-family-base;
+        font-size: g.$font-size-base;
+        font-weight: g.$font-weight-light;
+        
+        @media (max-width: 1024px) {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .siege-address,
+        .siege-hours {
+            background-color: g.$color-gray;
+            padding: 25px 60px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .address, 
+        .phone, 
+        .hours {
+            font-weight: g.$font-weight-regular;
+        }
+        
+        .phone {
+            margin-top: 15px;
+            
+            span {
+                font-weight: g.$font-weight-light;
+            }
+        }
+        
+        .hours-title {
+            margin: 10px 0 15px;
+        }
+    }
+}
