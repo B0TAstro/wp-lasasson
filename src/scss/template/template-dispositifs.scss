@@ -1,5 +1,291 @@
 @use "../global" as g;
 
-/* Gloabl Styles */
 
-/* Section 1 */
+/* Section 1 - Présentation */
+.section-presentation {
+    padding: 60px 0;
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .presentation-content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        
+        @media (min-width: 768px) {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+    
+    .presentation-image {
+        flex: 0 0 100%;
+        background-color: #eee;
+        border-radius: 5px;
+        overflow: hidden;
+        
+        @media (min-width: 768px) {
+            flex: 0 0 40%;
+        }
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .placeholder-image {
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            
+            img {
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+            }
+        }
+    }
+    
+    .presentation-text {
+        flex: 1;
+        
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: g.$black;
+        }
+        
+        .wysiwyg-content {
+            color: g.$text-color;
+            line-height: 1.6;
+            
+            p {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+/* Section 2 - Liste des dispositifs */
+.section-liste-dispositifs {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    h2 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: g.$black;
+    }
+    
+    .section-intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        
+        p {
+            color: g.$text-color;
+            line-height: 1.5;
+        }
+    }
+    
+    .dispositifs-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+        
+        @media (min-width: 576px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media (min-width: 992px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    
+    .dispositif-card {
+        background-color: #eee;
+        border-radius: 5px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+    
+    .dispositif-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    .dispositif-image {
+        height: 180px;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .placeholder-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            img {
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+            }
+        }
+    }
+    
+    .dispositif-title {
+        padding: 15px;
+        text-align: center;
+        
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: g.$black;
+        }
+    }
+    
+    .no-dispositifs {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 40px 0;
+        
+        p {
+            color: g.$text-color;
+            font-style: italic;
+        }
+    }
+}
+
+/* Section 3 - FAQ */
+.section-faq {
+    padding: 60px 0;
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    h2 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: g.$black;
+    }
+    
+    .section-intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        
+        p {
+            color: g.$text-color;
+            line-height: 1.5;
+        }
+    }
+    
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .faq-item {
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        overflow: hidden;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        cursor: pointer;
+        background-color: #fff;
+        
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            color: g.$black;
+        }
+    }
+    
+    .faq-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: g.$yellow;
+        padding: 0;
+        
+        &[aria-expanded="true"] {
+            transform: rotate(45deg);
+        }
+    }
+    
+    .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        
+        &[aria-hidden="false"] {
+            padding: 0 20px 20px;
+            max-height: 1000px;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: g.$text-color;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
