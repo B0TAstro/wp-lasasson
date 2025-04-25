@@ -181,20 +181,18 @@ get_header();
          if ($section_5) :
               $faq_title = $section_5['titre_questions_frequentes'] ;
               $faq_text = $section_5['sous-titre_questions_frequentes'] ;
+
          ?>
-    
-              <section class="faq-section">
+            <section class="faq-section">
                 <div class="faq-container">            
-                            <h2><?php echo esc_html($faq_title); ?></h2>
-                      <div class="faq-paragraph wysiwyg">
-                            <?php echo $faq_text; ?>
-                      </div>
+                                <h2><?php echo esc_html($faq_title); ?></h2>
+                    <div class="faq-paragraph wysiwyg">
+                                <?php echo $faq_text; ?>
+                    </div>        
                 </div>
-              </section>
-    <?php endif; ?>
-
+            </section>
+        <?php endif; ?>
     </main>
-
 <?php
 get_footer();
 ?>
