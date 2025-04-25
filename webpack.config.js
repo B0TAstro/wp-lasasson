@@ -10,7 +10,7 @@ const {
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
 const IS_PROD = process.env.NODE_ENV === 'production';
@@ -24,7 +24,7 @@ const findRootPath = (path) => {
   const splitted = path.split('/');
   const foundIndex = splitted.findIndex((item, index) => {
     if (item.length === 0) {
-    	return false;
+      return false;
     }
     const partialPath = splitted.slice(0, index + 1).join('/');
     return fs.existsSync(`${partialPath}/${file}`)
@@ -35,16 +35,16 @@ const findRootPath = (path) => {
 
 const publicPath = findRootPath(path.resolve(__dirname, 'dist'));
 
-console.log('MODE', {IS_DEV, IS_PROD, publicPath})
+console.log('MODE', { IS_DEV, IS_PROD, publicPath })
 const config = {
-  mode: IS_DEV ? 'development': 'production',
+  mode: IS_DEV ? 'development' : 'production',
   entry: {
-    main: ['./src/main.js' ],
+    main: ['./src/main.js'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: IS_DEV ? publicPath: '',
+    publicPath: IS_DEV ? publicPath : '',
   },
   devtool: IS_DEV ? 'source-map' : false,
   resolve: {
@@ -57,7 +57,7 @@ const config = {
         use: [
           {
             loader: 'esbuild-loader',
-            options:  {
+            options: {
               target: 'es2015',
             }
           },
@@ -89,12 +89,11 @@ const config = {
               sourceMap: true,
               implementation: require('sass'),
               sassOptions: {
-                // Options ici
               },
             },
-          }          
+          }
         ],
-      },      
+      },
       {
         test: /\.(png|svg|jpe?g|gif)$/i,
         type: 'asset/resource',
@@ -110,9 +109,9 @@ const config = {
     minimizer: [
     ],
   },
-  
+
   plugins: [
-    new MiniCssExtractPlugin({filename: '[name].css'}),
+    new MiniCssExtractPlugin({ filename: '[name].css' }),
     new CleanWebpackPlugin({
       verbose: false,
       protectWebpackAssets: false
@@ -120,13 +119,28 @@ const config = {
     new webpack.DefinePlugin({
       PRODUCTION: IS_PROD,
       DEV: IS_DEV,
-    })
+    }),
+    new BrowserSyncPlugin(
+      {
+        host: 'localhost',
+        port: 10005,
+        proxy: 'http://localhost:10003',
+        files: [
+          'src/**/*.scss',
+          'src/**/*.js',
+          'templates/**/*.php',
+          '**/*.php',
+        ],
+      },
+      {
+        reload: true,
+      }
+    ),
   ]
 };
 
-
 if (IS_PROD) {
-  config.plugins.push(new BundleAnalyzerPlugin({analyzerMode : 'static', defaultSizes: 'parsed', openAnalyzer: false}))
+  config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static', defaultSizes: 'parsed', openAnalyzer: false }))
   config.plugins.push(new webpack.ProgressPlugin());
   config.output.environment = {
     arrowFunction: false,
@@ -154,19 +168,22 @@ if (IS_DEV) {
     hot: true,
     liveReload: false,
     port: devPort,
-    allowedHosts: "all",
+    allowedHosts: 'all',
     headers: { "Access-Control-Allow-Origin": "*" },
     devMiddleware: {
       writeToDisk: true,
+      publicPath: publicPath,
     },
     historyApiFallback: true,
     compress: true,
-    webSocketServer: 'ws',
     client: {
       overlay: true,
       progress: false,
       reconnect: true,
-      webSocketTransport: 'ws',
+    },
+    static: {
+      directory: path.join(__dirname, 'dist'),
+      publicPath: publicPath,
     },
   };
 }
