@@ -1,8 +1,8 @@
 // src/scss/global.scss
 
-* {
-  outline: 1px solid red;
-}
+// * {
+//   outline: 1px solid red;
+// }
 
 // Colors
 $color-white: #FFFFFF;
@@ -157,12 +157,12 @@ h1 {
 // Styles for Elements WYSIWYG Wp
 .wysiwyg {
   font-family: $font-family-base;
-  font-size: 18px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
   color: $color-black;
-  gap: 1em;
 
   strong {
-    font-weight: bold;
+    font-weight: $font-weight-medium;
   }
 
   em {
@@ -220,26 +220,26 @@ h1 {
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: $font-size-4xl;
   }
 
   h2 {
-    font-size: 1.75rem;
+    font-size: $font-size-xl;
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: $font-size-lg;
   }
 
   h4 {
-    font-size: 1.25rem;
+    font-size: $font-size-md;
   }
 
   h5 {
-    font-size: 1.1rem;
+    font-size: $font-size-md;
   }
 
   h6 {
-    font-size: 1rem;
+    font-size: $font-size-md;
   }
 }
