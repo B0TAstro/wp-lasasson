@@ -7,8 +7,8 @@
 .partenaire_item a {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-/* Section 1 */
 
+/* Section 1 */
 .section-numero-urgence {
     padding: 90px 30px;
     box-shadow: 0 5px 0 0 g.$primary-color;
@@ -16,7 +16,7 @@
     .container-infos-pratiques {
         display: flex;
         flex-direction: column;
-        width:75%;
+        max-width:75%;
         gap: 30px;
         margin : 0 auto;
         align-items: center;
@@ -52,15 +52,14 @@
 
 
 /* Section 2 */
-
 .section-rapport-dactivite{
     padding: 90px 30px;
-    box-shadow: 0 5px 0 0 #FFCA22;
+    box-shadow: 0 5px 0 0 g.$primary-color;
 
     .container-infos-pratiques{
         display: flex;
         flex-direction: column;
-        width:75%;
+        max-width:75%;
         margin : 0 auto;
         gap: 35px;
         align-items: center;
@@ -76,7 +75,6 @@
                 font-size: g.$font-size-md;
                 font-weight: g.$font-weight-regular;
                 text-align: center;
-                line-height: 1.1;
         } 
     }     
 }
@@ -89,13 +87,12 @@
 }
 
 /* Section 3 */
-
 .section-nos-financeurs-et-partenaires{
     padding:90px 30px;
 
     .bloc-nosfinanceurs{
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 90px;
 
         h2{
             font-family: g.$font-family-base;
@@ -106,7 +103,7 @@
         }
     
             .Paragraphe-nos-financeurs{
-                width: 75%;
+                max-width: 75%;
                 margin:0 auto;
                 margin-bottom: 70px;
                 font-size: g.$font-size-md;
@@ -121,16 +118,15 @@
                     .nosfinanceurs_galerie img {
                         width: 100%;
                         height: auto;
-                        aspect-ratio: 1/1; /* Force un ratio d'aspect carré */
+                        aspect-ratio: 1/1; 
                     }
                 .nosfinanceurs_galerie img:hover {
                     transform: translateY(-5px);
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                    box-shadow: 0 4px 12px g.$color-black;
                 }
     }
     .bloc-nos-partenaires{
         text-align: center;
-        margin-bottom: 40px;
 
             h2{
                 font-family: g.$font-family-base;
@@ -142,7 +138,7 @@
                     .Paragraphe-nos-partenaire{
                         font-size: g.$font-size-md;
                         font-weight: g.$font-weight-regular;
-                        width:75%;
+                        max-width:75%;
                         margin:0 auto;
                         margin-bottom: 70px;
                     }
@@ -156,11 +152,11 @@
             .nos-partenaire_galerie img{
                 width: 100%;
                 height: auto;
-                aspect-ratio: 1/1; /* Force un ratio d'aspect carré */
+                aspect-ratio: 1/1; 
             }
         .nos-partenaire_galerie img:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px g.$color-black;
         }
     }
 }
@@ -177,13 +173,12 @@
                 .nosfinanceurs_galerie img {
                     width: 100%;
                     height: auto;
-                    aspect-ratio: 1/1; /* Force un ratio d'aspect carré */
+                    aspect-ratio: 1/1; 
                 }
                 
              .Paragraphe-nos-financeurs {
-                width:auto;
+                max-width:75%;
                 font-size: g.$font-size-base;
-                padding:0px 40px;
             }
         }
         .bloc-nos-partenaires{
@@ -195,13 +190,12 @@
                     .nos-partenaire_galerie img{
                         width: 100%;
                         height: auto;
-                        aspect-ratio: 1/1; /* Force un ratio d'aspect carré */
+                        aspect-ratio: 1/1; 
                 }
 
             .Paragraphe-nos-partenaire{
-                width:auto;
+                max-width:75%;
                 font-size: g.$font-size-base;
-                padding:0px 40px;
             }
         }   
     }
@@ -219,7 +213,7 @@
                     height: auto;
                 }
             .Paragraphe-nos-financeurs {
-                width:auto;
+                max-width:75%;
                 font-size: g.$font-size-base;
             }
         }
@@ -233,7 +227,7 @@
                     height: auto;
                 }
             .Paragraphe-nos-partenaire{
-                width:auto;
+                width:75%;
                 font-size: g.$font-size-base;
             }
         }   

@@ -27,10 +27,8 @@ get_header();
             ?>
 
                 <section class="section-numero-urgence">
-                    <div class="container-infos-pratiques">
-                        <div class="numero-durgence">                        
+                    <div class="container-infos-pratiques">            
                                 <h2><?php echo esc_html($titre_numero_urgence); ?></h2>
-                        </div>
                             <div class="Paragraphe-numero-durgence wysiwyg">
                                 <?php echo $contenu_numero_urgence; ?>
                             </div>
@@ -54,11 +52,8 @@ get_header();
             ?>
 
             <section class="section-rapport-dactivite">
-                <div class="container-infos-pratiques">
-                    <div class="titre-rapport-dactivite">            
-                            <h2><?php echo esc_html($titre_rapport); ?></h2>           
-                    </div>
-
+                <div class="container-infos-pratiques">                               
+                            <h2><?php echo esc_html($titre_rapport); ?></h2>                             
                         <div class="Paragraphe-rapport-dactivite wysiwyg">
                             <?php echo $contenu_rapport; ?>
                         </div>              
