@@ -64,7 +64,7 @@ add_theme_support('html5', array(
   'caption',
 ));
 
-// === Fonction AJAX pour tous les formulaires ===
+// ================= Fonction AJAX pour tous les formulaires =================
 add_action('wp_ajax_send_dynamic_form', 'send_dynamic_form');
 add_action('wp_ajax_nopriv_send_dynamic_form', 'send_dynamic_form');
 
@@ -91,22 +91,56 @@ function send_dynamic_form()
 
   $headers = [
     'Content-Type: text/html; charset=UTF-8',
-    "From: $prenom $nom <tom@famille-boullay.fr>", // Remplacez par l'email de l'expéditeur
+    "From: Site Web - Formulaire de Contact<tom@famille-boullay.fr>", // Remplacez par l'email de l'expéditeur
     "Reply-To: $email"
   ];
+  $subject = "Nouveau message du formulaire de contact - $objet";
+  $body = <<<HTML
+  <html>
+    <body>
+      <p>Bonjour,</p>
+      <p>Vous avez reçu un nouveau message depuis le formulaire de contact du site <strong>La Sasson</strong> :</p>
+      <br><hr><br>
 
-  $body = "<h2>Nouvelle demande</h2>";
-  $body .= "<p><strong>Nom :</strong> $nom</p>";
-  $body .= "<p><strong>Prénom :</strong> $prenom</p>";
-  $body .= "<p><strong>Email :</strong> $email</p>";
-  $body .= "<p><strong>Téléphone :</strong> $telephone</p>";
-  $body .= "<p><strong>Objet :</strong> $objet</p>";
-  $body .= "<p><strong>Message :</strong><br>" . nl2br($message) . "</p>";
+      <table cellpadding="5" cellspacing="0" border="0" style="margin-top: 10px;">
+      <p><strong>De la part de :</strong> $nom $prenom</p>
+      <p><strong>Téléphone :</strong> $telephone</p>
+      <p><strong>Objet :</strong> $objet</p>
 
-  // DEBUG - COMMENTEZ OU SUPPRIMEZ CETTE LIGNE
-  // wp_send_json_success($debug);
+      <p style="margin-top: 20px;"><strong>Message :</strong></p>
+      <div style="margin-left: 30px; padding: 10px; background-color: #f9f9f9; border-left: 5px solid #FFCA23;">
+        <p style="white-space: pre-line;">$message</p>
+      </div>
 
-  $sent = wp_mail($service, "Formulaire : $objet", $body, $headers);
+      <br><hr><br>
+      <p style="margin-top: 30px;">Vous pouvez répondre à cette personne via cet e-mail ➝ <a href="mailto:$email">$email</a></p>
+    </body>
+  </html>
+  HTML;
+
+  $sent = wp_mail($service, $subject, $body, $headers);
+
+  $user_subject = "Nous avons bien reçu votre message";
+
+  $user_body = <<<HTML
+  <html>
+    <body>
+      <p>Bonjour $prenom $nom,</p>
+      <p>Merci d’avoir pris contact avec nous via le formulaire du site web de <strong>La Sasson</strong>.</p>
+      <p>Votre message a bien été transmis à notre service. Nous reviendrons vers vous dans les meilleurs délais en fonction de votre demande.</p>
+      <p>En attendant, vous pouvez retrouver plus d’informations sur la Sasson sur notre site internet.</p>
+      <p style="margin-top: 30px;">Belle journée à vous,<br>
+      <strong>L’équipe La Sasson</strong></p>
+    </body>
+  </html>
+  HTML;
+
+  $user_headers = [
+    'Content-Type: text/html; charset=UTF-8',
+    "From: Association La Sasson<tom@famille-boullay.fr>", // Remplacez par l'email de l'expéditeur
+  ];
+
+  wp_mail($email, $user_subject, $user_body, $user_headers);
 
   if ($sent) {
     wp_send_json_success("Votre message a bien été envoyé.");
