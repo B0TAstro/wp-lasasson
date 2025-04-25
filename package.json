@@ -18,6 +18,8 @@
   "license": "private",
   "devDependencies": {
     "autoprefixer": "^10.4.7",
+    "browser-sync": "^2.29.3",
+    "browser-sync-webpack-plugin": "^2.3.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.11.0",
     "css-minimizer-webpack-plugin": "^5.0.1",
@@ -41,5 +43,8 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.2",
     "webpack-notifier": "^1.15.0"
+  },
+  "dependencies": {
+    "swiper": "^11.2.6"
   }
 }
