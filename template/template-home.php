@@ -7,6 +7,12 @@ get_header();
 ?>
 
 <main>
+    <?php
+    echo '<pre>';
+    print_r(get_fields());
+    echo '</pre>';
+    ?>
+
     <?php $btn = get_field('bouton_soutenir_lien', 'option'); ?>
     <a class="btn-soutenir" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
         <span class="icon">
@@ -17,7 +23,7 @@ get_header();
     </a>
 
     <?php
-    $section1 = get_field('section1');
+    $section1 = get_field('section1_home');
     ?>
     <section class="section-slider">
         <?php if ($section1['slider']) : ?>
@@ -44,7 +50,7 @@ get_header();
     </section>
 
     <?php
-    $section2 = get_field('section2');
+    $section2 = get_field('section2_home');
     ?>
     <section class="section-presentation">
         <div class="container">
@@ -83,7 +89,7 @@ get_header();
     </section>
 
     <?php
-    $section3 = get_field('section3');
+    $section3 = get_field('section3_home');
     if ($section3 && isset($section3['blocks']) && is_array($section3['blocks']) && count($section3['blocks']) > 0) :
     ?>
         <section class="section-info">
@@ -112,7 +118,7 @@ get_header();
     <?php endif; ?>
 
     <?php
-    $section4 = get_field('section4');
+    $section4 = get_field('section4_home');
     ?>
     <section class="section-contact">
         <div class="container">
@@ -129,7 +135,7 @@ get_header();
     </section>
 
     <?php
-    $section5 = get_field('section5');
+    $section5 = get_field('section5_home');
     ?>
     <section class="section-news">
         <div class="container">

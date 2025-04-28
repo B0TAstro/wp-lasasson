@@ -1,6 +1,5 @@
 @use "../global" as g;
 
-
 /* Section 1 */
 .section-presentation {
     padding: 60px 30px;
@@ -60,8 +59,8 @@
 
 /* Section 2 */
 .section-liste-dispositifs {
-    padding: 60px 0;
-    background-color: g.$color-gray;
+    padding: 60px 30px;
+    box-shadow: 0 5px 0 0 g.$primary-color;
 
     h2 {
         font-family: g.$font-family-base;
@@ -89,80 +88,72 @@
 
         @media (max-width: 1024px) {
             grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
         }
 
         @media (max-width: 640px) {
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
 
         .dispositif-card {
-            background-color: #eee;
-            border-radius: 5px;
+            position: relative;
+            aspect-ratio: 1 / 1;
+            width: 100%;
+            height: auto;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;;
 
             &:hover {
                 transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
             }
         }
 
         .dispositif-link {
             display: block;
+            width: 100%;
+            height: 100%;
             text-decoration: none;
-            color: inherit;
-        }
+            color: g.$color-white;
+            position: relative;
 
-        .dispositif-image {
-            height: 180px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            img {
+            .dispositif-image,
+            .dispositif-placeholder {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                display: block;
             }
-
-            .placeholder-image {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                img {
-                    width: 50px;
-                    height: 50px;
-                    object-fit: contain;
-                }
-            }
-        }
-
-        .dispositif-title {
-            padding: 15px;
-            text-align: center;
 
             h3 {
-                font-size: 1.2rem;
-                font-weight: 600;
-                margin: 0;
-                color: g.$color-black;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 90%;
+                display: flex;
+                justify-content: center;
+                align-items: end;
+                color: g.$color-white;
+                font-family: g.$font-family-base;
+                font-size: g.$font-size-md;
+                font-weight: g.$font-weight-regular;
             }
         }
     }
+}
 
-    .no-dispositifs {
-        grid-column: 1 / -1;
-        text-align: center;
-        font-family: g.$font-family-base;
-        font-size: g.$font-size-base;
-        font-weight: g.$font-weight-light;
-        color: g.$color-black;
-        font-style: italic;
-        padding: 60px 0;
-    }
+.no-dispositifs {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: g.$font-family-base;
+    font-size: g.$font-size-base;
+    font-weight: g.$font-weight-light;
+    color: g.$color-black;
+    font-style: italic;
+    padding: 60px 0;
 }
 
 /* Section 3 */
@@ -170,14 +161,14 @@
     padding: 60px 30px 90px;
     text-align: center;
     font-family: g.$font-family-base;
-    
+
     h2 {
         margin-bottom: 30px;
         font-size: g.$font-size-xl;
         font-weight: g.$font-weight-bold;
         color: g.$color-black;
     }
-    
+
     .section-intro {
         margin: 0 auto 60px;
         max-width: 75%;
@@ -185,20 +176,20 @@
         font-weight: g.$font-weight-light;
         font-size: g.$font-size-base;
     }
-    
+
     .faq-container {
         display: flex;
         flex-direction: column;
         gap: 15px;
         margin: 0 auto;
-        
+
         .faq-item {
             position: relative;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             background-color: g.$color-white;
-            
+
             &::before {
                 content: '';
                 position: absolute;
@@ -210,7 +201,7 @@
                 border-radius: 20px 0 0 20px;
                 z-index: 10;
             }
-            
+
             .faq-question {
                 background-color: g.$color-white;
                 display: flex;
@@ -221,13 +212,13 @@
                 text-align: left;
                 font-size: g.$font-size-base;
                 cursor: pointer;
-                
+
                 h3 {
                     font-weight: g.$font-weight-regular;
                     margin: 0;
                     font-size: 16px;
                 }
-                
+
                 .faq-toggle {
                     display: flex;
                     align-items: center;
@@ -235,7 +226,7 @@
                     width: 30px;
                     height: 30px;
                     position: relative;
-                    
+
                     .icon-plus,
                     .icon-moins {
                         position: absolute;
@@ -243,13 +234,13 @@
                         height: 30px;
                         transition: opacity 0.3s ease;
                     }
-                    
+
                     .icon-moins {
                         opacity: 0;
                     }
                 }
             }
-            
+
             .faq-answer {
                 overflow: hidden;
                 padding: 0 30px;
@@ -261,21 +252,22 @@
                 opacity: 0;
                 height: 0;
             }
-            
+
             &.active {
                 .faq-question {
                     background-color: #FFF7D0;
+
                     .faq-toggle {
                         .icon-plus {
                             opacity: 0;
                         }
-                        
+
                         .icon-moins {
                             opacity: 1;
                         }
                     }
                 }
-                
+
                 .faq-answer {
                     padding: 20px 30px;
                     opacity: 1;
