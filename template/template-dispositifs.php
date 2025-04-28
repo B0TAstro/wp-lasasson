@@ -19,7 +19,7 @@ get_header();
     <h1><?php the_title(); ?></h1>
 
     <?php
-    $section1 = get_field('section1');
+    $section1 = get_field('section1_dispositifs');
     if ($section1) :
     ?>
         <section class="section-presentation">
@@ -34,7 +34,7 @@ get_header();
     <?php endif; ?>
 
     <?php
-    $section2 = get_field('section2');
+    $section2 = get_field('section2_dispositifs');
     if ($section2) :
     ?>
         <section class="section-liste-dispositifs">
@@ -95,7 +95,7 @@ get_header();
     <?php endif; ?>
 
     <?php
-    $section3 = get_field('section3');
+    $section3 = get_field('section3_dispositifs');
     if ($section3 && !empty($section3['faq'])) :
     ?>
         <section class="section-faq">

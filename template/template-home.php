@@ -7,12 +7,6 @@ get_header();
 ?>
 
 <main>
-    <?php
-    echo '<pre>';
-    print_r(get_fields());
-    echo '</pre>';
-    ?>
-
     <?php $btn = get_field('bouton_soutenir_lien', 'option'); ?>
     <a class="btn-soutenir" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
         <span class="icon">
@@ -39,7 +33,7 @@ get_header();
         <?php endif; ?>
 
         <div class="slider-content">
-            <div class="slider-text wysiwyg">
+            <div class="wysiwyg slider-text">
                 <?php echo apply_filters('the_content', $section1['paragraph']); ?>
             </div>
 
@@ -60,7 +54,7 @@ get_header();
                 <?php endif; ?>
 
                 <?php if ($section2['paragraph']) : ?>
-                    <div class="section-text wysiwyg">
+                    <div class="wysiwyg section-text">
                         <?php echo apply_filters('the_content', $section2['paragraph']); ?>
                     </div>
                 <?php endif; ?>
@@ -106,7 +100,7 @@ get_header();
                             <?php endif; ?>
 
                             <?php if ($block['paragraph']) : ?>
-                                <div class="block-text wysiwyg">
+                                <div class="wysiwyg block-text">
                                     <?php echo apply_filters('the_content', $block['paragraph']); ?>
                                 </div>
                             <?php endif; ?>
