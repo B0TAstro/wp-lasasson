@@ -9,10 +9,10 @@ get_header();
 <main class="dispositifs-page">
     <?php $btn = get_field('bouton_soutenir_lien', 'option'); ?>
     <a class="btn-soutenir" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
-        <span class="icon">
+        <div class="icon">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-empty.svg" alt="Soutenir" class="heart-empty">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-full.svg" alt="Soutenir" class="heart-full">
-        </span>
+        </div>
         <p class="label"><?php echo esc_html($btn['title']); ?></p>
     </a>
 
@@ -96,7 +96,7 @@ get_header();
                     endforeach;
                 else :
                     ?>
-                        <p class="no-dispositifs">Aucun dispositif n'est disponible pour le moment.</p>
+                    <p class="no-dispositifs">Aucun dispositif n'est disponible pour le moment.</p>
                 <?php endif; ?>
             </div>
         </section>
@@ -114,23 +114,22 @@ get_header();
             <div class="faq-container">
                 <?php foreach ($section3['faq'] as $index => $item) : ?>
                     <div class="faq-item" id="faq-item-<?php echo $index; ?>">
-                        <div class="faq-question">
+                        <div class="faq-question" aria-expanded="false" aria-controls="faq-answer-<?php echo $index; ?>">
                             <h3><?php echo esc_html($item['question']); ?></h3>
-                            <button class="faq-toggle" aria-expanded="false" aria-controls="faq-answer-<?php echo $index; ?>">
-                                <span class="sr-only">Afficher/Masquer la réponse</span>
-                                <span class="icon-plus">+</span>
-                            </button>
+                            <div class="faq-toggle">
+                                <img class="icon-plus" src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-plus.svg" alt="Plus">
+                                <img class="icon-moins" src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-moins.svg" alt="Moins">
+                            </div>
                         </div>
+
                         <div class="faq-answer" id="faq-answer-<?php echo $index; ?>" aria-hidden="true">
-                            <?php echo $item['reponse']; ?>
+                            <?php echo wp_kses_post($item['reponse']); ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
-            </div>
         </section>
     <?php endif; ?>
-
 </main>
 
 <?php get_footer(); ?>

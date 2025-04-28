@@ -1,8 +1,8 @@
 // src/scss/global.scss
 
-// * {
-//   outline: 1px solid red;
-// }
+* {
+  outline: 1px solid red;
+}
 
 // Colors
 $color-white: #FFFFFF;
@@ -34,10 +34,6 @@ $font-size-2xl: 42px;
 $font-size-4xl: 72px;
 
 // Global styles
-.section {
-  padding: 0 30px;
-}
-
 h1 {
   font-family: $font-family-base;
   font-size: $font-size-4xl;
