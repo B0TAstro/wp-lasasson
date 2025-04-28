@@ -90,36 +90,41 @@ get_header();
     ?>
         <section class="how-support-section">
             <div class="how-support-container">    
-                
                 <div class="how-support-block">
-                    <h2><?php echo esc_html($how_support_title); ?></h2>
-                    <div class="how-support-paragraph wysiwyg">
-                        <?php echo $how_support_text1; ?>
-                        <?php echo $how_support_text2; ?>
-                    </div>
+                    <div class="how-support-text">
+                        <h2><?php echo esc_html($how_support_title); ?></h2>
+                        <div class="how-support-paragraph wysiwyg">
+                            <?php echo $how_support_text1; ?>
+                            <?php echo $how_support_text2; ?>
+                        </div>
 
-                    <a href="<?php echo esc_url($how_support_button1['url']); ?>" target="_blank<?php echo esc_attr($how_support_button1['target'] ?? '_self'); ?>" class=" btn-secondary btn-infos">
-                        <?php echo esc_html($how_support_button1['title']); ?>
-                    </a>
-                
-                    <a href="<?php echo esc_url($how_support_button2['url']); ?>" target="_blank<?php echo esc_attr($how_support_button2['target'] ?? '_self'); ?>" class=" btn-secondary btn-infos">
-                        <?php echo esc_html($how_support_button2['title']); ?>
-                    </a>
+                        <div class="how-support-buttons">
+                            <a href="<?php echo esc_url($how_support_button1['url']); ?>" target="<?php echo esc_attr($how_support_button1['target'] ?? '_self'); ?>" class="btn-secondary btn-infos">
+                                <?php echo esc_html($how_support_button1['title']); ?>
+                            </a>
+                        
+                            <a href="<?php echo esc_url($how_support_button2['url']); ?>" target="<?php echo esc_attr($how_support_button2['target'] ?? '_self'); ?>" class="btn-secondary btn-infos">
+                                <?php echo esc_html($how_support_button2['title']); ?>
+                            </a>
+                        </div>
+                    </div>    
 
                     <div class="how-support-image">
                         <img src="<?php echo esc_url($how_support_image['url']); ?>" alt="<?php echo esc_attr($how_support_image['alt']); ?>">
                     </div>
                 </div>
             
-                <div class="objects-block">            
-                    <h2><?php echo esc_html($object_donation_title); ?></h2>
-                    <div class="objects-paragraph wysiwyg">
-                        <?php echo $object_donation_text1; ?>
-                        <?php echo $object_donation_text2; ?>
+                <div class="objects-block"> 
+                    <div class="objects-text">           
+                        <h2><?php echo esc_html($object_donation_title); ?></h2>
+                        <div class="objects-paragraph wysiwyg">
+                            <?php echo $object_donation_text1; ?>
+                            <?php echo $object_donation_text2; ?>
+                        </div>
                     </div>
-                    <div class="objects-image">
-                        <img src="<?php echo esc_url($object_donation_image['url']); ?>" alt="<?php echo esc_attr($object_donation_image['alt']); ?>">
-                    </div>
+                        <div class="objects-image">
+                            <img src="<?php echo esc_url($object_donation_image['url']); ?>" alt="<?php echo esc_attr($object_donation_image['alt']); ?>">
+                        </div>
                 </div>
 
                 <div class="advantages-block">            
@@ -130,7 +135,7 @@ get_header();
                 </div>
             </div>
         </section>  
-        <?php endif; ?>
+    <?php endif; ?>
 
 
     <?php 
@@ -140,26 +145,29 @@ get_header();
             $Emergency_call_text = $section_3['editor_appel_urgent'] ;
             $Emergency_call_button = $section_3['lien_bouton_appel_urgent'] ;    
     ?>
-        <section class="emergency-section">
-            <div class="emergency-call-container">            
+        <section class="emergency-section">           
                     <h2><?php echo esc_html($Emergency_call_title); ?></h2>
-
-                <?php if ($section_3['repeteur_image_slider']) : ?>
-                    <div class="emergency-slider">
-                        <?php foreach ($section_3['repeteur_image_slider'] as $slide) : ?>
-                            <div class="emergency-slide">
-                                <?php echo wp_get_attachment_image($slide['image_slider']['ID'], 'full', false, array('class' => 'slide-image')); ?>
+    
+                    <?php if ($section_3['repeteur_image_slider']) : ?>
+                        <div class="emergency-slider-container">
+                            <div class="emergency-slider">
+                                <?php foreach ($section_3['repeteur_image_slider'] as $slide) : ?>
+                                    <div class="emergency-slide">
+                                        <?php echo wp_get_attachment_image($slide['image_slider']['ID'], 'full', false, array('class' => 'slide-image')); ?>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+            </div>
 
-                    <div class="emergency-call-paragraph wysiwyg">
-                        <?php echo $Emergency_call_text; ?>
-                    </div>
-                    <a href="<?php echo esc_url($Emergency_call_button['url']); ?>" target="_blank<?php echo esc_attr($Emergency_call_button['target'] ?? '_self'); ?>" class=" btn-secondary btn-infos">
+            <div class=emergency-section-3-text-button>
+            <div class="emergency-call-paragraph wysiwyg">
+                <?php echo $Emergency_call_text; ?>
+            </div>
+                <a href="<?php echo esc_url($Emergency_call_button['url']); ?>" target="_blank<?php echo esc_attr($Emergency_call_button['target'] ?? '_self'); ?>" class=" btn-secondary btn-infos">
                         <?php echo esc_html($Emergency_call_button['title']); ?>
-                    </a>
+                </a>
             </div>
         </section>
     <?php endif; ?>
@@ -187,17 +195,23 @@ get_header();
            </section>
    <?php endif; ?>
 
-   <?php
-    $section_5 = get_field('section_5');
+   <?php 
+        $section_5 = get_field('section_5');
+
         if ($section_5 && !empty($section_5['repeteur_pour_les_questions_et_les_reponses'])) :
+            $faq_title = $section_5['titre_questions_frequentes'];
+            $faq_text = $section_5['sous-titre_questions_frequentes'];
+            $faq_items = $section_5['repeteur_pour_les_questions_et_les_reponses'];
         ?>
         <section class="section-faq">
-            <h2><?php echo esc_html($section_5['titre_questions_frequentes']); ?></h2>
-
-            <p class="section-intro"><?php echo esc_html($section_5['sous-titre_questions_frequentes']); ?></p>
-
+            <h2><?php echo esc_html($faq_title); ?></h2>
+            
+            <?php if (!empty($faq_text)) : ?>
+                <p class="section-intro"><?php echo $faq_text; ?></p>
+            <?php endif; ?>
+            
             <div class="faq-container">
-                <?php foreach ($section_5['repeteur_pour_les_questions_et_les_reponses'] as $index => $item) : ?>
+                <?php foreach ($faq_items as $index => $item) : ?>
                     <div class="faq-item" id="faq-item-<?php echo $index; ?>">
                         <div class="faq-question" aria-expanded="false" aria-controls="faq-answer-<?php echo $index; ?>">
                             <h3><?php echo esc_html($item['questions_faq']); ?></h3>
@@ -206,8 +220,7 @@ get_header();
                                 <img class="icon-moins" src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-moins.svg" alt="Moins">
                             </div>
                         </div>
-
-                        <div class="faq-answer" id="faq-answer-<?php echo $index; ?>" aria-hidden="true">
+                        <div id="faq-answer-<?php echo $index; ?>" class="faq-answer" aria-hidden="true">
                             <?php echo wp_kses_post($item['reponse_faq']); ?>
                         </div>
                     </div>
@@ -215,6 +228,7 @@ get_header();
             </div>
         </section>
     <?php endif; ?>
+
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -260,8 +274,6 @@ get_header();
 });
 
 </script>
-
-
 <?php
 get_footer();
 ?>

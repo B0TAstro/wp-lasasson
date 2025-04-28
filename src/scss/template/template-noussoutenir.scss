@@ -1,30 +1,166 @@
 @use "../global" as g;
 
 /* Section 1 */
+.support-section{
+    padding: 90px 30px;
+    box-shadow: 0 5px 0 0 g.$primary-color;
+    .support-container{
+        max-width:85%;
+        margin : 0 auto;
+
+
+        .why-support-block {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            max-width: 100%;
+        
+            .mission-paragraph {
+                flex: 1;
+            }
+            
+            .mission-image {
+                flex: 1;
+                
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                    border-radius: 20px;
+             }
+         }
+    }  
+    }
+}
+        
+
+/*section 2*/
+.how-support-section {
+    padding: 90px 30px;
+    box-shadow: 0 5px 0 0 g.$primary-color;
+
+    .how-support-container {
+        .how-support-block {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+            max-width: 100%;
+            margin-bottom: 30px;
+        
+            .how-support-text {
+                flex: 1;
+            }
+            
+            .how-support-image {
+                flex: 1;
+                
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                    border-radius: 20px;
+                }
+            }
+        }
+        
+        .how-support-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        
+            .btn-secondary {
+                margin-bottom: 10px;
+            }
+        }
+
+        .objects-block { 
+            display: flex; 
+            flex-direction: row-reverse;
+            align-items: center; 
+            gap: 30px; 
+            max-width: 100%; 
+            margin-bottom: 60px;
+            
+            .objects-text { 
+                flex: 1; 
+            }
+            
+            .objects-image { 
+                flex: 1; 
+            
+                img { 
+                    max-width: 100%; 
+                    height: auto; 
+                    display: block; 
+                    border-radius: 20px;
+                }
+            }
+    
+        
+        .objects-buttons { 
+            display: flex; 
+            gap: 15px; 
+            margin-top: 20px; 
+            flex-wrap: wrap; 
+        }
+    }
+        .advantages-block {
+            max-width: 75%;
+            margin: 0 auto;
+            text-align: center;
+
+            h2{
+                font-family: g.$font-family-base;
+                font-size: g.$font-size-xl;
+                font-weight: g.$font-weight-bold;
+            }
+
+            .advantages-paragraph {
+                font-size: g.$font-size-md;
+                font-weight: g.$font-weight-regular;
+
+                p{
+                    margin-top:30px;
+                }
+            }
+        }
+    }
+}
 
 
 
 /*section 3*/
-.section-slider {
-    padding: 30px 30px 60px 30px;
+.emergency-section {
+    padding: 90px 30px;
     box-shadow: 0 5px 0 0 g.$primary-color;
 
-    .slider-container {
+    h2{
+        font-family: g.$font-family-base;
+        font-size: g.$font-size-xl;
+        font-weight: g.$font-weight-bold;
+        margin-bottom: 30px;
+        text-align: center;
+        
+    }
+
+    .emergency-slider-container {
         position: relative;
         overflow: hidden;
         max-width: 100%;
         border-radius: 20px;
         margin-bottom: 30px;
 
-        .slider {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
+            .emergency-slider {
+                display: flex;
+                transition: transform 0.5s ease;
+            }
 
-        .slide {
-            flex: 0 0 100%;
-            height: 600px;
-        }
+                .emergency-slide {
+                    flex: 0 0 100%;
+                    height: 600px;
+                }
 
         .slide-image {
             width: 100%;
@@ -32,10 +168,56 @@
             object-fit: cover;
         }
     }
+
+    .emergency-section-3-text-button{
+        max-width: 75%;
+        margin:0 auto;
+        font-size: g.$font-size-md;
+        font-weight: g.$font-weight-regular;
+        text-align: center;
+
+        .emergency-call-paragraph {
+            margin-bottom: 30px;
+        }
+    }
 }
+
+
+/*section 4*/
+.mecene-section{
+    padding: 90px 30px;
+    box-shadow: 0 5px 0 0 g.$primary-color;
+
+    .mecene-container{
+        display: flex;
+        flex-direction: column;
+        max-width:75%;
+        margin : 0 auto;
+        gap: 35px;
+        align-items: center;
+        justify-content: center;
+
+            h2 {
+                font-family: g.$font-family-base;
+                font-size: g.$font-size-xl;
+                font-weight: g.$font-weight-bold;
+            }
+
+        .mecene-paragraph {
+                font-size: g.$font-size-md;
+                font-weight: g.$font-weight-regular;
+                text-align: center;
+                margin-bottom:15px;
+        } 
+    }
+}
+
+
+
+
+
+
 /*section 5*/
-
-
 .section-faq {
     padding: 60px 30px 90px;
     text-align: center;
@@ -48,77 +230,77 @@
         color: g.$color-black;
     }
     
-    .section-intro {
-        margin: 0 auto 60px;
-        max-width: 75%;
-        color: g.$color-black;
-        font-weight: g.$font-weight-light;
-        font-size: g.$font-size-base;
-    }
-    
-    .faq-container {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        margin: 0 auto;
+        .section-intro {
+            margin: 0 auto 60px;
+            max-width: 75%;
+            color: g.$color-black;
+            font-weight: g.$font-weight-light;
+            font-size: g.$font-size-base;
+        }
         
-        .faq-item {
-            position: relative;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            background-color: g.$color-white;
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 0 auto;
             
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 8px;
-                background: g.$primary-color;
-                border-radius: 20px 0 0 20px;
-                z-index: 10;
-            }
-            
-            .faq-question {
+            .faq-item {
+                position: relative;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
                 background-color: g.$color-white;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 15px 30px;
-                border: none;
-                text-align: left;
-                font-size: g.$font-size-base;
-                cursor: pointer;
                 
-                h3 {
-                    font-weight: g.$font-weight-regular;
-                    margin: 0;
-                    font-size: 16px;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 8px;
+                    background: g.$primary-color;
+                    border-radius: 20px 0 0 20px;
+                    z-index: 10;
                 }
                 
-                .faq-toggle {
+                .faq-question {
+                    background-color: g.$color-white;
                     display: flex;
+                    justify-content: space-between;
                     align-items: center;
-                    justify-content: center;
-                    width: 30px;
-                    height: 30px;
-                    position: relative;
+                    padding: 15px 30px;
+                    border: none;
+                    text-align: left;
+                    font-size: g.$font-size-base;
+                    cursor: pointer;
                     
-                    .icon-plus,
-                    .icon-moins {
-                        position: absolute;
+                    h3 {
+                        font-weight: g.$font-weight-regular;
+                        margin: 0;
+                        font-size: 16px;
+                    }
+                    
+                    .faq-toggle {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         width: 30px;
                         height: 30px;
-                        transition: opacity 0.3s ease;
-                    }
-                    
-                    .icon-moins {
-                        opacity: 0;
+                        position: relative;
+                        
+                        .icon-plus,
+                        .icon-moins {
+                            position: absolute;
+                            width: 30px;
+                            height: 30px;
+                            transition: opacity 0.3s ease;
+                        }
+                        
+                        .icon-moins {
+                            opacity: 0;
+                        }
                     }
                 }
-            }
             
             .faq-answer {
                 overflow: hidden;
@@ -145,13 +327,12 @@
                     }
                 }
                 
-                .faq-answer {
-                    padding: 20px 30px;
-                    opacity: 1;
-                }
+                    .faq-answer {
+                        padding: 20px 30px;
+                        opacity: 1;
+                }    
             }
         }
     }
 }
-
 
