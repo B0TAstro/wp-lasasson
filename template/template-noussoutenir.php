@@ -31,41 +31,44 @@ get_header();
 
     ?>
     <section class="support-section">
-        <div class="support-container">            
-                <h2><?php echo esc_html($mission_title); ?></h2>
-                <div class="mission-paragraph wysiwyg">
-                    <?php echo $mission_text; ?>
-                </div>
-
+        <div class="support-container">
+            <h2><?php echo esc_html($mission_title); ?></h2>
+            <div class="mission-paragraph wysiwyg">
+                <?php echo $mission_text; ?>
+            </div>
+            
             <div class="why-support-block">
                 <div class="mission-image">
                     <img src="<?php echo esc_url($why_support_image['url']); ?>" alt="<?php echo esc_attr($why_support_image['alt']); ?>">
                 </div>
-
-                <h3><?php echo esc_html($why_support_title); ?></h3>
-                <div class="why-support-paragraph wysiwyg">
-                    <?php echo $why_support_text; ?>
+                <div class="why-support-content">
+                    <h3><?php echo esc_html($why_support_title); ?></h3>
+                    <div class="why-support-paragraph wysiwyg">
+                        <?php echo $why_support_text; ?>
+                    </div>
                 </div>
             </div>
 
-            <h3><?php echo esc_html($dons_title); ?></h3>
-
-            <table class="dons-table">
-                <thead>
-                    <tr>
-                        <th><?php echo esc_html($column_1); ?></th>
-                        <th><?php echo esc_html($column_2); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="dons">
+                <h3><?php echo esc_html($dons_title); ?></h3>
+                
+                <table class="dons-table">
+                    <thead>
+                        <tr>
+                            <th><?php echo esc_html($column_1); ?></th>
+                            <th><?php echo esc_html($column_2); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <?php foreach ($rows as $row) : ?>
                             <tr>
                                 <td><?php echo esc_html($row['texte_dons']); ?></td>
                                 <td><?php echo esc_html($row['texte_action_impact']); ?></td>
                             </tr>
                         <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 <?php endif; ?>
@@ -99,11 +102,11 @@ get_header();
                         </div>
 
                         <div class="how-support-buttons">
-                            <a href="<?php echo esc_url($how_support_button1['url']); ?>" target="<?php echo esc_attr($how_support_button1['target'] ?? '_self'); ?>" class="btn-secondary btn-infos">
+                            <a href="<?php echo esc_url($how_support_button1['url']); ?>" target="<?php echo esc_attr($how_support_button1['target'] ?? '_self'); ?>" class="btn-primary">
                                 <?php echo esc_html($how_support_button1['title']); ?>
                             </a>
                         
-                            <a href="<?php echo esc_url($how_support_button2['url']); ?>" target="<?php echo esc_attr($how_support_button2['target'] ?? '_self'); ?>" class="btn-secondary btn-infos">
+                            <a href="<?php echo esc_url($how_support_button2['url']); ?>" target="<?php echo esc_attr($how_support_button2['target'] ?? '_self'); ?>" class="btn-primary">
                                 <?php echo esc_html($how_support_button2['title']); ?>
                             </a>
                         </div>
@@ -116,7 +119,7 @@ get_header();
             
                 <div class="objects-block"> 
                     <div class="objects-text">           
-                        <h2><?php echo esc_html($object_donation_title); ?></h2>
+                        <h3><?php echo esc_html($object_donation_title); ?></h3>
                         <div class="objects-paragraph wysiwyg">
                             <?php echo $object_donation_text1; ?>
                             <?php echo $object_donation_text2; ?>
@@ -165,7 +168,7 @@ get_header();
             <div class="emergency-call-paragraph wysiwyg">
                 <?php echo $Emergency_call_text; ?>
             </div>
-                <a href="<?php echo esc_url($Emergency_call_button['url']); ?>" target="_blank<?php echo esc_attr($Emergency_call_button['target'] ?? '_self'); ?>" class=" btn-secondary btn-infos">
+                <a href="<?php echo esc_url($Emergency_call_button['url']); ?>" target="_blank<?php echo esc_attr($Emergency_call_button['target'] ?? '_self'); ?>" class=" btn-primary">
                         <?php echo esc_html($Emergency_call_button['title']); ?>
                 </a>
             </div>
