@@ -6,6 +6,8 @@ import './js/burger.js'
 import './js/home-slider.js'
 import './js/magazine-slider.js'
 import './js/load-more.js'
+import './js/faq.js'
+import './js/support-slider.js'
 import Router from './utils/Router'
 
 // Petit routeur inspiré du framework Sage, qui utilise les classes de body de WordPress

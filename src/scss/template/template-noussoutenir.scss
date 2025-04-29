@@ -109,6 +109,21 @@
 }
 
 // Responsive
+@media (max-width: 1024px) {  
+    .support-section{    
+        .support-container{
+
+            .mission-paragraph{
+                font-size: g.$font-size-base;
+            }
+            .why-support-block {
+                gap:50px;       
+            }
+        }
+    }
+}
+
+// Responsive
 @media (max-width: 768px) {  
     .support-section{    
         .support-container{
@@ -225,14 +240,6 @@
                     border-radius: 20px;
                 }
             }
-    
-        
-        .objects-buttons { 
-            display: flex; 
-            gap: 15px; 
-            margin-top: 20px; 
-            flex-wrap: wrap; 
-        }
     }
         .advantages-block {
             max-width: 75%;
@@ -258,8 +265,27 @@
 }
 
 @media (max-width: 1024px) {      
-
+    .how-support-section{
+        .how-support-container{
+            .how-support-block{
+                .how-support-text{
+                    .how-support-paragraph {
+                        font-size: g.$font-size-sm;
+                    }   
+                }
+            }
+            .objects-block{
+                .objects-text{
+                    .objects-paragraph{
+                        font-size: g.$font-size-sm;
+                    }
+                }
+            }
+        }
+    }
 }
+
+
 // Responsive
 @media (max-width: 768px) { 
     .how-support-section{
@@ -295,6 +321,36 @@
         max-width: 100%;
         border-radius: 20px;
         margin-bottom: 30px;
+
+        .arrow {
+            width: 40px;
+            height: 40px;
+            transition: opacity 0.3s ease;
+            pointer-events: none; // car le bouton gère le clic
+        }
+
+            .slider-prev,
+            .slider-next {
+                background: none;
+                border: none;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                z-index: 10;
+
+                &:hover .arrow {
+                    opacity: 1;
+                }
+            }
+
+                .slider-prev {
+                    left: 10px;
+                }
+                
+                    .slider-next {
+                        right: 10px;
+                    }
 
             .emergency-slider {
                 display: flex;
