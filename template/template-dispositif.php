@@ -7,6 +7,12 @@ get_header();
 ?>
 
 <main>
+    <?php
+    echo '<pre>';
+    print_r(get_fields());
+    echo '</pre>';
+    ?>
+
     <?php $btn = get_field('bouton_soutenir_lien', 'option'); ?>
     <a class="btn-soutenir" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
         <span class="icon">
@@ -15,6 +21,7 @@ get_header();
         </span>
         <p class="label"><?php echo esc_html($btn['title']); ?></p>
     </a>
+    
     <div class="hero">
         <?php
         $return_option = get_field('return_option');
