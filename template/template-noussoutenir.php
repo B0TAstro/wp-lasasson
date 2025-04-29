@@ -141,16 +141,23 @@ get_header();
     <?php endif; ?>
 
 
-    <?php 
+    <?php
         $section_3 = get_field('section_3');
         if ($section_3) :
-            $Emergency_call_title = $section_3['titre_appel_urgent'] ;
-            $Emergency_call_text = $section_3['editor_appel_urgent'] ;
-            $Emergency_call_button = $section_3['lien_bouton_appel_urgent'] ;    
+            $Emergency_call_title = $section_3['titre_appel_urgent'];
+            $Emergency_call_text = $section_3['editor_appel_urgent'];
+            $button_text = $section_3['texte_bouton']; 
+            $recipient_email = $section_3['email']; 
+           
+            // Encodage correct du sujet pour le lien mailto
+            $subject = rawurlencode($Emergency_call_title);
+            
+            // Créer le lien mailto avec l'adresse email
+            $mailto_link = 'mailto:' . $recipient_email . '?subject=' . $subject;
     ?>
-        <section class="emergency-section">           
+        <section class="emergency-section">          
                     <h2><?php echo esc_html($Emergency_call_title); ?></h2>
-    
+   
                     <?php if ($section_3['repeteur_image_slider']) : ?>
                         <div class="emergency-slider-container">
                             <div class="emergency-slider">
@@ -160,7 +167,7 @@ get_header();
                                     </div>
                                 <?php endforeach; ?>
                             </div>
-                            
+                           
                             <button class="slider-prev" aria-label="Slide précédente">
                                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrow-left.svg" alt="Précédent" class="arrow arrow-left">
                             </button>
@@ -171,13 +178,12 @@ get_header();
                         </div>
                     <?php endif; ?>
             </div>
-
             <div class=emergency-section-3-text-button>
             <div class="emergency-call-paragraph wysiwyg">
                 <?php echo $Emergency_call_text; ?>
             </div>
-                <a href="<?php echo esc_url($Emergency_call_button['url']); ?>" target="_blank<?php echo esc_attr($Emergency_call_button['target'] ?? '_self'); ?>" class=" btn-primary">
-                        <?php echo esc_html($Emergency_call_button['title']); ?>
+                <a href="<?php echo esc_attr($mailto_link); ?>" class="btn-primary">
+                    <?php echo esc_html($button_text); ?>
                 </a>
             </div>
         </section>
