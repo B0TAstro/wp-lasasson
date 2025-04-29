@@ -102,3 +102,49 @@
         margin: 0 auto;
     }
 }
+
+/* Section 2 */
+.section-dispositif-contact {
+    padding: 0 30px 60px 30px;
+
+    .dispositif-contact-info {
+        display: flex;
+        gap: 30px;
+        font-family: g.$font-family-base;
+        font-size: g.$font-size-base;
+        font-weight: g.$font-weight-light;
+
+        @media (max-width: 1024px) {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .dispositif-bloc-address,
+        .dispositif-bloc-hours {
+            background-color: g.$color-gray;
+            padding: 25px 60px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .dispositif-address,
+        .dispositif-phone,
+        .dispositif-hours {
+            font-weight: g.$font-weight-regular;
+        }
+
+        .dispositif-phone {
+            margin-top: 15px;
+
+            span {
+                font-weight: g.$font-weight-light;
+            }
+        }
+
+        .dispositif-hours-title {
+            margin: 10px 0 15px;
+        }
+    }
+}
+
+/* Section 3 */

@@ -128,7 +128,7 @@ get_header();
                 <p class="address-title"><?php echo esc_html($section2['bloc_adresse']['texte_adresse_titre']); ?></p>
                 <p class="address"><?php echo nl2br(esc_html($section2['bloc_adresse']['adresse'])); ?></p>
                 <p class="phone">
-                    <span>Téléphone : </span><?php echo esc_html($section2['bloc_adresse']['telephone']); ?>
+                    <span>N° Téléphone : </span><?php echo esc_html($section2['bloc_adresse']['telephone']); ?>
                 </p>
             </div>
 
