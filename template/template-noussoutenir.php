@@ -102,11 +102,11 @@ get_header();
                         </div>
 
                         <div class="how-support-buttons">
-                            <a href="<?php echo esc_url($how_support_button1['url']); ?>" target="<?php echo esc_attr($how_support_button1['target'] ?? '_self'); ?>" class="btn-primary">
+                            <a href="<?php echo esc_url($how_support_button1['url']); ?>" target="_blank<?php echo esc_attr($how_support_button1['target'] ?? '_self'); ?>" class="btn-primary">
                                 <?php echo esc_html($how_support_button1['title']); ?>
                             </a>
                         
-                            <a href="<?php echo esc_url($how_support_button2['url']); ?>" target="<?php echo esc_attr($how_support_button2['target'] ?? '_self'); ?>" class="btn-primary">
+                            <a href="<?php echo esc_url($how_support_button2['url']); ?>" target="_blank<?php echo esc_attr($how_support_button2['target'] ?? '_self'); ?>" class="btn-primary">
                                 <?php echo esc_html($how_support_button2['title']); ?>
                             </a>
                         </div>
