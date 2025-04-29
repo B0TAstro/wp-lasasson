@@ -8,6 +8,7 @@ import './js/magazine-slider.js'
 import './js/load-more.js'
 import './js/contact-form.js'
 import './js/faq.js'
+import './js/dispositif-slider.js'
 import './js/accordeon.js'
 import Router from './utils/Router'
 

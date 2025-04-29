@@ -1,24 +1,37 @@
-document.addEventListener('DOMContentLoaded', function () {
+// js/accordeon.js
+
+document.addEventListener('DOMContentLoaded', initAccordeons);
+
+function initAccordeons() {
   const accordeons = document.querySelectorAll('[data-accordeon]');
+  accordeons.forEach(setupAccordeon);
+}
 
-  accordeons.forEach(section => {
-    const title = section.querySelector('.contact-title');
-    const content = section.querySelector('.contact-info');
+function setupAccordeon(section) {
+  const title = section.querySelector('.contact-title');
+  const content = section.querySelector('.contact-info');
 
-    if (!title || !content) return;
+  if (!title || !content) return;
 
-    title.addEventListener('click', function () {
-      const isOpen = title.classList.contains('active');
+  title.addEventListener('click', () => toggleAccordeon(title, content));
+}
 
-      // Fermer tous
-      document.querySelectorAll('.section-contact .contact-title').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.section-contact .contact-info').forEach(c => c.classList.remove('open'));
+function toggleAccordeon(title, content) {
+  const isOpen = title.classList.contains('active');
 
-      // Ouvrir l'actuel
-      if (!isOpen) {
-        title.classList.add('active');
-        content.classList.add('open');
-      }
-    });
-  });
-});
+  closeAllAccordeons();
+
+  if (!isOpen) {
+    openAccordeon(title, content);
+  }
+}
+
+function closeAllAccordeons() {
+  document.querySelectorAll('.section-contact .contact-title').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section-contact .contact-info').forEach(c => c.classList.remove('open'));
+}
+
+function openAccordeon(title, content) {
+  title.classList.add('active');
+  content.classList.add('open');
+}
