@@ -39,6 +39,10 @@
     }
 }
 
+.btn-secondary.dispositif-button:hover {
+    background-color: g.$primary-color;
+}
+
 /* Section 1 */
 .section-dispositif-slider {
     padding: 0 30px 60px 30px;
