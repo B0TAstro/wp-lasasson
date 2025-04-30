@@ -96,61 +96,58 @@ get_header();
 
     <?php
     $section3 = get_field('section3_dispositif');
-    if (!empty($section3) && (!empty($section3['title']) || !empty($section3['text']) || !empty($section3['button']))) :
-    ?>
-        <section class="section-text-button">
-            <?php if (!empty($section3['title'])) : ?>
-                <h2><?php echo esc_html($section3['title']); ?></h2>
-            <?php endif; ?>
-
-            <?php if (!empty($section3['text'])) : ?>
-                <div class="section-content">
-                    <?php echo wp_kses_post($section3['text']); ?>
-                </div>
-            <?php endif; ?>
-
-            <?php if (!empty($section3['button'])) : ?>
-                <a href="<?php echo esc_url($section3['button']['url']); ?>" class="btn-primary" target="<?php echo esc_attr($section3['button']['target']); ?>">
-                    <?php echo esc_html($section3['button']['title']); ?>
-                </a>
-            <?php endif; ?>
-        </section>
-    <?php endif; ?>
-
-    <?php
-    // Section 4 : Texte + Image
-    $section4 = get_field('section4_dispositif');
-    if (!empty($section4) && (!empty($section4['title']) || !empty($section4['text']) || !empty($section4['image']))) :
-    ?>
-        <section class="section-text-image">
-            <div class="text-content">
-                <?php if (!empty($section4['title'])) : ?>
-                    <h2><?php echo esc_html($section4['title']); ?></h2>
+    if (!empty($section3) && (!empty($section3['title']) || !empty($section3['text']) || !empty($section3['image']) || !empty($section3['button']))) :
+        $btn_class = !empty($section3['button_style']) ? $section3['button_style'] : 'btn-primary';
+        $image_position = !empty($section3['elements_position']) && $section3['elements_position'] === 'right' ? 'right' : '';
+        ?>
+        <section class="section-dispositif-text-image <?php echo esc_attr($image_position); ?>">
+            <div class="dispositif-text-content">
+                <?php if (!empty($section3['title'])) : ?>
+                    <h2><?php echo esc_html($section3['title']); ?></h2>
                 <?php endif; ?>
-                <?php if (!empty($section4['text'])) : ?>
-                    <div class="section-content">
-                        <?php echo wp_kses_post($section4['text']); ?>
+
+                <?php if (!empty($section3['text'])) : ?>
+                    <div class="wysiwyg dispositif-content">
+                        <?php echo wp_kses_post($section3['text']); ?>
                     </div>
                 <?php endif; ?>
+
+                <?php if (!empty($section3['button'])) : ?>
+                    <a href="<?php echo esc_url($section3['button']['url']); ?>" class="<?php echo esc_attr($btn_class); ?> dispositif-button" target="<?php echo esc_attr($section3['button']['target']); ?>">
+                        <?php echo esc_html($section3['button']['title']); ?>
+                    </a>
+                <?php endif; ?>
             </div>
 
-            <?php if (!empty($section4['image'])) : ?>
-                <div class="image-content">
-                    <img src="<?php echo esc_url($section4['image']['url']); ?>" alt="<?php echo esc_attr($section4['image']['alt']); ?>">
+            <?php if (!empty($section3['image'])) : ?>
+                <div class="dispositif-image-content">
+                    <img src="<?php echo esc_url($section3['image']['url']); ?>" alt="<?php echo esc_attr($section3['image']['alt']); ?>">
                 </div>
             <?php endif; ?>
         </section>
     <?php endif; ?>
 
     <?php
-    // Section 5 : Texte additionnel
-    $section5 = get_field('section5_dispositif');
-    if (!empty($section5) && !empty($section5['text'])) :
+    $section4 = get_field('section4_dispositif');
+    if (!empty($section4) && (!empty($section4['title']) || !empty($section4['text']) || !empty($section4['button']))) :
+        $btn_class = !empty($section4['button_style']) ? $section4['button_style'] : 'btn-primary';
     ?>
-        <section class="section-additional-text">
-            <div class="section-content">
-                <?php echo wp_kses_post($section5['text']); ?>
-            </div>
+        <section class="section-dispositif-text-button">
+            <?php if (!empty($section4['title'])) : ?>
+                <h2><?php echo esc_html($section4['title']); ?></h2>
+            <?php endif; ?>
+
+            <?php if (!empty($section4['text'])) : ?>
+                <div class="wysiwyg dispositif-text-button-content">
+                    <?php echo wp_kses_post($section4['text']); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty($section4['button'])) : ?>
+                <a href="<?php echo esc_url($section4['button']['url']); ?>" class="<?php echo esc_attr($btn_class); ?> dispositif-button" target="<?php echo esc_attr($section4['button']['target']); ?>">
+                    <?php echo esc_html($section4['button']['title']); ?>
+                </a>
+            <?php endif; ?>
         </section>
     <?php endif; ?>
 </main>
