@@ -28,8 +28,8 @@ get_header();
         <h1 class="dispositif-title"><?php the_title(); ?></h1>
     </div>
 
-    <?php $section1 = get_field('section1_dispositif'); ?>
-    <?php if ($section1['images']) : ?>
+    <?php $section1 = get_field('section1_dispositif');
+    if ($section1['images']) : ?>
         <section class="section-dispositif-slider">
             <div class="dispositif-slider-container<?php echo count($section1['images']) > 1 ? ' has-slider' : ''; ?>">
                 <div class="dispositif-slider">
@@ -52,38 +52,49 @@ get_header();
 
     <?php
     $section2 = get_field('section2_dispositif');
+
     $contact_groups = $section2['contact_groups'];
-    $has_multiple_contacts = $contact_groups && count($contact_groups) > 1;
-    if ($contact_groups) : ?>
-        <?php foreach ($contact_groups as $index => $group) : ?>
-            <section class="section-dispositif-contact" <?php if ($has_multiple_contacts) echo 'data-accordion'; ?>>
-                <?php if ($has_multiple_contacts) : ?>
+    $has_multiple_contacts = is_array($contact_groups) && count($contact_groups) > 1;
+    if ($has_multiple_contacts) : ?>
+        <section class="section-dispositif-contact" data-accordion-container>
+            <?php foreach ($contact_groups as $group) : ?>
+                <div class="dispositif-contact-group" data-accordion>
                     <h2 class="dispositif-contact-title">
                         <?php echo esc_html($group['title']); ?>
-                        <span class="chevron">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/chevron-down.svg" alt="Chevron">
-                        </span>
+                        <img class="chevron" src="<?php echo get_template_directory_uri(); ?>/assets/img/chevron-down.svg" alt="Chevron">
                     </h2>
-                <?php endif; ?>
-
-                <div class="dispositif-contact-info">
-                    <div class="dispositif-bloc-address">
-                        <p class="dispositif-address-title"><?php echo esc_html($group['bloc_adresse']['texte_adresse_titre']); ?></p>
-                        <p class="dispositif-address"><?php echo nl2br(esc_html($group['bloc_adresse']['addresse'])); ?></p>
-                        <p class="dispositif-phone"><span>N° Téléphone : </span><?php echo esc_html($group['bloc_adresse']['telephone']); ?></p>
-                    </div>
-
-                    <div class="dispositif-bloc-hours">
-                        <p class="dispositif-hours-title"><?php echo esc_html($group['bloc_horraires']['texte_horaires_titre']); ?></p>
-                        <p class="dispositif-hours"><?php echo nl2br(esc_html($group['bloc_horraires']['horaires'])); ?></p>
+                    <div class="dispositif-contact-info">
+                        <div class="dispositif-bloc-address">
+                            <p class="dispositif-address-title"><?php echo esc_html($group['bloc_adresse']['texte_adresse_titre']); ?></p>
+                            <p class="dispositif-address"><?php echo nl2br(esc_html($group['bloc_adresse']['addresse'])); ?></p>
+                            <p class="dispositif-phone"><span>N° Téléphone : </span><?php echo esc_html($group['bloc_adresse']['telephone']); ?></p>
+                        </div>
+                        <div class="dispositif-bloc-hours">
+                            <p class="dispositif-hours-title"><?php echo esc_html($group['bloc_horraires']['texte_horaires_titre']); ?></p>
+                            <p class="dispositif-hours"><?php echo nl2br(esc_html($group['bloc_horraires']['horaires'])); ?></p>
+                        </div>
                     </div>
                 </div>
-            </section>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </section>
+    <?php else :
+        $group = $contact_groups[0]; ?>
+        <section class="section-dispositif-contact">
+            <div class="dispositif-contact-info">
+                <div class="dispositif-bloc-address">
+                    <p class="dispositif-address-title"><?php echo esc_html($group['bloc_adresse']['texte_adresse_titre']); ?></p>
+                    <p class="dispositif-address"><?php echo nl2br(esc_html($group['bloc_adresse']['addresse'])); ?></p>
+                    <p class="dispositif-phone"><span>N° Téléphone : </span><?php echo esc_html($group['bloc_adresse']['telephone']); ?></p>
+                </div>
+                <div class="dispositif-bloc-hours">
+                    <p class="dispositif-hours-title"><?php echo esc_html($group['bloc_horraires']['texte_horaires_titre']); ?></p>
+                    <p class="dispositif-hours"><?php echo nl2br(esc_html($group['bloc_horraires']['horaires'])); ?></p>
+                </div>
+            </div>
+        </section>
     <?php endif; ?>
 
     <?php
-    // Section 3 : Texte et bouton
     $section3 = get_field('section3_dispositif');
     if (!empty($section3) && (!empty($section3['title']) || !empty($section3['text']) || !empty($section3['button']))) :
     ?>

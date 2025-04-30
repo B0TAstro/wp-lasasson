@@ -107,22 +107,66 @@
 .section-dispositif-contact {
     padding: 0 30px 60px 30px;
 
-    .dispositif-contact-info {
+    .dispositif-contact-group {
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .dispositif-contact-title {
+        cursor: pointer;
         display: flex;
-        gap: 30px;
+        justify-content: space-between;
+        align-items: center;
         font-family: g.$font-family-base;
         font-size: g.$font-size-base;
         font-weight: g.$font-weight-light;
+        background-color: g.$color-gray;
+        margin-bottom: 0px;
+        padding: 10px 50px;
 
-        @media (max-width: 1024px) {
-            flex-direction: column;
-            gap: 15px;
+        &.active {
+            margin-bottom: 30px;
+        }
+
+        .chevron {
+            transition: transform 0.3s ease;
+        }
+
+        &.active .chevron {
+            transform: rotate(180deg);
+        }
+    }
+
+    .dispositif-contact-info {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.5s ease, opacity 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-family: g.$font-family-base;
+        font-size: g.$font-size-base;
+        font-weight: g.$font-weight-light;
+        pointer-events: none;
+
+        &.open {
+            max-height: 1000px;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @media (min-width: 1025px) {
+            flex-direction: row;
         }
 
         .dispositif-bloc-address,
         .dispositif-bloc-hours {
             background-color: g.$color-gray;
-            padding: 25px 60px;
+            padding: 25px 50px;
             text-align: center;
             flex: 1;
         }
@@ -144,6 +188,12 @@
         .dispositif-hours-title {
             margin: 10px 0 15px;
         }
+    }
+
+    &:not([data-accordion-container]) .dispositif-contact-info {
+        max-height: none;
+        opacity: 1;
+        pointer-events: auto;
     }
 }
 
