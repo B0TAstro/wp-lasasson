@@ -31,6 +31,17 @@ function load_scripts_and_style()
   ));
 }
 
+// Thème supports
+add_theme_support('post-thumbnails');
+add_theme_support('title-tag');
+add_theme_support('html5', array(
+  'search-form',
+  'comment-form',
+  'comment-list',
+  'gallery',
+  'caption',
+));
+
 // Enregistrer les menus
 add_action('after_setup_theme', 'custom_register_nav_menu', 0);
 function custom_register_nav_menu()
@@ -53,16 +64,47 @@ if (function_exists('acf_add_options_page')) {
   ));
 }
 
-// Thème supports
-add_theme_support('post-thumbnails');
-add_theme_support('title-tag');
-add_theme_support('html5', array(
-  'search-form',
-  'comment-form',
-  'comment-list',
-  'gallery',
-  'caption',
-));
+// Custom Post Type "Offre d'emploi"
+add_action('init', function () {
+  register_post_type('offre_emploi', [
+      'labels' => [
+          'name' => 'Offres d’emplois',
+          'singular_name' => 'Offre d’emploi',
+          'add_new_item' => 'Ajouter une offre d’emploi',
+          'edit_item' => 'Modifier l’offre',
+          'new_item' => 'Nouvelle offre',
+          'view_item' => 'Voir l’offre',
+          'search_items' => 'Rechercher une offre',
+      ],
+      'public' => true,
+      'has_archive' => false,
+      'rewrite' => ['slug' => 'offres'],
+      'menu_icon' => 'dashicons-businessman',
+      'supports' => ['title', 'editor', 'thumbnail', 'page-attributes'],
+      'show_in_rest' => true,
+  ]);
+});
+add_action('save_post_offre_emploi', function ($post_id, $post, $update) {
+  if (wp_is_post_revision($post_id) || defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+  $recrutement_page = get_page_by_path('recrutement');
+  if ($recrutement_page && $post->post_parent != $recrutement_page->ID) {
+      wp_update_post([
+          'ID' => $post_id,
+          'post_parent' => $recrutement_page->ID,
+      ]);
+  }
+}, 10, 3);
+add_filter('template_include', function ($template) {
+  if (is_singular('offre_emploi')) {
+      $custom_template = get_template_directory() . '/template-offre-emploi.php';
+      if (file_exists($custom_template)) {
+          return $custom_template;
+      }
+  }
+  return $template;
+});
+
 
 // ================= Fonction AJAX pour tous les formulaires =================
 add_action('wp_ajax_send_dynamic_form', 'send_dynamic_form');
