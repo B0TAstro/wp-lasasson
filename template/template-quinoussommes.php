@@ -54,31 +54,59 @@ get_header();
         <?php endif; ?>  
 
         <?php 
-            $section_2_nos_missions = get_field('section_2_nos_missions');
+   
+            $section_2 = get_field('section_2_nos_missions');
 
-            if($section_2_nos_missions) :
-                $titre_nos_missions = $section_2_nos_missions ['titre_nos_missions'];
-                $texte_nos_missions = $section_2_nos_missions['texte_nos_missions'];
-                $titre_axes_intervention = $section_2_nos_missions['titre_axes_intervention'];
-                $repeteur_axes_intervention = $section_2_nos_missions['repeteur_axes_dintervention']
-
+            if ($section_2):
+                $title_nos_missions = $section_2['titre_nos_missions'];
+                $text_nos_missions = $section_2['texte_nos_missions'];
+                $title_axes_intervention = $section_2['titre_axes_intervention'];
+                $axes_items = $section_2['repeteur_axes_dintervention'];
             ?>
 
-            <section class="our-missions-section">
+            <section class="section-nos-missions">
+                <div class="container-nos-missions">
 
-            <div class="our-mission-container">                               
-                        <h2><?php echo esc_html($titre_nos_missions); ?></h2>                             
-                    <div class="our-mission-paragraph wysiwyg">
-                        <?php echo $texte_nos_missions; ?>
+                    <div class="bloc-nos-missions">
+                        <h2><?php echo esc_html($title_nos_missions); ?></h2>
 
+                        <div class="paragraphe-nos-missions wysiwyg">
+                            <?php echo wp_kses_post($text_nos_missions); ?>
+                        </div>
+                    </div>
 
+                    <div class="bloc-axes-intervention">
+                        <h3><?php echo esc_html($title_axes_intervention); ?></h3>
 
+                        <div class="axes-intervention-liste">
+                            <?php foreach ($axes_items as $axe) : 
+                                $axe_titre = $axe['titre_de_laxe_dintervention'];
+                                $axe_texte = $axe['texte_de_laxe_de_lintervention'];
+                                $axe_image = $axe['image_de_laxe_de_lintervention'];
+                            ?>
+                                <div class="axe-intervention-item">
+                                        <div class="axe-image">
+                                            <img src="<?php echo esc_url($axe_image['url']); ?>" alt="<?php echo esc_attr($axe_image['alt'] ?? ''); ?>">
+                                        </div>
 
+                                    <div class="axe-contenu">
+                                    
+                                            <h4><?php echo esc_html($axe_titre); ?></h4>    
+                                            
+                                        <div class="paragraphe-nos-missions wysiwyg">
+                                            <p><?php echo wp_kses_post($axe_texte); ?></p>
+                                            </div>
+                                    
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                </div>
             </section>
 
-
-
-        <?php endif; ?>
+            <?php endif; ?>
 
         </main>
 <?php
