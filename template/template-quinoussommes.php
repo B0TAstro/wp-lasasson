@@ -182,7 +182,72 @@ get_header();
                     <?php endif; ?>      
                 </div>
             </section>
-        <?php endif; ?>      
+        <?php endif; ?>  
+        
+        <?php 
+            $section_5_les_gens_du_mois = get_field('section_5_les_gens_du_mois');
+            if ($section_5_les_gens_du_mois) :
+
+                $titre_section = $section_5_les_gens_du_mois['titre_les_gens_du_mois'];
+
+                $bloc_de_gauche = $section_5_les_gens_du_mois['bloc_de_gauche'];
+                $image_gauche = $bloc_de_gauche['image_de_la_personne_de_gauche'];
+                $titre_gauche = $bloc_de_gauche['titre_de_la_personne_de_gauche'];
+                $soustitre_gauche = $bloc_de_gauche['sous-titre_de_la_personne_de_gauche'];
+
+                $bloc_du_centre = $section_5_les_gens_du_mois['bloc_du_centre'];
+                $wysiwyg_haut = $bloc_du_centre['texte_du_haut'];
+                $wysiwyg_bas = $bloc_du_centre['texte_du_bas'];
+                $bouton_article = $bloc_du_centre['bouton_vers_larticle'];
+
+                $bloc_de_droite = $section_5_les_gens_du_mois['bloc_de_droite'];
+                $image_droit = $bloc_de_droite['image_de_la_personne_de_droite'];
+                $titre_droit = $bloc_de_droite['titre_de_la_personne_de_droite'];
+                $soustitre_droit = $bloc_de_droite['sous-titre_de_la_personne_de_droite'];
+
+            ?>
+
+            <section class="gens-du-mois-section">
+                <div class="gens-du-mois-container">
+
+                    <h2><?php echo esc_html($titre_section); ?></h2>
+
+                    <div class="gens-du-mois-blocs">
+
+                        <div class="bloc bloc-gauche">
+                            <?php if ($image_gauche) : ?>
+                                <img src="<?php echo esc_url($image_gauche['url']); ?>" alt="<?php echo esc_attr($image_gauche['alt'] ?? ''); ?>">
+                            <?php endif; ?>
+                            <h3><?php echo esc_html($titre_gauche); ?></h3>
+                            <p><?php echo esc_html($soustitre_gauche); ?></p>
+                        </div>
+
+                        <div class="bloc bloc-centre">
+                            <div class="wysiwyg wysiwyg-haut">
+                                <?php echo wp_kses_post($wysiwyg_haut); ?>
+                            </div>
+                            <div class="wysiwyg wysiwyg-bas">
+                                <?php echo wp_kses_post($wysiwyg_bas); ?>
+                            </div>                                
+                        </div>
+
+                        <div class="bloc bloc-droit">
+                            <?php if ($image_droit) : ?>
+                                <img src="<?php echo esc_url($image_droit['url']); ?>" alt="<?php echo esc_attr($image_droit['alt'] ?? ''); ?>">
+                            <?php endif; ?>
+                            <h3><?php echo esc_html($titre_droit); ?></h3>
+                            <div class="sous-titre">
+                                <p><?php echo esc_html($soustitre_droit); ?></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        <?php endif; ?>
+
+
     </main>
 <?php
 get_footer();
