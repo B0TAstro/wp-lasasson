@@ -127,19 +127,23 @@ get_header();
 
                     <?php if ($repeteur_nosobjectifs) : ?>
                         <div class="objectifs-list">
+                            <?php $counter = 1; ?>
                             <?php foreach ($repeteur_nosobjectifs as $objectif) : 
                                 $objectif_titre = $objectif['titre_de_lobjectif'];
                                 $objectif_texte = $objectif['texte_de_lobjectif'];
                             ?>
                                 <div class="objectif-item">
-                                    <h3><?php echo esc_html($objectif_titre); ?></h3>
-                                        <div class="objectif-text">
-                                            <p><?php echo wp_kses_post($objectif_texte); ?></p>
-                                        </div>
+                                    <h3><span class="objectif-numero"><?php echo $counter; ?>.</span> 
+                                        <?php echo esc_html($objectif_titre); ?></h3>
+                                    <div class="objectif-text">
+                                        <p><?php echo wp_kses_post($objectif_texte); ?></p>
+                                    </div>
                                 </div>
+                            <?php $counter++; ?>
                             <?php endforeach; ?>
                         </div>
-                    <?php endif; ?>      
+                    <?php endif; ?>
+  
                 </div>
             </section>
         <?php endif; ?>

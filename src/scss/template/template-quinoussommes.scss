@@ -1,3 +1,13 @@
 @use "../global" as g;
 
 /*section 1*/
+
+
+
+/*section 7*/
+.gallery-group {
+    display: none;
+}
+.gallery-group.active {
+    display: block;
+}
