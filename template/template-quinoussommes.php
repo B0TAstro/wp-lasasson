@@ -247,6 +247,115 @@ get_header();
 
         <?php endif; ?>
 
+        <?php 
+                $section_6_presentation_equipe = get_field('section_6_presentation_equipe');
+                if ($section_6_presentation_equipe) :
+                    $titre_bureau = $section_6_presentation_equipe['titre_bureau'];
+                    $texte_bureau= $section_6_presentation_equipe['texte_bureau'];
+                    $repeteur_bureau = $section_6_presentation_equipe['repeteur_personnes_du_bureau'];
+
+                    $titre_administrateur = $section_6_presentation_equipe['titre_administrateur'];
+                    $texte_personnes_de_ladministration= $section_6_presentation_equipe['texte_personnes_de_ladministration'];
+                    $repeteur_administration = $section_6_presentation_equipe['repeteur_personnes_de_ladministration'];
+
+                    $bouton_telechargement_organigramme_de_la_sasson = $section_6_presentation_equipe['bouton_telechargement_organigramme_de_la_sasson'];
+                    $texte_du_bouton_de_telechargement = $section_6_presentation_equipe['texte_du_bouton_de_telechargement'];
+                    
+
+                ?>
+
+            <section class="general-presentation-section">
+                <div class="general-presentation-container">
+                
+                        <h2><?php echo esc_html($titre_bureau); ?></h2>
+
+                            <div class="general-presentation-paragraph wysiwyg">
+                                <?php echo wp_kses_post($texte_bureau); ?>
+                            </div>
+
+                        <div class="presentation-office-list">
+                            <?php foreach ($repeteur_bureau as $bureau) : 
+                                $bureau_nom = $bureau['fonction'];
+                                $bureau_fonction = $bureau['nom_prenom'];
+                            ?>
+                                <div class="presentation-office-item">
+                                    <h3><?php echo esc_html($bureau_nom); ?></h3>
+                                        <div class="presentation-office-text">
+                                            <p><?php echo esc_html($bureau_fonction); ?></p>
+                                        </div>                        
+                                </div>
+                            <?php endforeach; ?>
+                        </div>  
+
+                        <div class="presentation-administration-list">
+                            <h2><?php echo esc_html($titre_administrateur); ?></h2>
+                            <div class="general-presentation-paragraph wysiwyg">
+                                <?php echo wp_kses_post($texte_personnes_de_ladministration); ?>
+                            </div>
+                            
+                            <div class="administration-office-list">
+                                <?php foreach ($repeteur_administration as $administration) : 
+                                    // Correction: Inverser les variables pour correspondre à la structure du bureau
+                                    $administration_fonction = $administration['fonction'];
+                                    $administration_nom = $administration['prenomnom'];
+                                ?>
+                                    <div class="administration-item">
+                                        <h3><?php echo esc_html($administration_fonction); ?></h3>
+                                        <div class="administration-text">
+                                            <p><?php echo esc_html($administration_nom); ?></p>
+                                        </div>                        
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            
+                            <a class="btn-secondary btn-infos" href="<?php echo esc_url($bouton_telechargement_organigramme_de_la_sasson['url']); ?>" target="_blank" download>
+                                <?php echo esc_html($texte_du_bouton_de_telechargement); ?>
+                            </a>  
+                        </div>  
+                </div>         
+            </section>  
+        <?php endif; ?>
+
+        <?php 
+            $section_7_galeries_photos = get_field('section_7_galeries_photos');
+            if ($section_7_galeries_photos) :
+                $titre_galeries_photos = $section_7_galeries_photos['titre_galeries_photos'];
+                $texte_de_la_section_galerie = $section_7_galeries_photos['texte_de_la_section_galerie'];
+                $repeteur_groupes_dimages = $section_7_galeries_photos['repeteur_groupes_dimages'];
+            ?>
+            <section class="gallery-section">
+                <h2><?php echo esc_html($titre_galeries_photos); ?></h2>
+                <div class="gallery-description wysiwyg">
+                    <?php echo wp_kses_post($texte_de_la_section_galerie); ?>
+                </div>
+
+                <div class="gallery-tabs">
+                    <?php foreach ($repeteur_groupes_dimages as $index => $groupe) : ?>
+                        <button 
+                            class="gallery-tab-button<?php echo $index === 0 ? ' active' : ''; ?>" 
+                            data-tab="tab-<?php echo $index; ?>">
+                            <?php echo esc_html($groupe['titre_de_la_galerie']); ?>
+                        </button>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="gallery-groups">
+                    <?php foreach ($repeteur_groupes_dimages as $index => $groupe) : 
+                        $images = $groupe['galerie_pour_les_images']; // galerie ACF = tableau d'images
+                    ?>
+                        <div class="gallery-group<?php echo $index === 0 ? ' active' : ''; ?>" id="tab-<?php echo $index; ?>">
+                            <div class="gallery-grid">
+                                <?php foreach ($images as $image) : ?>
+                                    <div class="gallery-item">
+                                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </section>
+        <?php endif; ?>
 
     </main>
 <?php
