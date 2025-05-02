@@ -55,13 +55,13 @@ get_header();
 
         <?php 
    
-            $section_2 = get_field('section_2_nos_missions');
+            $section_2_nos_missions = get_field('section_2_nos_missions');
 
-            if ($section_2):
-                $title_nos_missions = $section_2['titre_nos_missions'];
-                $text_nos_missions = $section_2['texte_nos_missions'];
-                $title_axes_intervention = $section_2['titre_axes_intervention'];
-                $axes_items = $section_2['repeteur_axes_dintervention'];
+            if ($section_2_nos_missions):
+                $title_nos_missions = $section_2_nos_missions['titre_nos_missions'];
+                $text_nos_missions = $section_2_nos_missions['texte_nos_missions'];
+                $title_axes_intervention = $section_2_nos_missions['titre_axes_intervention'];
+                $axes_items = $section_2_nos_missions['repeteur_axes_dintervention'];
             ?>
 
             <section class="section-nos-missions">
@@ -95,8 +95,7 @@ get_header();
                                             
                                         <div class="paragraphe-nos-missions wysiwyg">
                                             <p><?php echo wp_kses_post($axe_texte); ?></p>
-                                            </div>
-                                    
+                                        </div> 
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -108,7 +107,45 @@ get_header();
 
             <?php endif; ?>
 
-        </main>
+
+            <?php
+                $section_3_nos_objectifs = get_field('section_3_nos_objectifs');
+                if ($section_3_nos_objectifs) :
+                    $titre_nosobjectifs = $section_3_nos_objectifs['titre_nos_objectifs'];
+                    $texte_nosobjectifs = $section_3_nos_objectifs['texte_nos_objectifs'];
+                    $repeteur_nosobjectifs = $section_3_nos_objectifs['repeteur_nos_objectifs'];
+                ?>
+
+                <section class="objectifs-section">
+                    <div class="objectifs-container">
+
+                        <h2><?php echo esc_html($titre_nosobjectifs); ?></h2>
+
+                        <div class="objectifs-paragraph wysiwyg">
+                            <?php echo wp_kses_post($texte_nosobjectifs); ?>
+                        </div>
+
+                        <?php if ($repeteur_nosobjectifs) : ?>
+                            <div class="objectifs-list">
+                                <?php foreach ($repeteur_nosobjectifs as $objectif) : 
+                                    $objectif_titre = $objectif['titre_de_lobjectif'];
+                                    $objectif_texte = $objectif['texte_de_lobjectif'];
+                                ?>
+                                    <div class="objectif-item">
+                                        <h3><?php echo esc_html($objectif_titre); ?></h3>
+                                            <div class="objectif-text">
+                                                <p><?php echo wp_kses_post($objectif_texte); ?></p>
+                                            </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                        
+                    </div>
+                </section>
+
+            <?php endif; ?>
+    </main>
 <?php
 get_footer();
 ?>
