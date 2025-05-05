@@ -145,3 +145,142 @@
     font-style: italic;
     padding: 60px 0;
 }
+
+/* Section 2 */
+.candidature-form-section {
+    padding: 60px 0;
+    background-color: g.$color-gray;
+
+    .container-candidature-form {
+        max-width: 75%;
+        margin: 0 auto;
+
+        h2 {
+            text-align: center;
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-xl;
+            font-weight: g.$font-weight-bold;
+            color: g.$color-black;
+            margin-bottom: 30px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-base;
+            font-weight: g.$font-weight-light;
+            color: g.$color-black;
+            margin-bottom: 60px;
+        }
+
+        .candidature-form {
+            .required-note {
+                font-family: g.$font-family-base;
+                font-size: g.$font-size-xs;
+                font-weight: g.$font-weight-light;
+                color: g.$color-black;
+                margin-bottom: 15px;
+            }
+
+            .form-row {
+                margin-bottom: 30px;
+
+                &.two-columns {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 30px;
+
+                    .form-group {
+                        flex: 1;
+                    }
+
+                    @media (max-width: 1024px) {
+                        flex-direction: column;
+                    }
+                }
+
+                .form-group {
+
+                    input[type="text"],
+                    input[type="email"],
+                    input[type="tel"],
+                    select,
+                    textarea {
+                        width: 100%;
+                        padding: 12px 30px;
+                        border: none;
+                        border-radius: 5px;
+                        box-sizing: border-box;
+                        background-color: white;
+                        color: g.$color-black;
+                        font-family: g.$font-family-base;
+                        font-size: g.$font-size-base;
+                        font-weight: g.$font-weight-regular;
+                        transition: border-color 0.3s;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    &.checkbox {
+                        display: flex;
+                        align-items: center;
+
+                        input[type="checkbox"] {
+                            margin-top: 4px;
+                            margin-right: 10px;
+                        }
+
+                        label {
+                            margin-left: 10px;
+                            font-family: g.$font-family-base;
+                            font-size: g.$font-size-xs;
+                            font-weight: g.$font-weight-light;
+                            color: g.$color-black;
+                        }
+                    }
+
+                    .select-wrapper {
+                        position: relative;
+                        background-color: white;
+                        border-radius: 5px;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            right: 15px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 0;
+                            height: 0;
+                            border-left: 6px solid transparent;
+                            border-right: 6px solid transparent;
+                            border-top: 6px solid g.$color-black;
+                            pointer-events: none;
+                        }
+
+                        select {
+                            appearance: none;
+                            padding-right: 30px;
+                        }
+                    }
+                }
+            }
+
+
+            
+            .btn-submit {
+                width: 100%;
+                font-weight: g.$font-weight-bold;
+                border: none;
+                cursor: pointer;
+                text-transform: uppercase;
+                margin-top: 60px;
+            }
+        }
+    }
+}
+#offre-select-row {
+    transition: all 0.3s ease;
+}

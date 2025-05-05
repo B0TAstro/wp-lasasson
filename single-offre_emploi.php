@@ -36,8 +36,8 @@ get_header();
     <div class="footer-infos">
         <ul>
             <li>© <?php echo date('Y'); ?></li>
-            <?php if (have_rows('footer_links', 'options')) :
-                while (have_rows('footer_links', 'options')) : the_row();
+            <?php if (have_rows('footer_links', 'option')) :
+                while (have_rows('footer_links', 'option')) : the_row();
                     $link = get_sub_field('lien');
                     if ($link): ?>
                         <li>
@@ -62,8 +62,8 @@ get_header();
                 'youtube' => get_template_directory_uri() . '/assets/img/socials/youtube.svg',
             ];
 
-            if (have_rows('footer_socials', 'options')) :
-                while (have_rows('footer_socials', 'options')) : the_row();
+            if (have_rows('footer_socials', 'option')) :
+                while (have_rows('footer_socials', 'option')) : the_row();
                     $network = get_sub_field('reseau');
                     $custom_icon = get_sub_field('icone_personnalisee');
                     $link = get_sub_field('lien');

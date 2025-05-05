@@ -23,7 +23,7 @@ get_header();
         <?php $navigation = get_field('navigation_recrutement'); ?>
         <div class="recrutement-nav">
             <a href="#offres-emplois" class="btn-primary btn-nav"><?php echo esc_html($navigation['bouton_emplois']); ?></a>
-            <a href="#candidature-spontanee" class="btn-primary btn-nav"><?php echo esc_html($navigation['bouton_candidature']); ?></a>
+            <a href="#candidature" class="btn-primary btn-nav"><?php echo esc_html($navigation['bouton_candidature']); ?></a>
         </div>
 
         <?php $section1 = get_field('section1_recrutement'); ?>
@@ -78,11 +78,9 @@ get_header();
                                             if (!empty($offre_data['texte'])) {
                                                 $content = strip_tags($offre_data['texte']);
                                                 echo wp_trim_words($content, 100, '...');
-                                            }
-                                            elseif (has_excerpt()) {
+                                            } elseif (has_excerpt()) {
                                                 echo strip_tags(get_the_excerpt());
-                                            }
-                                            else {
+                                            } else {
                                                 $content = get_the_content();
                                                 $content = apply_filters('the_content', $content);
                                                 $content = strip_tags($content);
@@ -117,15 +115,17 @@ get_header();
                 </button>
             <?php endif; ?>
         </section>
+    </div>
 
-        <?php $section2 = get_field('section2_recrutement'); ?>
-        <section id="candidature-spontanee" class="candidature-spontanee">
+    <?php $section2 = get_field('section2_recrutement'); ?>
+    <section id="candidature" class="candidature-form-section">
+        <div class="container-candidature-form">
             <h2><?php echo esc_html($section2['titre']); ?></h2>
             <div class="wysiwyg intro-text">
                 <?php echo wp_kses_post($section2['texte_introduction']); ?>
             </div>
 
-            <form class="candidature-form" id="candidatureForm" method="post" enctype="multipart/form-data">
+            <form class="candidature-form" id="candidatureForm">
                 <p class="required-note">* champs à remplir obligatoirement</p>
 
                 <div class="form-row">
@@ -169,20 +169,25 @@ get_header();
                     </div>
                 </div>
 
-                <div class="form-row">
+                <?php
+                $offres = new WP_Query([
+                    'post_type' => 'offre_emploi',
+                    'posts_per_page' => -1,
+                    'post_status' => 'publish',
+                ]);
+                ?>
+
+                <div class="form-row" id="offre-select-row" style="display: none;">
                     <div class="form-group">
                         <div class="select-wrapper">
-                            <select id="service" name="service" required>
-                                <option value="" disabled selected><?php echo esc_html($section2['label_service']); ?> *</option>
-                                <?php
-                                if ($section2['services']) :
-                                    foreach ($section2['services'] as $service) :
-                                ?>
-                                        <option value="<?php echo esc_attr($service['email']); ?>"><?php echo esc_html($service['nom']); ?></option>
-                                <?php
-                                    endforeach;
-                                endif;
-                                ?>
+                            <select id="offre_poste" name="offre_poste">
+                                <option value="" disabled selected>Choisissez une offre</option>
+                                <?php if ($offres->have_posts()) :
+                                    while ($offres->have_posts()) : $offres->the_post(); ?>
+                                        <option value="<?php the_title(); ?>"><?php the_title(); ?></option>
+                                <?php endwhile;
+                                    wp_reset_postdata();
+                                endif; ?>
                             </select>
                         </div>
                     </div>
@@ -198,9 +203,6 @@ get_header();
                     <div class="form-group file-upload">
                         <label for="cv"><?php echo esc_html($section2['label_cv']); ?> (pdf, word, txt - max 5Mo)</label>
                         <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx,.txt" required>
-                        <div class="file-select">
-                            <span class="file-selected">Choisir un fichier</span>
-                        </div>
                     </div>
                 </div>
 
@@ -208,8 +210,6 @@ get_header();
                     <div class="form-group file-upload">
                         <label for="lettre_motivation"><?php echo esc_html($section2['label_lm']); ?> (pdf, word, txt - max 5Mo)</label>
                         <input type="file" id="lettre_motivation" name="lettre_motivation" accept=".pdf,.doc,.docx,.txt" required>
-                        <div class="file-select"></div>
-                        <span class="file-selected">Choisir un fichier</span>
                     </div>
                 </div>
 
@@ -222,8 +222,46 @@ get_header();
 
                 <button type="submit" class="btn-primary btn-submit"><?php echo esc_html($section2['texte_bouton']); ?></button>
             </form>
-        </section>
-    </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const objetSelect = document.getElementById("objet");
+            const offreSelectRow = document.getElementById("offre-select-row");
+
+            objetSelect.addEventListener("change", function() {
+                if (this.value.toLowerCase() === "Offres d'Emplois") {
+                    offreSelectRow.style.display = "block";
+                } else {
+                    offreSelectRow.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const OFFSET = 125;
+
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener("click", function(e) {
+                    const targetId = this.getAttribute("href").substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        e.preventDefault();
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                        window.scrollTo({
+                            top: targetPosition - OFFSET,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
 </main>
 
 <?php
