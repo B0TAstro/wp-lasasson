@@ -49,9 +49,14 @@ get_header();
                             <?php echo esc_html($texte_du_bouton_de_telechargment); ?>
                         </a>                
                 </div>
-            </section> 
-            
+            </section>      
         <?php endif; ?>  
+
+        <?php 
+         // bandeau entre la section 1 et 2
+            $bandeau_1_quimission = get_field('bandeau_1_quimission');
+        ?>
+            <img src="<?php echo esc_url($bandeau_1_quimission['url']); ?>" alt="<?php echo esc_attr($bandeau_1_quimission['alt'] ?? ''); ?>">
 
         <?php 
    
@@ -89,8 +94,7 @@ get_header();
                                             <img src="<?php echo esc_url($axe_image['url']); ?>" alt="<?php echo esc_attr($axe_image['alt'] ?? ''); ?>">
                                         </div>
 
-                                    <div class="axe-contenu">
-                                    
+                                    <div class="axe-contenu">                                   
                                             <h4><?php echo esc_html($axe_titre); ?></h4>    
                                             
                                         <div class="paragraphe-nos-missions wysiwyg">
@@ -104,9 +108,13 @@ get_header();
 
                 </div>
             </section>
-
         <?php endif; ?>
 
+        <?php 
+         // bandeau entre la section 2 et 3
+            $bandeau_2_missionnos_objectifs = get_field('bandeau_2_missionnos_objectifs');
+        ?>
+            <img src="<?php echo esc_url($bandeau_2_missionnos_objectifs['url']); ?>" alt="<?php echo esc_attr($bandeau_2_missionnos_objectifs['alt'] ?? ''); ?>">
 
         <?php
             $section_3_nos_objectifs = get_field('section_3_nos_objectifs');
@@ -125,7 +133,6 @@ get_header();
                         <?php echo wp_kses_post($texte_nosobjectifs); ?>
                     </div>
 
-                    <?php if ($repeteur_nosobjectifs) : ?>
                         <div class="objectifs-list">
                             <?php $counter = 1; ?>
                             <?php foreach ($repeteur_nosobjectifs as $objectif) : 
@@ -142,8 +149,6 @@ get_header();
                             <?php $counter++; ?>
                             <?php endforeach; ?>
                         </div>
-                    <?php endif; ?>
-  
                 </div>
             </section>
         <?php endif; ?>
@@ -187,6 +192,12 @@ get_header();
                 </div>
             </section>
         <?php endif; ?>  
+
+        <?php 
+         // bandeau entre la section 4 et 5
+            $bandeau_3_nos_valeursles_gens_du_mois = get_field('bandeau_3_nos_valeursles_gens_du_mois');
+        ?>
+            <img src="<?php echo esc_url($bandeau_3_nos_valeursles_gens_du_mois['url']); ?>" alt="<?php echo esc_attr($bandeau_3_nos_valeursles_gens_du_mois['alt'] ?? ''); ?>">
         
         <?php 
             $section_5_les_gens_du_mois = get_field('section_5_les_gens_du_mois');
@@ -203,6 +214,8 @@ get_header();
                 $wysiwyg_haut = $bloc_du_centre['texte_du_haut'];
                 $wysiwyg_bas = $bloc_du_centre['texte_du_bas'];
                 $bouton_article = $bloc_du_centre['bouton_vers_larticle'];
+                $text_bouton_article = $bloc_du_centre['texte_bouton_article'];
+
 
                 $bloc_de_droite = $section_5_les_gens_du_mois['bloc_de_droite'];
                 $image_droit = $bloc_de_droite['image_de_la_personne_de_droite'];
@@ -232,7 +245,10 @@ get_header();
                             </div>
                             <div class="wysiwyg wysiwyg-bas">
                                 <?php echo wp_kses_post($wysiwyg_bas); ?>
-                            </div>                                
+                            </div>  
+                            <a class="btn-secondary btn-infos" href="<?php echo esc_url(get_permalink($bouton_article)); ?>" target="_blank">
+                                <?php echo esc_html($text_bouton_article); ?>
+                            </a>
                         </div>
 
                         <div class="bloc bloc-droit">
@@ -244,11 +260,9 @@ get_header();
                                 <p><?php echo esc_html($soustitre_droit); ?></p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
-
         <?php endif; ?>
 
         <?php 
@@ -299,7 +313,6 @@ get_header();
                             
                             <div class="administration-office-list">
                                 <?php foreach ($repeteur_administration as $administration) : 
-                                    // Correction: Inverser les variables pour correspondre à la structure du bureau
                                     $administration_fonction = $administration['fonction'];
                                     $administration_nom = $administration['prenomnom'];
                                 ?>
@@ -319,6 +332,12 @@ get_header();
                 </div>         
             </section>  
         <?php endif; ?>
+
+        <?php 
+        // bandeau entre la section 6 et 7
+            $bandeau_4_presentationgaleries_photos = get_field('bandeau_4_presentationgaleries_photos');
+        ?>
+            <img src="<?php echo esc_url($bandeau_4_presentationgaleries_photos['url']); ?>" alt="<?php echo esc_attr($bandeau_4_presentationgaleries_photos['alt'] ?? ''); ?>">
 
         <?php 
             $section_7_galeries_photos = get_field('section_7_galeries_photos');
@@ -360,7 +379,6 @@ get_header();
                 </div>
             </section>
         <?php endif; ?>
-
     </main>
 <?php
 get_footer();
