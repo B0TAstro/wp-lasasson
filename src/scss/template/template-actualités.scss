@@ -5,7 +5,9 @@
     border: none;
 }
 
-.no-actus, .no-magazines, .no-presse {
+.no-actus,
+.no-magazines,
+.no-presse {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -152,10 +154,6 @@
                         }
                     }
                 }
-            }
-
-            .section-cta {
-                text-align: center;
             }
         }
     }

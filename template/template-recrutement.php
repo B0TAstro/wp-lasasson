@@ -18,15 +18,16 @@ get_header();
 
     <h1><?php the_title(); ?></h1>
 
-    <?php $navigation = get_field('navigation_recrutement'); ?>
-    <div class="recrutement-nav">
-        <a href="#offres-emplois" class="btn-nav"><?php echo esc_html($navigation['bouton_emplois']); ?></a>
-        <a href="#candidature-spontanee" class="btn-nav"><?php echo esc_html($navigation['bouton_candidature']); ?></a>
-    </div>
+    <div class="recrutement-container">
 
-    <?php $section1 = get_field('section1_recrutement'); ?>
-    <section id="offres-emplois" class="offres-emplois">
-        <div class="container">
+        <?php $navigation = get_field('navigation_recrutement'); ?>
+        <div class="recrutement-nav">
+            <a href="#offres-emplois" class="btn-primary btn-nav"><?php echo esc_html($navigation['bouton_emplois']); ?></a>
+            <a href="#candidature-spontanee" class="btn-primary btn-nav"><?php echo esc_html($navigation['bouton_candidature']); ?></a>
+        </div>
+
+        <?php $section1 = get_field('section1_recrutement'); ?>
+        <section id="offres-emplois" class="section-offres-emplois">
             <h2><?php echo esc_html($section1['titre_section_offres']); ?></h2>
 
             <div class="offres-container">
@@ -61,37 +62,23 @@ get_header();
                     while ($offres_query->have_posts()) : $offres_query->the_post();
                         $date_expiration = get_field('date_expiration');
                 ?>
-                        <article class="offre-item <?php echo has_post_thumbnail() ? 'has-thumbnail' : 'no-thumbnail'; ?>">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <div class="offre-content">
-                                    <div>
-                                        <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                        <div class="offre-date"><?php echo get_the_date(); ?></div>
-                                        <?php if ($date_expiration) : ?>
-                                            <div class="offre-expiration">OFFRE VALIDE JUSQU'AU: <?php echo esc_html($date_expiration); ?></div>
-                                        <?php endif; ?>
-                                        <div class="offre-excerpt"><?php the_excerpt(); ?></div>
+                        <article class="offre-item">
+                            <div class="offre-content">
+                                <div>
+                                    <h3><?php the_title(); ?></h3>
+                                    <div class="offre-date"><?php echo get_the_date(); ?></div>
+                                    <div class="offre-description">
+                                        ➝ <?php echo strip_tags(get_the_excerpt()); ?>
                                     </div>
-                                    <a href="<?php the_permalink(); ?>" class="offre-link">En savoir +</a>
-                                </div>
-                                <div class="offre-thumbnail">
-                                    <a href="<?php the_permalink(); ?>">
-                                        <?php echo get_the_post_thumbnail(get_the_ID(), 'medium'); ?>
-                                    </a>
-                                </div>
-                            <?php else : ?>
-                                <div class="offre-content">
-                                    <div>
-                                        <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                        <div class="offre-date"><?php echo get_the_date(); ?></div>
-                                        <?php if ($date_expiration) : ?>
-                                            <div class="offre-expiration">OFFRE VALIDE JUSQU'AU: <?php echo esc_html($date_expiration); ?></div>
-                                        <?php endif; ?>
-                                        <div class="offre-excerpt"><?php the_excerpt(); ?></div>
+                                    <div class="offre-lieu">
+                                        Lieu de travail : <?php echo get_field('lieu_travail'); ?>
                                     </div>
-                                    <a href="<?php the_permalink(); ?>" class="offre-link">En savoir +</a>
+                                    <?php if ($date_expiration) : ?>
+                                        <div class="offre-expiration">OFFRE VALIDE JUSQU'AU : <?php echo esc_html($date_expiration); ?></div>
+                                    <?php endif; ?>
                                 </div>
-                            <?php endif; ?>
+                                <a href="<?php the_permalink(); ?>" class="offre-link">Lire la suite ➝</a>
+                            </div>
                         </article>
                     <?php
                     endwhile;
@@ -107,12 +94,10 @@ get_header();
                     <?php echo esc_html($section1['texte_bouton_plus_offres']); ?>
                 </button>
             <?php endif; ?>
-        </div>
-    </section>
+        </section>
 
-    <?php $section2 = get_field('section2_recrutement'); ?>
-    <section id="candidature-spontanee" class="candidature-spontanee">
-        <div class="container">
+        <?php $section2 = get_field('section2_recrutement'); ?>
+        <section id="candidature-spontanee" class="candidature-spontanee">
             <h2><?php echo esc_html($section2['titre']); ?></h2>
             <div class="wysiwyg intro-text">
                 <?php echo wp_kses_post($section2['texte_introduction']); ?>
@@ -205,19 +190,18 @@ get_header();
                         <span class="file-selected">Choisir un fichier</span>
                     </div>
                 </div>
-        </div>
 
-        <div class="form-row">
-            <div class="form-group checkbox">
-                <input type="checkbox" id="consent" name="consent" required>
-                <label for="consent">En soumettant ce formulaire, j’accepte que les informations saisies soient exploitées et stockées dans le cadre de ma demande</label>
-            </div>
-        </div>
+                <div class="form-row">
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">En soumettant ce formulaire, j’accepte que les informations saisies soient exploitées et stockées dans le cadre de ma demande</label>
+                    </div>
+                </div>
 
-        <button type="submit" class="btn-primary btn-submit"><?php echo esc_html($section2['texte_bouton']); ?></button>
-        </form>
-        </div>
-    </section>
+                <button type="submit" class="btn-primary btn-submit"><?php echo esc_html($section2['texte_bouton']); ?></button>
+            </form>
+        </section>
+    </div>
 </main>
 
 <?php

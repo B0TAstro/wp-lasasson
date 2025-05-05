@@ -65,46 +65,46 @@ if (function_exists('acf_add_options_page')) {
 }
 
 // Custom Post Type "Offre d'emploi"
+// Correction du Custom Post Type "Offre d'emploi"
 add_action('init', function () {
   register_post_type('offre_emploi', [
-      'labels' => [
-          'name' => 'Offres d’emplois',
-          'singular_name' => 'Offre d’emploi',
-          'add_new_item' => 'Ajouter une offre d’emploi',
-          'edit_item' => 'Modifier l’offre',
-          'new_item' => 'Nouvelle offre',
-          'view_item' => 'Voir l’offre',
-          'search_items' => 'Rechercher une offre',
-      ],
-      'public' => true,
-      'has_archive' => false,
-      'rewrite' => ['slug' => 'offres'],
-      'menu_icon' => 'dashicons-businessman',
-      'supports' => ['title', 'editor', 'thumbnail', 'page-attributes'],
-      'show_in_rest' => true,
+    'labels' => [
+      'name'               => 'Offres d\'emploi',
+      'singular_name'      => 'Offre d\'emploi',
+      'add_new'            => 'Ajouter une offre',
+      'add_new_item'       => 'Ajouter une offre d\'emploi',
+      'edit_item'          => 'Modifier l\'offre',
+      'new_item'           => 'Nouvelle offre',
+      'view_item'          => 'Voir l\'offre',
+      'search_items'       => 'Rechercher une offre',
+      'not_found'          => 'Aucune offre trouvée',
+      'not_found_in_trash' => 'Aucune offre dans la corbeille',
+      'all_items'          => 'Toutes les offres',
+      'menu_name'          => 'Offres d\'emploi',
+    ],
+    'public'             => true,
+    'has_archive'        => true,
+    'rewrite'            => ['slug' => 'offre-emploi'],
+    'menu_icon'          => 'dashicons-businessman',
+    'supports'           => ['title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'],
+    'show_in_rest'       => true,
+    'menu_position'      => 10,
+    'publicly_queryable' => true,
   ]);
 });
+add_action('after_switch_theme', 'flush_rewrite_rules');
+// Direct enfant de la page Recrutement
 add_action('save_post_offre_emploi', function ($post_id, $post, $update) {
   if (wp_is_post_revision($post_id) || defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
   $recrutement_page = get_page_by_path('recrutement');
   if ($recrutement_page && $post->post_parent != $recrutement_page->ID) {
-      wp_update_post([
-          'ID' => $post_id,
-          'post_parent' => $recrutement_page->ID,
-      ]);
+    wp_update_post([
+      'ID' => $post_id,
+      'post_parent' => $recrutement_page->ID,
+    ]);
   }
 }, 10, 3);
-add_filter('template_include', function ($template) {
-  if (is_singular('offre_emploi')) {
-      $custom_template = get_template_directory() . '/template-offre-emploi.php';
-      if (file_exists($custom_template)) {
-          return $custom_template;
-      }
-  }
-  return $template;
-});
-
 
 // ================= Fonction AJAX pour tous les formulaires =================
 add_action('wp_ajax_send_dynamic_form', 'send_dynamic_form');
@@ -261,7 +261,7 @@ function load_more_presse()
   $per_page = isset($_POST['per_page']) ? intval($_POST['per_page']) : 3;
 
   $page_id = isset($_POST['page_id']) ? intval($_POST['page_id']) : get_option('page_on_front');
-  $section3 = get_field('section3', $page_id);
+  $section3 = get_field('section3_actu', $page_id);
   $articles = $section3['articles_presse'];
 
   if (!$articles || !is_array($articles)) {
@@ -292,11 +292,54 @@ function load_more_presse()
         </div>
       </a>
     </div>
-<?php
+    <?php
   }
 
   $html = ob_get_clean();
   wp_send_json_success($html);
+}
+
+// ================= AJAX OFFRE D'EMPLOI =================
+add_action('wp_ajax_load_more_offres', 'load_more_offres');
+add_action('wp_ajax_nopriv_load_more_offres', 'load_more_offres');
+
+function load_more_offres()
+{
+  check_ajax_referer('load_more_nonce');
+
+  $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+
+  $args = array(
+    'post_type'      => 'offre_emploi',
+    'posts_per_page' => 6,
+    'paged'          => $page,
+    'post_status'    => 'publish',
+  );
+
+  $query = new WP_Query($args);
+
+  if ($query->have_posts()) :
+    while ($query->have_posts()) : $query->the_post();
+      $date_expiration = get_field('date_expiration'); ?>
+      <article class="offre-item">
+        <div class="offre-content">
+          <div>
+            <h3><?php the_title(); ?></h3>
+            <div class="offre-date"><?php echo get_the_date(); ?></div>
+            <div class="offre-description">➝ <?php echo strip_tags(get_the_excerpt()); ?></div>
+            <div class="offre-lieu">Lieu de travail: <?php echo get_field('lieu_travail'); ?></div>
+            <?php if ($date_expiration) : ?>
+              <div class="offre-expiration">OFFRE VALIDE JUSQU'AU: <?php echo esc_html($date_expiration); ?></div>
+            <?php endif; ?>
+          </div>
+          <a href="<?php the_permalink(); ?>" class="offre-link">Lire la suite ➝</a>
+        </div>
+      </article>
+<?php endwhile;
+    wp_reset_postdata();
+  endif;
+
+  wp_die();
 }
 
 // ================= DEBUG HELPERS =================
