@@ -45,7 +45,7 @@ get_header();
                         <?php echo $texte3_qui_somme_nous; ?>
                     </div>
 
-                         <a class="btn-secondary btn-infos" href="<?php echo esc_url($bouton_telechargement_qui_somme_nous['url']); ?>" target="_blank" download>
+                        <a class="btn-secondary btn-infos" href="<?php echo esc_url($bouton_telechargement_qui_somme_nous['url']); ?>" target="_blank" download>
                             <?php echo esc_html($texte_du_bouton_de_telechargment); ?>
                         </a>                
                 </div>
@@ -278,13 +278,10 @@ get_header();
 
                     $bouton_telechargement_organigramme_de_la_sasson = $section_6_presentation_equipe['bouton_telechargement_organigramme_de_la_sasson'];
                     $texte_du_bouton_de_telechargement = $section_6_presentation_equipe['texte_du_bouton_de_telechargement'];
-                    
-
                 ?>
 
             <section class="general-presentation-section">
                 <div class="general-presentation-container">
-                
                         <h2><?php echo esc_html($titre_bureau); ?></h2>
 
                             <div class="general-presentation-paragraph wysiwyg">
