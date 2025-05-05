@@ -65,7 +65,6 @@ if (function_exists('acf_add_options_page')) {
 }
 
 // Custom Post Type "Offre d'emploi"
-// Correction du Custom Post Type "Offre d'emploi"
 add_action('init', function () {
   register_post_type('offre_emploi', [
     'labels' => [
@@ -105,6 +104,16 @@ add_action('save_post_offre_emploi', function ($post_id, $post, $update) {
     ]);
   }
 }, 10, 3);
+// Personnaliser le slug de l'URL
+add_filter('wp_insert_post_data', function ($data, $postarr) {
+  if ($data['post_type'] === 'offre_emploi' && $data['post_status'] !== 'auto-draft') {
+      $slug_base = sanitize_title($data['post_title']);
+      $id = $postarr['ID'] ?? 0;
+      $annee = date('Y');
+      $data['post_name'] = "{$slug_base}-{$id}-{$annee}";
+  }
+  return $data;
+}, 10, 2);
 
 // ================= Fonction AJAX pour tous les formulaires =================
 add_action('wp_ajax_send_dynamic_form', 'send_dynamic_form');
@@ -313,34 +322,57 @@ function load_more_offres()
     'post_type'      => 'offre_emploi',
     'posts_per_page' => 6,
     'paged'          => $page,
-    'post_status'    => 'publish',
+    'post_status'    => 'publish',  
   );
 
   $query = new WP_Query($args);
 
   if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post();
-      $date_expiration = get_field('date_expiration'); ?>
+      $offre_data = get_field('section1_offreemplois');
+      $date_expiration = isset($offre_data['date_expiration']) ? $offre_data['date_expiration'] : '';
+      $lieu_travail = isset($offre_data['lieu_travail']) ? $offre_data['lieu_travail'] : '';
+      $texte = isset($offre_data['texte']) ? strip_tags($offre_data['texte']) : '';
+    ?>
       <article class="offre-item">
         <div class="offre-content">
           <div>
             <h3><?php the_title(); ?></h3>
             <div class="offre-date"><?php echo get_the_date(); ?></div>
-            <div class="offre-description">➝ <?php echo strip_tags(get_the_excerpt()); ?></div>
-            <div class="offre-lieu">Lieu de travail: <?php echo get_field('lieu_travail'); ?></div>
+            <div class="offre-description">
+              ➝ <?php
+                if ($texte) {
+                  echo wp_trim_words($texte, 100, '...');
+                } elseif (has_excerpt()) {
+                  echo strip_tags(get_the_excerpt());
+                } else {
+                  $content = get_the_content();
+                  $content = apply_filters('the_content', $content);
+                  $content = strip_tags($content);
+                  echo wp_trim_words($content, 100, '...');
+                }
+                ?>
+            </div>
+            <?php if ($lieu_travail) : ?>
+              <div class="offre-lieu">
+                Lieu de travail : <?php echo esc_html($lieu_travail); ?>
+              </div>
+            <?php endif; ?>
             <?php if ($date_expiration) : ?>
-              <div class="offre-expiration">OFFRE VALIDE JUSQU'AU: <?php echo esc_html($date_expiration); ?></div>
+              <div class="offre-expiration">OFFRE VALIDE JUSQU'AU : <?php echo esc_html($date_expiration); ?></div>
             <?php endif; ?>
           </div>
           <a href="<?php the_permalink(); ?>" class="offre-link">Lire la suite ➝</a>
         </div>
       </article>
-<?php endwhile;
+<?php
+    endwhile;
     wp_reset_postdata();
   endif;
 
   wp_die();
 }
+
 
 // ================= DEBUG HELPERS =================
 function p($args)

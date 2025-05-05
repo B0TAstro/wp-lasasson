@@ -27,6 +27,8 @@ get_header();
         </div>
 
         <?php $section1 = get_field('section1_recrutement'); ?>
+        <?php
+        ?>
         <section id="offres-emplois" class="section-offres-emplois">
             <h2><?php echo esc_html($section1['titre_section_offres']); ?></h2>
 
@@ -39,20 +41,22 @@ get_header();
                     'post_status'    => 'publish',
                 );
 
-                if ($section1['mode_affichage_offres'] === 'valides') {
-                    $args['meta_query'] = array(
-                        array(
-                            'key'     => 'date_expiration',
-                            'value'   => $today,
-                            'compare' => '>=',
-                            'type'    => 'DATE'
-                        )
-                    );
-                } elseif ($section1['mode_affichage_offres'] === 'selection') {
-                    if (!empty($section1['selection_offres'])) {
-                        $post_ids = array_map(fn($p) => $p->ID, $section1['selection_offres']);
-                        $args['post__in'] = $post_ids;
-                        $args['orderby'] = 'post__in';
+                if (isset($section1['mode_affichage_offres'])) {
+                    if ($section1['mode_affichage_offres'] === 'valides') {
+                        $args['meta_query'] = array(
+                            array(
+                                'key'     => 'section1_offreemplois_date_expiration',
+                                'value'   => $today,
+                                'compare' => '>=',
+                                'type'    => 'DATE'
+                            )
+                        );
+                    } elseif ($section1['mode_affichage_offres'] === 'selection') {
+                        if (!empty($section1['selection_offres'])) {
+                            $post_ids = array_map(fn($p) => $p->ID, $section1['selection_offres']);
+                            $args['post__in'] = $post_ids;
+                            $args['orderby'] = 'post__in';
+                        }
                     }
                 }
 
@@ -60,7 +64,9 @@ get_header();
 
                 if ($offres_query->have_posts()) :
                     while ($offres_query->have_posts()) : $offres_query->the_post();
-                        $date_expiration = get_field('date_expiration');
+                        $offre_data = get_field('section1_offreemplois');
+                        $date_expiration = isset($offre_data['date_expiration']) ? $offre_data['date_expiration'] : '';
+                        $lieu_travail = isset($offre_data['lieu_travail']) ? $offre_data['lieu_travail'] : '';
                 ?>
                         <article class="offre-item">
                             <div class="offre-content">
@@ -68,11 +74,27 @@ get_header();
                                     <h3><?php the_title(); ?></h3>
                                     <div class="offre-date"><?php echo get_the_date(); ?></div>
                                     <div class="offre-description">
-                                        ➝ <?php echo strip_tags(get_the_excerpt()); ?>
+                                        ➝ <?php
+                                            if (!empty($offre_data['texte'])) {
+                                                $content = strip_tags($offre_data['texte']);
+                                                echo wp_trim_words($content, 100, '...');
+                                            }
+                                            elseif (has_excerpt()) {
+                                                echo strip_tags(get_the_excerpt());
+                                            }
+                                            else {
+                                                $content = get_the_content();
+                                                $content = apply_filters('the_content', $content);
+                                                $content = strip_tags($content);
+                                                echo wp_trim_words($content, 100, '...');
+                                            }
+                                            ?>
                                     </div>
-                                    <div class="offre-lieu">
-                                        Lieu de travail : <?php echo get_field('lieu_travail'); ?>
-                                    </div>
+                                    <?php if ($lieu_travail) : ?>
+                                        <div class="offre-lieu">
+                                            Lieu de travail : <?php echo esc_html($lieu_travail); ?>
+                                        </div>
+                                    <?php endif; ?>
                                     <?php if ($date_expiration) : ?>
                                         <div class="offre-expiration">OFFRE VALIDE JUSQU'AU : <?php echo esc_html($date_expiration); ?></div>
                                     <?php endif; ?>
