@@ -9,6 +9,7 @@ import './js/load-more.js'
 import './js/contact-form.js'
 import './js/faq.js'
 import './js/galerie-noussoutenir.js'
+import './js/slider-valeurs.js'
 import Router from './utils/Router'
 
 // Petit routeur inspiré du framework Sage, qui utilise les classes de body de WordPress
