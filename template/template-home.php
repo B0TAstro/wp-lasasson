@@ -17,7 +17,7 @@ get_header();
     </a>
 
     <?php
-    $section1 = get_field('section1');
+    $section1 = get_field('section1_home');
     ?>
     <section class="section-slider">
         <?php if ($section1['slider']) : ?>
@@ -33,7 +33,7 @@ get_header();
         <?php endif; ?>
 
         <div class="slider-content">
-            <div class="slider-text wysiwyg">
+            <div class="wysiwyg slider-text">
                 <?php echo apply_filters('the_content', $section1['paragraph']); ?>
             </div>
 
@@ -44,7 +44,7 @@ get_header();
     </section>
 
     <?php
-    $section2 = get_field('section2');
+    $section2 = get_field('section2_home');
     ?>
     <section class="section-presentation">
         <div class="container">
@@ -54,7 +54,7 @@ get_header();
                 <?php endif; ?>
 
                 <?php if ($section2['paragraph']) : ?>
-                    <div class="section-text wysiwyg">
+                    <div class="wysiwyg section-text">
                         <?php echo apply_filters('the_content', $section2['paragraph']); ?>
                     </div>
                 <?php endif; ?>
@@ -83,7 +83,7 @@ get_header();
     </section>
 
     <?php
-    $section3 = get_field('section3');
+    $section3 = get_field('section3_home');
     if ($section3 && isset($section3['blocks']) && is_array($section3['blocks']) && count($section3['blocks']) > 0) :
     ?>
         <section class="section-info">
@@ -100,7 +100,7 @@ get_header();
                             <?php endif; ?>
 
                             <?php if ($block['paragraph']) : ?>
-                                <div class="block-text wysiwyg">
+                                <div class="wysiwyg block-text">
                                     <?php echo apply_filters('the_content', $block['paragraph']); ?>
                                 </div>
                             <?php endif; ?>
@@ -112,7 +112,7 @@ get_header();
     <?php endif; ?>
 
     <?php
-    $section4 = get_field('section4');
+    $section4 = get_field('section4_home');
     ?>
     <section class="section-contact">
         <div class="container">
@@ -129,7 +129,7 @@ get_header();
     </section>
 
     <?php
-    $section5 = get_field('section5');
+    $section5 = get_field('section5_home');
     ?>
     <section class="section-news">
         <div class="container">

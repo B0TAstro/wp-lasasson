@@ -8,6 +8,9 @@ import './js/magazine-slider.js'
 import './js/load-more.js'
 import './js/faq.js'
 import './js/support-slider.js'
+import './js/contact-form.js'
+import './js/dispositif-slider.js'
+import './js/accordeon.js'
 import Router from './utils/Router'
 
 // Petit routeur inspiré du framework Sage, qui utilise les classes de body de WordPress
