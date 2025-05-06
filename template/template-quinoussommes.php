@@ -262,10 +262,8 @@ get_header();
                             <?php if ($image_droit) : ?>
                                 <img src="<?php echo esc_url($image_droit['url']); ?>" alt="<?php echo esc_attr($image_droit['alt'] ?? ''); ?>">
                             <?php endif; ?>
-                            <h3><?php echo esc_html($titre_droit); ?></h3>
-                            <div class="sous-titre">
-                                <p><?php echo esc_html($soustitre_droit); ?></p>
-                            </div>
+                            <h3><?php echo esc_html($titre_droit); ?></h3>                       
+                            <p><?php echo esc_html($soustitre_droit); ?></p>
                         </div>
                     </div>
                 </div>
