@@ -170,25 +170,27 @@ get_header();
                         <?php echo wp_kses_post($texte_nos_valeurs); ?>
                     </div>
 
-                    <?php if ($repeteur_nos_valeurs) : ?>
-                        <div class="valeurs-list">
-                            <?php foreach ($repeteur_nos_valeurs as $valeur) : 
-                                $valeur_titre = $valeur['titre_de_la_valeur'];
-                                $valeur_texte = $valeur['texte_de_la_valeur'];
-                                $valeur_image = $valeur['image_de_la_valeur'];
-                            ?>
-                                <div class="valeur-item">
-                                    <h3><?php echo esc_html($valeur_titre); ?></h3>
-                                        <div class="valeur-text">
-                                            <p><?php echo wp_kses_post($valeur_texte); ?></p>
-                                        </div>
-                                        
-                                <img src="<?php echo esc_url($valeur_image['url']); ?>" alt="<?php echo esc_attr($valeur_image['alt'] ?? ''); ?>">
-                          
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>      
+                    <div class="valeurs-wrapper">
+                        <?php if ($repeteur_nos_valeurs) : ?>
+                            <div class="valeurs-list">
+                                <?php foreach ($repeteur_nos_valeurs as $valeur) : 
+                                    $valeur_titre = $valeur['titre_de_la_valeur'];
+                                    $valeur_texte = $valeur['texte_de_la_valeur'];
+                                    $valeur_image = $valeur['image_de_la_valeur'];
+                                ?>
+                                    <div class="valeur-item">
+                                        <h3><?php echo esc_html($valeur_titre); ?></h3>
+                                            <div class="valeur-text">
+                                                <p><?php echo wp_kses_post($valeur_texte); ?></p>
+                                            </div>
+                                            
+                                    <img src="<?php echo esc_url($valeur_image['url']); ?>" alt="<?php echo esc_attr($valeur_image['alt'] ?? ''); ?>">
+                            
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?> 
+                    </div>     
                 </div>
             </section>
         <?php endif; ?>  
