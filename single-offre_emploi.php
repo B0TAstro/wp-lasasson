@@ -3,17 +3,35 @@ get_header();
 ?>
 
 <main>
-    <button id="backButton">RETOUR</button>
+    <?php $btn = get_field('bouton_soutenir_lien', 'option'); ?>
+    <a class="btn-soutenir" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
+        <span class="icon">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-empty.svg" alt="Soutenir" class="heart-empty">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-full.svg" alt="Soutenir" class="heart-full">
+        </span>
+        <p class="label"><?php echo esc_html($btn['title']); ?></p>
+    </a>
+
+    <div class="hero">
+        <?php
+        $parent_id = wp_get_post_parent_id(get_the_ID());
+        $return_url = $parent_id ? get_permalink($parent_id) : home_url();
+        ?>
+        <button id="backButton" class="return-button">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/back-button.svg" alt="Retour">
+        </button>
+
+        <h1 class="dispositif-title"><?php the_title(); ?></h1>
+    </div>
+
     <script>
         document.getElementById('backButton').addEventListener('click', function() {
             window.history.back();
         });
     </script>
+
     <?php $acf = get_field('section1_offreemplois'); ?>
-
-    <div class="container-offre-emploi">
-        <h1><?php the_title(); ?></h1>
-
+    <section class="container-offre-emploi">
         <?php if (!empty($acf['image'])): ?>
             <img src="<?= esc_url($acf['image']['url']); ?>" alt="<?= esc_attr($acf['image']['alt']); ?>">
         <?php endif; ?>
@@ -29,62 +47,9 @@ get_header();
         <?php if (!empty($acf['date_expiration'])): ?>
             <p class="">Offre valable jusqu’au : <?= esc_html($acf['date_expiration']); ?></p>
         <?php endif; ?>
-    </div>
+    </section>
 </main>
 
-<footer>
-    <div class="footer-infos">
-        <ul>
-            <li>© <?php echo date('Y'); ?></li>
-            <?php if (have_rows('footer_links', 'option')) :
-                while (have_rows('footer_links', 'option')) : the_row();
-                    $link = get_sub_field('lien');
-                    if ($link): ?>
-                        <li>
-                            <a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target']); ?>">
-                                <?php echo esc_html($link['title']); ?>
-                            </a>
-                        </li>
-            <?php endif;
-                endwhile;
-            endif; ?>
-        </ul>
-    </div>
-
-    <div class="footer-socials">
-        <ul>
-            <?php
-            $default_icons = [
-                'instagram' => get_template_directory_uri() . '/assets/img/socials/instagram.svg',
-                'facebook' => get_template_directory_uri() . '/assets/img/socials/facebook.svg',
-                'linkedin' => get_template_directory_uri() . '/assets/img/socials/linkedin.svg',
-                'twitter' => get_template_directory_uri() . '/assets/img/socials/twitter.svg',
-                'youtube' => get_template_directory_uri() . '/assets/img/socials/youtube.svg',
-            ];
-
-            if (have_rows('footer_socials', 'option')) :
-                while (have_rows('footer_socials', 'option')) : the_row();
-                    $network = get_sub_field('reseau');
-                    $custom_icon = get_sub_field('icone_personnalisee');
-                    $link = get_sub_field('lien');
-                    if (!$link) continue;
-
-                    $icon_url = ($network === 'autre') ? esc_url($custom_icon) : ($default_icons[$network] ?? '');
-
-                    if ($icon_url): ?>
-                        <li>
-                            <a href="<?php echo esc_url($link); ?>" target="_blank">
-                                <img src="<?php echo esc_url($icon_url); ?>" alt="<?php echo esc_attr($network); ?>">
-                            </a>
-                        </li>
-            <?php endif;
-                endwhile;
-            endif; ?>
-        </ul>
-    </div>
-
-    <?php wp_footer(); ?>
-</footer>
-</body>
-
-</html>
+<?php
+get_footer();
+?>
