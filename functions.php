@@ -210,7 +210,7 @@ function send_dynamic_form()
     "From: Site Web - Formulaire de Contact<tom@famille-boullay.fr>", // Remplacez par l'email de l'expéditeur
     "Reply-To: $email"
   ];
-  $subject = "Nouveau message du formulaire de contact - $objet";
+  $subject = "Nouveau message du formulaire de contact | $objet";
   $body = <<<HTML
   <html>
     <body>
@@ -223,45 +223,175 @@ function send_dynamic_form()
       <p><strong>Téléphone :</strong> $telephone</p>
       <p><strong>Objet :</strong> $objet</p>
 
-      <p style="margin-top: 20px;"><strong>Message :</strong></p>
-      <div style="margin-left: 30px; padding: 10px; background-color: #f9f9f9; border-left: 5px solid #FFCA23;">
+      <p style="margin-top: 20px; margin-bottom: 20px;"><strong>Message :</strong></p>
+      <div style="margin-left: 20px; padding: 10px; background-color: #f9f9f9; border-left: 5px solid #FFCA23;">
         <p style="white-space: pre-line;">$message</p>
       </div>
 
       <br><hr><br>
-      <p style="margin-top: 30px;">Vous pouvez répondre à cette personne via cet e-mail ➝ <a href="mailto:$email">$email</a></p>
+      <p style="margin-top: 20px; margin-bottom: 20px;">Vous pouvez répondre à cette personne via cet e-mail  ➝  <a href="mailto:$email">$email</a></p>
     </body>
   </html>
   HTML;
-
   $sent = wp_mail($service, $subject, $body, $headers);
-
-  $user_subject = "Nous avons bien reçu votre message";
-
-  $user_body = <<<HTML
-  <html>
-    <body>
-      <p>Bonjour $prenom $nom,</p>
-      <p>Merci d’avoir pris contact avec nous via le formulaire du site web de <strong>La Sasson</strong>.</p>
-      <p>Votre message a bien été transmis à notre service. Nous reviendrons vers vous dans les meilleurs délais en fonction de votre demande.</p>
-      <p>En attendant, vous pouvez retrouver plus d’informations sur la Sasson sur notre site internet.</p>
-      <p style="margin-top: 30px;">Belle journée à vous,<br>
-      <strong>L’équipe La Sasson</strong></p>
-    </body>
-  </html>
-  HTML;
 
   $user_headers = [
     'Content-Type: text/html; charset=UTF-8',
     "From: Association La Sasson<tom@famille-boullay.fr>", // Remplacez par l'email de l'expéditeur
   ];
-
+  $user_subject = "Confirmation de réception de votre message";
+  $user_body = <<<HTML
+  <html>
+    <body>
+      <p>Bonjour $prenom $nom,</p>
+      <p>Merci d’avoir pris contact avec nous via le formulaire de contact du site web de <strong>La Sasson</strong>.</p>
+      <p>Votre message a bien été transmis à notre service. Nous reviendrons vers vous dans les meilleurs délais en fonction de votre demande.</p>
+      <p>En attendant, vous pouvez retrouver plus d’informations sur la Sasson sur notre site internet.</p>
+      <p style="margin-top: 30px;">Bonne journée à vous,<br>
+      <strong>L’équipe La Sasson</strong></p>
+    </body>
+  </html>
+  HTML;
   wp_mail($email, $user_subject, $user_body, $user_headers);
 
   if ($sent) {
     wp_send_json_success("Votre message a bien été envoyé.");
   } else {
     wp_send_json_error("Erreur lors de l'envoi du message. Vérifiez les logs ou les paramètres SMTP.");
+  }
+}
+
+add_action('wp_ajax_send_candidature_form', 'send_candidature_form');
+add_action('wp_ajax_nopriv_send_candidature_form', 'send_candidature_form');
+
+function send_candidature_form()
+{
+  $fields = [
+    'nom',
+    'prenom',
+    'email',
+    'telephone',
+    'objet',
+    'offre_poste',
+    'message',
+    'consent'
+  ];
+
+  foreach ($fields as $field) {
+    $$field = sanitize_text_field($_POST[$field] ?? '');
+  }
+
+  if (!$nom || !$prenom || !$email || !$objet || !$message || !$consent) {
+    wp_send_json_error('Tous les champs obligatoires doivent être remplis.');
+  }
+
+  $recrutement_page = get_page_by_path('recrutement');
+  $page_id = $recrutement_page->ID;
+  $acf_fields = get_field('section2_recrutement', $page_id);
+  $email_reception = $acf_fields['email_reception'];
+  if (empty($email_reception)) {
+    wp_send_json_error("Adresse email destinataire vide.");
+    return;
+  }
+  if (!is_email($email_reception)) {
+    wp_send_json_error("Adresse email destinataire invalide: " . $email_reception);
+    return;
+  }
+
+  $attachments = [];
+  $allowed_types = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'];
+  $max_size = 5 * 1024 * 1024; // 5 Mo
+
+  foreach (['cv', 'lettre_motivation'] as $file_key) {
+    if (!isset($_FILES[$file_key])) {
+      wp_send_json_error("Fichier $file_key manquant.");
+    }
+
+    $file = $_FILES[$file_key];
+
+    if ($file['error'] !== 0) {
+      wp_send_json_error("Erreur lors de l'upload de $file_key.");
+    }
+
+    if ($file['size'] > $max_size) {
+      wp_send_json_error("Le fichier $file_key dépasse 5 Mo.");
+    }
+
+    if (!in_array($file['type'], $allowed_types)) {
+      wp_send_json_error("Type de fichier non autorisé pour $file_key.");
+    }
+
+    $upload = wp_handle_upload($file, ['test_form' => false]);
+
+    if (!isset($upload['file'])) {
+      wp_send_json_error("Erreur upload fichier $file_key.");
+    }
+
+    $attachments[] = $upload['file'];
+  }
+
+  $headers = [
+    'Content-Type: text/html; charset=UTF-8',
+    "From: Site Web - Formulaire de Candidature<tom@famille-boullay.fr>", // Remplacez par l'email de l'expéditeur
+    "Reply-To: $email"
+  ];
+  $subject = "Nouveau message du formulaire de candidature | $objet";
+  if (!empty($offre_poste)) {
+    $subject .= ": $offre_poste";
+  }
+  $body = <<<HTML
+  <html>
+    <body>
+      <p>Bonjour,</p>
+      <p>Vous avez reçu un nouveau message depuis le formulaire de candidature du site <strong>La Sasson</strong> :</p>
+      <br><hr><br>
+
+      <p><strong>De la part de :</strong> $nom $prenom</p>
+      <p><strong>Téléphone :</strong> $telephone</p>
+      <p><strong>Objet :</strong> $objet | $offre_poste</p>
+
+      <p style="margin-top: 20px; margin-bottom: 20px;"><strong>Message :</strong></p>
+      <div style="margin-left: 20px; padding: 10px; background-color: #f9f9f9; border-left: 5px solid #FFCA23;">
+        <p style="white-space: pre-line;">$message</p>
+      </div>
+
+      <br><hr><br>
+      <p style="margin-top: 20px; margin-bottom: 20px;">Vous pouvez répondre à cette personne via cet e-mail  ➝  <a href="mailto:$email">$email</a></p>
+    </body>
+  </html>
+  HTML;
+
+  $sent = wp_mail($email_reception, $subject, $body, $headers, $attachments);
+
+  $user_headers = [
+    'Content-Type: text/html; charset=UTF-8',
+    "From: Association La Sasson<tom@famille-boullay.fr>", // Remplacez par l'email de l'expéditeur
+  ];
+  $user_subject = "Confirmation de réception de votre candidature";
+  $user_body = <<<HTML
+  <html>
+    <body>
+      <p>Bonjour $prenom $nom,</p>
+      <p>Merci d’avoir pris contact avec nous via le formulaire de candidature du site web de <strong>La Sasson</strong>.</p>
+      <p>Votre message a bien été transmis à notre service. Nous reviendrons vers vous si votre profil correspond à nos besoins.</p>
+      <p style="margin-top: 30px;">Bonne journée à vous,<br>
+      <strong>L’équipe RH La Sasson</strong></p>
+    </body>
+  </html>
+  HTML;
+  wp_mail($email, $user_subject, $user_body, $user_headers);
+
+  // Supprimer les fichiers
+  foreach ($attachments as $path) {
+    if (file_exists($path)) {
+      unlink($path);
+    }
+  }
+
+  if ($sent) {
+    wp_send_json_success("Votre candidature a bien été envoyée.");
+  } else {
+    wp_send_json_error("Erreur lors de l'envoi. Contactez l’administrateur.");
   }
 }
 

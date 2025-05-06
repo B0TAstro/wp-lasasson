@@ -265,11 +265,61 @@
                             padding-right: 30px;
                         }
                     }
+
+                    &.file-upload {
+                        position: relative;
+                        margin-bottom: 30px;
+
+                        label {
+                            display: block;
+                            font-family: g.$font-family-base;
+                            font-size: g.$font-size-base;
+                            font-weight: g.$font-weight-regular;
+                            margin-bottom: 10px;
+                            color: g.$color-black;
+                        }
+
+                        .custom-file-upload {
+                            display: block;
+                            height: 43px;
+                            width: auto;
+                            position: relative;
+                            cursor: pointer;
+
+                            .custom-file-button {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: auto;
+                                max-width: 100%;
+                                padding: 12px 30px;
+                                background-color: white;
+                                border-radius: 5px;
+                                color: g.$color-black;
+                                font-family: g.$font-family-base;
+                                font-size: g.$font-size-base;
+                                font-weight: g.$font-weight-regular;
+                                box-sizing: border-box;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+
+                            input[type="file"] {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: auto;
+                                height: 100%;
+                                opacity: 0;
+                                cursor: pointer;
+                                z-index: 1;
+                            }
+                        }
+                    }
                 }
             }
 
-
-            
             .btn-submit {
                 width: 100%;
                 font-weight: g.$font-weight-bold;
@@ -281,6 +331,13 @@
         }
     }
 }
+
+.file-name-display {
+    margin-top: 5px;
+    font-size: g.$font-size-xs;
+    color: g.$color-black;
+}
+
 #offre-select-row {
     transition: all 0.3s ease;
 }

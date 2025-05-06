@@ -201,14 +201,14 @@ get_header();
 
                 <div class="form-row">
                     <div class="form-group file-upload">
-                        <label for="cv"><?php echo esc_html($section2['label_cv']); ?> (pdf, word, txt - max 5Mo)</label>
+                        <label for="cv"><?php echo esc_html($section2['label_cv']); ?> * (pdf, word, txt - max 5Mo)</label>
                         <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx,.txt" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group file-upload">
-                        <label for="lettre_motivation"><?php echo esc_html($section2['label_lm']); ?> (pdf, word, txt - max 5Mo)</label>
+                        <label for="lettre_motivation"><?php echo esc_html($section2['label_lm']); ?> * (pdf, word, txt - max 5Mo)</label>
                         <input type="file" id="lettre_motivation" name="lettre_motivation" accept=".pdf,.doc,.docx,.txt" required>
                     </div>
                 </div>
@@ -227,23 +227,7 @@ get_header();
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const objetSelect = document.getElementById("objet");
-            const offreSelectRow = document.getElementById("offre-select-row");
-
-            objetSelect.addEventListener("change", function() {
-                if (this.value.toLowerCase() === "Offres d'Emplois") {
-                    offreSelectRow.style.display = "block";
-                } else {
-                    offreSelectRow.style.display = "none";
-                }
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
             const OFFSET = 125;
-
             document.querySelectorAll('a[href^="#"]').forEach(link => {
                 link.addEventListener("click", function(e) {
                     const targetId = this.getAttribute("href").substring(1);
@@ -261,7 +245,6 @@ get_header();
             });
         });
     </script>
-
 </main>
 
 <?php
