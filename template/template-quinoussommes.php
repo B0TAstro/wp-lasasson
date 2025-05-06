@@ -52,11 +52,13 @@ get_header();
             </section>      
         <?php endif; ?>  
 
-        <?php 
-         // bandeau entre la section 1 et 2
-            $bandeau_1_quimission = get_field('bandeau_1_quimission');
-        ?>
-            <img src="<?php echo esc_url($bandeau_1_quimission['url']); ?>" alt="<?php echo esc_attr($bandeau_1_quimission['alt'] ?? ''); ?>">
+        <div class="bandeau">
+            <?php 
+            // bandeau entre la section 1 et 2
+                $bandeau_1_quimission = get_field('bandeau_1_quimission');
+            ?>
+                <img src="<?php echo esc_url($bandeau_1_quimission['url']); ?>" alt="<?php echo esc_attr($bandeau_1_quimission['alt'] ?? ''); ?>">
+        </div>
 
         <?php 
    
@@ -97,7 +99,7 @@ get_header();
                                     <div class="axe-contenu">                                   
                                             <h4><?php echo esc_html($axe_titre); ?></h4>    
                                             
-                                        <div class="paragraphe-nos-missions wysiwyg">
+                                        <div class="paragraphe-des-missions wysiwyg">
                                             <p><?php echo wp_kses_post($axe_texte); ?></p>
                                         </div> 
                                     </div>
@@ -105,16 +107,17 @@ get_header();
                             <?php endforeach; ?>
                         </div>
                     </div>
-
                 </div>
             </section>
         <?php endif; ?>
 
-        <?php 
-         // bandeau entre la section 2 et 3
-            $bandeau_2_missionnos_objectifs = get_field('bandeau_2_missionnos_objectifs');
-        ?>
-            <img src="<?php echo esc_url($bandeau_2_missionnos_objectifs['url']); ?>" alt="<?php echo esc_attr($bandeau_2_missionnos_objectifs['alt'] ?? ''); ?>">
+        <div class="bandeau">
+            <?php 
+            // bandeau entre la section 2 et 3
+                $bandeau_2_missionnos_objectifs = get_field('bandeau_2_missionnos_objectifs');
+            ?>
+                <img src="<?php echo esc_url($bandeau_2_missionnos_objectifs['url']); ?>" alt="<?php echo esc_attr($bandeau_2_missionnos_objectifs['alt'] ?? ''); ?>">
+        </div>
 
         <?php
             $section_3_nos_objectifs = get_field('section_3_nos_objectifs');
@@ -193,14 +196,16 @@ get_header();
                     </div>     
                 </div>
             </section>
-        <?php endif; ?>  
+        <?php endif; ?> 
 
-        <?php 
-         // bandeau entre la section 4 et 5
-            $bandeau_3_nos_valeursles_gens_du_mois = get_field('bandeau_3_nos_valeursles_gens_du_mois');
-        ?>
-            <img src="<?php echo esc_url($bandeau_3_nos_valeursles_gens_du_mois['url']); ?>" alt="<?php echo esc_attr($bandeau_3_nos_valeursles_gens_du_mois['alt'] ?? ''); ?>">
-        
+        <div class="bandeau">
+            <?php 
+            // bandeau entre la section 4 et 5
+                $bandeau_3_nos_valeursles_gens_du_mois = get_field('bandeau_3_nos_valeursles_gens_du_mois');
+            ?>
+                <img src="<?php echo esc_url($bandeau_3_nos_valeursles_gens_du_mois['url']); ?>" alt="<?php echo esc_attr($bandeau_3_nos_valeursles_gens_du_mois['alt'] ?? ''); ?>">
+        </div>
+
         <?php 
             $section_5_les_gens_du_mois = get_field('section_5_les_gens_du_mois');
             if ($section_5_les_gens_du_mois) :
@@ -332,12 +337,14 @@ get_header();
             </section>  
         <?php endif; ?>
 
-        <?php 
-        // bandeau entre la section 6 et 7
-            $bandeau_4_presentationgaleries_photos = get_field('bandeau_4_presentationgaleries_photos');
-        ?>
-            <img src="<?php echo esc_url($bandeau_4_presentationgaleries_photos['url']); ?>" alt="<?php echo esc_attr($bandeau_4_presentationgaleries_photos['alt'] ?? ''); ?>">
-
+        <div class="bandeau">
+            <?php 
+            // bandeau entre la section 6 et 7
+                $bandeau_4_presentationgaleries_photos = get_field('bandeau_4_presentationgaleries_photos');
+            ?>
+                <img src="<?php echo esc_url($bandeau_4_presentationgaleries_photos['url']); ?>" alt="<?php echo esc_attr($bandeau_4_presentationgaleries_photos['alt'] ?? ''); ?>">
+        </div>
+        
         <?php 
             $section_7_galeries_photos = get_field('section_7_galeries_photos');
             if ($section_7_galeries_photos) :

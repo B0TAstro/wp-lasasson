@@ -1,20 +1,214 @@
 @use "../global" as g;
 
+
+/*style global des bandeau */
+.bandeau {
+  height: 200px;
+  max-width: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+
 /*section 1*/
 .who-are-we-section{
     padding: 90px 30px;
+
+    h2{
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: g.$font-size-xl;
+        font-weight: g.$font-weight-bold;
+        font-family: g.$font-family-base;
+    }
 }
 
 
 /*section 2*/
+.section-nos-missions {
+  padding: 90px 30px;
+ 
+  .container-nos-missions {
+    // Missions Block
+    .bloc-nos-missions {
+      margin-bottom: 50px;
+     
+      h2 {
+        font-size: g.$font-size-xl;
+        font-weight: g.$font-weight-bold;
+        font-family: g.$font-family-base;
+        margin-bottom: 30px;
+        position: relative;
+        text-align: center;
+      }
+    }
+    
+    // Shared Text Styles
+    .paragraphe-nos-missions {
+      font-size: g.$font-size-base;
+      text-align: center;
+      margin : 0 auto;
+      max-width: 75%;
+    }
+    
+    
+    // Axes d'intervention
+    .bloc-axes-intervention {
+      h3 {
+        font-size: g.$font-size-lg;
+        font-weight: g.$font-weight-bold;
+        font-family: g.$font-family-base;
+        margin-bottom: 30px;
+        text-align: left;
+      }
+     
+      // Grille pour les axes d'intervention
+      .axes-intervention-liste {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+    }
+    
+    // Axes Item - Amélioré pour image plus grande avec texte uniquement en bas
+    .axe-intervention-item {
+      position: relative;
+      height: 380px; // Hauteur augmentée pour donner plus d'espace à l'image
+      border-radius: 8px;
+      overflow: hidden;
+        
+      .axe-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+       
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          // Gradient modifié pour être concentré au bas de l'image
+          background: linear-gradient(to bottom, 
+            rgba(0,0,0,0) 0%, 
+            rgba(0,0,0,0) 50%, 
+            rgba(0,0,0,0.7) 80%, 
+            rgba(0,0,0,0.9) 100%);
+          z-index: 1;
+        }
+       
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+      }
+     
+      .axe-contenu {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        max-width: 100%;
+        padding: 28px;
+        z-index: 2;
+        color: g.$color-white;
+       
+        h4 {
+          font-size: g.$font-size-lg;
+          font-weight: g.$font-weight-medium;
+          font-family: g.$font-family-base;
+          margin-bottom: 12px;
+          text-shadow: 1px 1px 3px g.$color-black;
+        }
+       
+        p,li {
+          color: g.$color-white;
+          text-shadow: 0 1px 2px g.$color-black;
+          text-align: left;
+          font-size: g.$font-size-base;
+          font-weight: g.$font-weight-regular;
+          font-family: g.$font-family-base;
+        }
+      }
+    }
+  }
+}
 
 
 /*section 3*/
+.objectifs-section{
+  padding: 75px 30px 90px;
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: g.$font-size-xl;
+      font-weight: g.$font-weight-bold;
+      font-family: g.$font-family-base;
+  }
+
+    .objectifs-paragraph {
+        text-align: center;
+        max-width: 71%;
+        margin: 0 auto 60px;
+        font-family: g.$font-family-base;
+        font-size: g.$font-size-md;
+        font-weight: g.$font-weight-regular;
+    }
+
+    .objectifs-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px 40px;
+
+      .objectif-item {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        h3 {
+          font-size: g.$font-size-lg;
+          font-weight: g.$font-weight-bold;
+          font-family: g.$font-family-base;
+          margin: 0;
+
+          .objectif-numero {
+            font-size: g.$font-size-4xl;
+            color: g.$primary-contrast-color; 
+            font-weight: g.$font-weight-bold;
+            font-family: g.$font-family-base;
+            display: inline-block;
+          }
+        }
+
+        .objectif-text p {
+          margin: 0;
+          font-size: g.$font-size-md;
+          font-weight: g.$font-weight-regular;
+          font-family: g.$font-family-base;
+        }
+
+      // Quinconce : décaler les éléments pairs
+      &:nth-child(even) {
+        margin-top: 95px;
+      }
+    }
+  }
+}
 
 
 // Section 4*/
 .valeurs-section {
-  padding: 30px 0px 60px 0px;
+  padding: 0px 0px 60px 0px;
      
   h2 {
       text-align: center;
@@ -90,7 +284,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-300%); /* Cette valeur doit être égale à -(nombre d'éléments)*100% */
+    transform: translateX(-230%); 
   }
 }
 
@@ -111,10 +305,6 @@
   }
 }
 
-/*bandeau 3 Nosvaleurs / les gens du mois*/
-
-
-
 
 
 /*section 5*/
@@ -124,13 +314,15 @@
 /*section 6*/
 
 
+
+
 /*section 7*/
 .gallery-section {
-  padding: 90px 30px;
+  padding: 60px 30px 120px;
   
     h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 60px;
       font-size: g.$font-size-lg;
       font-weight: g.$font-weight-bold;
       font-family: g.$font-family-base;
