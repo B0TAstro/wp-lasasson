@@ -1,15 +1,17 @@
-document.addEventListener("DOMContentLoaded", function() {
-    let slider = document.querySelector('.valeurs-list');
-    let isMouseOver = false;
-
-    // Gérer le survol
-    slider.addEventListener('mouseenter', () => {
-        isMouseOver = true;  // Pause l'animation
-        slider.style.animationPlayState = 'paused';  // Met l'animation en pause
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector('.valeurs-wrapper');
+    const items = document.querySelectorAll('.valeur-item');
+   
+    // Événement pour le conteneur entier
+    container.addEventListener('mouseenter', () => {
+      items.forEach(item => {
+        item.style.animationPlayState = 'paused';
+      });
     });
-
-    slider.addEventListener('mouseleave', () => {
-        isMouseOver = false;  // Reprend l'animation
-        slider.style.animationPlayState = 'running';  // Relance l'animation
+   
+    container.addEventListener('mouseleave', () => {
+      items.forEach(item => {
+        item.style.animationPlayState = 'running';
+      });
     });
-});
+  });
