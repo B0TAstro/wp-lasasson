@@ -45,7 +45,7 @@ get_header();
                     if ($section1['mode_affichage_offres'] === 'valides') {
                         $args['meta_query'] = array(
                             array(
-                                'key'     => 'section1_offreemplois_date_expiration',
+                                'key'     => 'section1_offreemplois_date_validite',
                                 'value'   => $today,
                                 'compare' => '>=',
                                 'type'    => 'DATE'
@@ -64,9 +64,10 @@ get_header();
 
                 if ($offres_query->have_posts()) :
                     while ($offres_query->have_posts()) : $offres_query->the_post();
-                        $offre_data = get_field('section1_offreemplois');
-                        $date_expiration = isset($offre_data['date_expiration']) ? $offre_data['date_expiration'] : '';
-                        $lieu_travail = isset($offre_data['lieu_travail']) ? $offre_data['lieu_travail'] : '';
+                        $offre_data = get_field('entete_offre');
+                        $offre_texte = get_field('description_poste');
+                        $date_validite = isset($offre_data['date_validite']) ? $offre_data['date_validite'] : '';
+                        $lieu_offre =  isset($offre_data['lieu_offre']) ? $offre_data['lieu_offre'] : '';
                 ?>
                         <article class="offre-item">
                             <div class="offre-content">
@@ -75,8 +76,8 @@ get_header();
                                     <div class="offre-date"><?php echo get_the_date(); ?></div>
                                     <div class="offre-description">
                                         ➝ <?php
-                                            if (!empty($offre_data['texte'])) {
-                                                $content = strip_tags($offre_data['texte']);
+                                            if (!empty($offre_texte)) {
+                                                $content = strip_tags($offre_texte);
                                                 echo wp_trim_words($content, 100, '...');
                                             } elseif (has_excerpt()) {
                                                 echo strip_tags(get_the_excerpt());
@@ -88,14 +89,8 @@ get_header();
                                             }
                                             ?>
                                     </div>
-                                    <?php if ($lieu_travail) : ?>
-                                        <div class="offre-lieu">
-                                            Lieu de travail : <?php echo esc_html($lieu_travail); ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <?php if ($date_expiration) : ?>
-                                        <div class="offre-expiration">OFFRE VALIDE JUSQU'AU : <?php echo esc_html($date_expiration); ?></div>
-                                    <?php endif; ?>
+                                    <div class="offre-lieu">Lieu de travail : <?php echo esc_html($lieu_offre); ?></div>
+                                    <div class="offre-expiration">OFFRE VALIDE JUSQU'AU : <?php echo esc_html($date_validite); ?></div>
                                 </div>
                                 <a href="<?php the_permalink(); ?>" class="offre-link">Lire la suite ➝</a>
                             </div>

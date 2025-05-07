@@ -12,41 +12,106 @@ get_header();
         <p class="label"><?php echo esc_html($btn['title']); ?></p>
     </a>
 
-    <div class="hero">
+    <div class="hero hero-offre-emploi">
         <?php
         $parent_id = wp_get_post_parent_id(get_the_ID());
         $return_url = $parent_id ? get_permalink($parent_id) : home_url();
         ?>
-        <button id="backButton" class="return-button">
+        <a href="<?php echo esc_url($return_url); ?>" class="return-button">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/back-button.svg" alt="Retour">
-        </button>
+        </a>
 
         <h1 class="dispositif-title"><?php the_title(); ?></h1>
+
+        <?php
+        $entete = get_field('entete_offre');
+        ?>
+        <div class="offre-header">
+            <div class="offre-validite">Offre valide jusqu'au <?php echo esc_html($entete['date_validite']); ?></div>
+
+            <?php if (!empty($entete['lien_france_travail'])) : ?>
+                <a class="offre-reference-link" href="<?php echo esc_url($entete['lien_france_travail']); ?>" target="_blank" rel="noopener">
+                    <div class="offre-reference">Ref. de l'offre : <?php echo esc_html($entete['reference_offre']); ?></div>
+                </a>
+            <?php else : ?>
+                <div class="offre-reference-link no-link">
+                    <div class="offre-reference">Ref. de l'offre : <?php echo esc_html($entete['reference_offre']); ?></div>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 
-    <script>
-        document.getElementById('backButton').addEventListener('click', function() {
-            window.history.back();
-        });
-    </script>
-
-    <?php $acf = get_field('section1_offreemplois'); ?>
-    <section class="container-offre-emploi">
-        <?php if (!empty($acf['image'])): ?>
-            <img src="<?= esc_url($acf['image']['url']); ?>" alt="<?= esc_attr($acf['image']['alt']); ?>">
+    <section class="section-offre-emploi">
+        <?php $objectifs = get_field('objectifs_generaux');
+        if (!empty($objectifs)) : ?>
+            <div class="offre-section">
+                <h2>OBJECTIFS GÉNÉRAUX</h2>
+                <div class="wysiwyg offre-section-content">
+                    <?php echo $objectifs; ?>
+                </div>
+            </div>
         <?php endif; ?>
 
-        <?php if (!empty($acf['texte'])): ?>
-            <div class="wysiwyg"><?= wp_kses_post($acf['texte']); ?></div>
+        <?php $description = get_field('description_poste');
+        if (!empty($description)) : ?>
+            <div class="offre-section">
+                <h2>DESCRIPTION DU POSTE</h2>
+                <div class="wysiwyg offre-section-content">
+                    <?php echo $description; ?>
+                </div>
+            </div>
         <?php endif; ?>
 
-        <?php if (!empty($acf['lieu_travail'])): ?>
-            <p class="">Lieu de travail : <?= esc_html($acf['lieu_travail']); ?></p>
+        <?php $savoir = get_field('savoir_faire');
+        if (!empty($savoir)) : ?>
+            <div class="offre-section">
+                <h2>SAVOIR FAIRE</h2>
+                <div class="wysiwyg offre-section-content">
+                    <?php echo $savoir; ?>
+                </div>
+            </div>
         <?php endif; ?>
 
-        <?php if (!empty($acf['date_expiration'])): ?>
-            <p class="">Offre valable jusqu’au : <?= esc_html($acf['date_expiration']); ?></p>
+        <?php $connaissances = get_field('connaissances_associees');
+        if (!empty($connaissances)) : ?>
+            <div class="offre-section">
+                <h2>CONNAISSANCES ASSOCIÉES</h2>
+                <div class="wysiwyg offre-section-content">
+                    <?php echo $connaissances; ?>
+                </div>
+            </div>
         <?php endif; ?>
+
+        <?php $capacites = get_field('capacites_relationnelles');
+        if (!empty($capacites)) : ?>
+            <div class="offre-section">
+                <h2 class="section-title">CAPACITÉS RELATIONNELLES</h2>
+                <div class="wysiwyg offre-section-content">
+                    <?php echo $capacites; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php $statut = get_field('statut_remuneration');
+        if (!empty($statut)) : ?>
+            <div class="offre-section last">
+                <h2 class="section-title">STATUT ET RÉMUNÉRATION</h2>
+                <div class="wysiwyg offre-section-content">
+                    <?php echo $statut; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $page_recrutement = get_page_by_path('recrutement');
+        $recrutement_url = $page_recrutement ? get_permalink($page_recrutement->ID) : home_url('/');
+        $candidature_url = $recrutement_url . '#candidatureForm';
+        ?>
+        <div class="offre-candidature">
+            <a href="<?php echo esc_url($candidature_url); ?>" class="btn-primary btn-candidature">
+                <?php echo esc_html(get_field('texte_bouton')); ?>
+            </a>
+        </div>
     </section>
 </main>
 
