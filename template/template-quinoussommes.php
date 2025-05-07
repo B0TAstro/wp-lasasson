@@ -31,25 +31,33 @@ get_header();
                 $texte_du_bouton_de_telechargment=$section_1_qui['texte_du_bouton_telechargement']
                 
             ?>
-            <section class="who-are-we-section">
-                <div class="who-are-we-container">                               
-                        <h2><?php echo esc_html($titre_qui_somme_nous); ?></h2>                             
-                    <div class="who-are-we-paragraph wysiwyg">
-                        <?php echo $texte_qui_somme_nous; ?>
-                        <?php echo $texte2_qui_somme_nous; ?>
-                    </div>    
+           <section class="who-are-we-section">
+                <div class="who-are-we-wrapper">
+                    <div class="who-are-we-content">
+                        <div class="who-are-we-left">
+                            <h2><?php echo esc_html($titre_qui_somme_nous); ?></h2>
+                            <div class="wysiwyg who-are-we-paragraph">
+                                <?php echo $texte_qui_somme_nous; ?>
+                                <?php echo $texte2_qui_somme_nous; ?>
+                            </div>
+                        </div>
 
-                        <img src="<?php echo esc_url($image_qui_somme_nous['url']); ?>" alt="<?php echo esc_attr($image_qui_somme_nous['alt'] ?? ''); ?>">
-
-                    <div class="who-are-we-paragraph2 wysiwyg">
-                        <?php echo $texte3_qui_somme_nous; ?>
+                        <div class="who-are-we-right">
+                            <img src="<?php echo esc_url($image_qui_somme_nous['url']); ?>" alt="<?php echo esc_attr($image_qui_somme_nous['alt'] ?? ''); ?>">
+                        </div>
                     </div>
 
+                    <div class="who-are-we-bottom">
+                        <div class="wysiwyg who-are-we-paragraph2">
+                            <?php echo $texte3_qui_somme_nous; ?>
+                        </div>
                         <a class="btn-secondary btn-infos" href="<?php echo esc_url($bouton_telechargement_qui_somme_nous['url']); ?>" target="_blank" download>
-                            <?php echo esc_html($texte_du_bouton_de_telechargment); ?>
-                        </a>                
+                                <?php echo esc_html($texte_du_bouton_de_telechargment); ?>
+                        </a>
+                    </div>
                 </div>
-            </section>      
+            </section>
+     
         <?php endif; ?>  
 
         <div class="bandeau">
