@@ -249,11 +249,13 @@ get_header();
                         <div class="bloc bloc-centre">
                             <div class="wysiwyg wysiwyg-haut">
                                 <?php echo wp_kses_post($wysiwyg_haut); ?>
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
                             </div>
                             <div class="wysiwyg wysiwyg-bas">
                                 <?php echo wp_kses_post($wysiwyg_bas); ?>
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
                             </div>  
-                            <a class="btn-secondary btn-infos" href="<?php echo esc_url(get_permalink($bouton_article)); ?>" target="_blank">
+                            <a class="btn-primary btn-infos" href="<?php echo esc_url(get_permalink($bouton_article)); ?>" target="_blank">
                                 <?php echo esc_html($text_bouton_article); ?>
                             </a>
                         </div>
@@ -285,54 +287,76 @@ get_header();
                     $texte_du_bouton_de_telechargement = $section_6_presentation_equipe['texte_du_bouton_de_telechargement'];
                 ?>
 
-            <section class="general-presentation-section">
-                <div class="general-presentation-container">
-                        <h2><?php echo esc_html($titre_bureau); ?></h2>
+<section class="general-presentation-section">
+    <div class="general-presentation-container">
+        <div class="all-section-office">
+            <div class="office-inner">
+                <h2><?php echo esc_html($titre_bureau); ?></h2>
 
-                            <div class="general-presentation-paragraph wysiwyg">
-                                <?php echo wp_kses_post($texte_bureau); ?>
-                            </div>
+                <div class="general-presentation-paragraph wysiwyg">
+                    <?php echo wp_kses_post($texte_bureau); ?>
+                </div>
 
-                        <div class="presentation-office-list">
-                            <?php foreach ($repeteur_bureau as $bureau) : 
-                                $bureau_nom = $bureau['fonction'];
-                                $bureau_fonction = $bureau['nom_prenom'];
-                            ?>
-                                <div class="presentation-office-item">
-                                    <h3><?php echo esc_html($bureau_nom); ?></h3>
-                                        <div class="presentation-office-text">
-                                            <p><?php echo esc_html($bureau_fonction); ?></p>
-                                        </div>                        
-                                </div>
-                            <?php endforeach; ?>
-                        </div>  
+                <div class="presentation-office-list">
+                    <?php 
+                        $index = 0;
+                        foreach ($repeteur_bureau as $bureau) : 
+                        $bureau_nom = $bureau['fonction'];
+                        $bureau_fonction = $bureau['nom_prenom'];
 
-                        <div class="presentation-administration-list">
-                            <h2><?php echo esc_html($titre_administrateur); ?></h2>
-                            <div class="general-presentation-paragraph wysiwyg">
-                                <?php echo wp_kses_post($texte_personnes_de_ladministration); ?>
+                        $ligne = floor($index / 3);
+                        $offset_class = ($ligne % 2 === 1) ? 'offset-row' : '';
+                    ?>
+                        <div class="presentation-office-item <?php echo $offset_class; ?>">
+                            <h3><?php echo esc_html($bureau_nom); ?></h3>
+                            <div class="presentation-office-text">
+                                <p><?php echo esc_html($bureau_fonction); ?></p>
                             </div>
-                            
-                            <div class="administration-office-list">
-                                <?php foreach ($repeteur_administration as $administration) : 
-                                    $administration_fonction = $administration['fonction'];
-                                    $administration_nom = $administration['prenomnom'];
-                                ?>
-                                    <div class="administration-item">
-                                        <h3><?php echo esc_html($administration_fonction); ?></h3>
-                                        <div class="administration-text">
-                                            <p><?php echo esc_html($administration_nom); ?></p>
-                                        </div>                        
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                            
-                            <a class="btn-secondary btn-infos" href="<?php echo esc_url($bouton_telechargement_organigramme_de_la_sasson['url']); ?>" target="_blank" download>
-                                <?php echo esc_html($texte_du_bouton_de_telechargement); ?>
-                            </a>  
-                        </div>  
-                </div>         
-            </section>  
+                        </div>
+                    <?php 
+                        $index++;
+                        endforeach; 
+                    ?>
+                </div>
+            </div>
+        </div>  
+
+        <div class="presentation-administration-list">
+            <h2><?php echo esc_html($titre_administrateur); ?></h2>
+            
+            <div class="general-presentation-paragraph wysiwyg">
+                <?php echo wp_kses_post($texte_personnes_de_ladministration); ?>
+            </div>
+            <div class="administration-office-list">
+                <?php 
+                    $index = 0;
+                    foreach ($repeteur_administration as $administration) : 
+                    $administration_fonction = $administration['fonction'];
+                    $administration_nom = $administration['prenomnom'];
+
+                    // calcul de la ligne
+                    $ligne = floor($index / 3);
+                    $offset_class = ($ligne % 2 === 1) ? 'offset-row' : '';
+                ?>
+                    <div class="administration-item <?php echo $offset_class; ?>">
+                        <h3><?php echo esc_html($administration_fonction); ?></h3>
+                        <div class="administration-text">
+                        <p><?php echo esc_html($administration_nom); ?></p>
+                        </div>                        
+                    </div>
+                <?php 
+                    $index++;
+                    endforeach; 
+                ?>
+            </div>
+            
+            <a class="btn-secondary btn-infos" href="<?php echo esc_url($bouton_telechargement_organigramme_de_la_sasson['url']); ?>" target="_blank" download>
+                <?php echo esc_html($texte_du_bouton_de_telechargement); ?>
+            </a>  
+        </div>  
+    </div>         
+</section>
+
         <?php endif; ?>
 
         <div class="bandeau">
