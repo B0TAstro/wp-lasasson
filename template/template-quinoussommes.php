@@ -38,6 +38,8 @@ get_header();
                             <h2><?php echo esc_html($titre_qui_somme_nous); ?></h2>
                             <div class="wysiwyg who-are-we-paragraph">
                                 <?php echo $texte_qui_somme_nous; ?>
+                            </div>
+                            <div class="wysiwyg who-are-we-paragraph2">
                                 <?php echo $texte2_qui_somme_nous; ?>
                             </div>
                         </div>
@@ -263,9 +265,11 @@ get_header();
                                 <?php echo wp_kses_post($wysiwyg_bas); ?>
                                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
                             </div>  
+                            <div class="button-gens-du-mois">
                             <a class="btn-primary btn-infos" href="<?php echo esc_url(get_permalink($bouton_article)); ?>" target="_blank">
                                 <?php echo esc_html($text_bouton_article); ?>
                             </a>
+                            </div>
                         </div>
 
                         <div class="bloc bloc-droit">
@@ -357,10 +361,11 @@ get_header();
                     endforeach; 
                 ?>
             </div>
-            
+            <div class="button-administration">
             <a class="btn-secondary btn-infos" href="<?php echo esc_url($bouton_telechargement_organigramme_de_la_sasson['url']); ?>" target="_blank" download>
-                <?php echo esc_html($texte_du_bouton_de_telechargement); ?>
-            </a>  
+                <?php echo esc_html($texte_du_bouton_de_telechargement); ?> </a> 
+            </div>
+            
         </div>  
     </div>         
 </section>

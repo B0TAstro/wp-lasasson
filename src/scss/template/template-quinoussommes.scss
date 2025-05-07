@@ -20,20 +20,20 @@
   padding: 60px 30px 90px;
 
   .who-are-we-wrapper {
-    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 60px;
   }
 
   .who-are-we-content {
     display: flex;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 195px;
 
     @media (max-width: 1024px) {
       flex-direction: column;
+      gap:45px
     }
   }
 
@@ -42,40 +42,31 @@
     flex: 1 1 60%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 20px;
+    justify-content: center;
 
     h2 {
-      font-size: g.$font-size-2xl;
+      font-size: g.$font-size-xl;
       font-weight: g.$font-weight-bold;
       font-family: g.$font-family-base;
     }
 
     .who-are-we-paragraph {
-      font-size: 1rem;
-    }
-
-    .who-are-we-icon {
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-
-      img {
-        width: 32px;
-        height: 32px;
-      }
+      font-size: g.$font-size-md;
+      font-weight: g.$font-weight-regular;
+      font-family: g.$font-family-base;
     }
   }
 
   .who-are-we-right {
-    flex: 1 1 40%;
+    flex: 0 0 40%;
     display: flex;
     justify-content: center;
-    align-items: center;
 
     img {
       width: 100%;
-      max-width: 400px;
-      height: auto;
+      max-width: 100%;
+      height: 650px;
       background-color: g.$color-gray;
       border-radius: 20px;
       object-fit: cover;
@@ -87,11 +78,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 30px;
 
     .who-are-we-paragraph2 {
-      max-width: 700px;
-      font-size: 1rem;
+      max-width: 75%;
+      font-size: g.$font-size-md;
+      font-weight: g.$font-weight-regular;
+      font-family: g.$font-family-base;
     }
   }
 }
@@ -379,7 +372,14 @@
 /*section 5*/
 .gens-du-mois-section {
   padding: 90px 30px;
-  background-color: #fff;
+  
+  @media (max-width: 1024px) {
+    padding: 70px 25px;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 50px 20px;
+  }
  
   .gens-du-mois-container {
     h2 {
@@ -389,6 +389,11 @@
       margin-bottom: 60px;
       color: g.$color-black;
       font-family: g.$font-family-base;
+      
+      @media (max-width: 768px) {
+        margin-bottom: 40px;
+        font-size: calc(g.$font-size-xl * 0.9);
+      }
     }
    
     .gens-du-mois-blocs {
@@ -396,6 +401,17 @@
       grid-template-columns: 1fr 1.2fr 1fr;
       gap: 80px;
       align-items: start;
+      
+      @media (max-width: 1024px) {
+        gap: 40px;
+      }
+      
+      @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        align-items: center; /* Centre les blocs horizontalement */
+      }
        
       .bloc {
         &.bloc-gauche,
@@ -412,6 +428,16 @@
             object-fit: cover;
             margin-bottom: 20px;
             background-color: g.$color-gray;
+            
+            @media (max-width: 1024px) {
+              width: 320px;
+              height: 320px;
+            }
+            
+            @media (max-width: 768px) {
+              width: 260px;
+              height: 260px;
+            }
           }
          
           h3 {
@@ -420,6 +446,10 @@
             font-family: g.$font-family-base;
             margin-bottom: 8px;
             color: g.$color-black;
+            
+            @media (max-width: 768px) {
+              font-size: calc(g.$font-size-lg * 0.9);
+            }
           }
          
           p {
@@ -428,6 +458,21 @@
             font-weight: g.$font-weight-regular;
             font-family: g.$font-family-base;
             max-width: 80%;
+            
+            @media (max-width: 1024px) {
+              max-width: 90%;
+            }
+            
+            @media (max-width: 768px) {
+              max-width: 100%;
+              font-size: calc(g.$font-size-base * 0.95);
+            }
+          }
+        }
+        
+        &.bloc-gauche {
+          @media (max-width: 768px) {
+            margin-bottom: 0;
           }
         }
        
@@ -435,49 +480,80 @@
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          gap:120px;
+          gap: 120px;
           max-width: 80%;
           margin: 0 auto;
+          
+          @media (max-width: 1024px) {
+            gap: 80px;
+            max-width: 90%;
+          }
+          
+          @media (max-width: 768px) {
+            gap: 50px;
+            max-width: 100%;
+            margin: 50px auto;
+          }
          
           .wysiwyg {
             background-color: g.$color-gray;
-            font-size:g.$font-size-md;
+            font-size: g.$font-size-md;
             font-weight: g.$font-weight-regular;
             font-family: g.$font-family-base;
             border-radius: 15px;
             padding: 30px 30px 40px 30px;
             position: relative;
+            
+            @media (max-width: 1024px) {
+              padding: 25px 25px 35px 25px;
+            }
+            
+            @media (max-width: 768px) {
+              padding: 20px 20px 30px 20px;
+              border-radius: 10px;
+              font-size: calc(g.$font-size-md * 0.9);
+            }
            
             p {
               font-size: g.$font-size-md;
               color: g.$color-black;
               margin: 0;
+              
+              @media (max-width: 768px) {
+                font-size: calc(g.$font-size-md * 0.9);
+              }
             }
-            
+           
             .apostrophe {
               position: absolute;
               right: -10px;
               bottom: -46px;
               width: 100px;
               height: 100px;
+              
+              @media (max-width: 1024px) {
+                width: 80px;
+                height: 80px;
+                bottom: -40px;
+              }
+              
+              @media (max-width: 768px) {
+                width: 60px;
+                height: 60px;
+                bottom: -30px;
+                right: -5px;
+              }
             }
           }
          
-          .btn-primary {
-              display: inline-block;
-              background-color: g.$primary-color;
-              color: g.$color-black;
-              padding: 10px 20px;
-              text-decoration: none;
-              font-family: g.$font-family-base;
-              font-size: 18px;
-              font-weight: g.$font-weight-regular;
-              border-radius: 5px;
-              transition: all 0.3s ease;
-              margin: 0 auto;
-          }
-          .btn-primary:hover {
-            background-color: g.$primary-contrast-color;
+          .button-gens-du-mois {
+            display: flex;
+            margin: 0 auto;
+            
+            @media (max-width: 768px) {
+              /* Ajustez le bouton si nécessaire */
+              transform: scale(0.95);
+            }
           }
         }
       }
@@ -485,20 +561,19 @@
   }
 }
 
-
 /*section 6*/
 .general-presentation-section {
   .general-presentation-container {
     .all-section-office {
-      background-color: #FFCC00;
+      background-color: g.$primary-color;
       padding: 60px 0px;
       margin-bottom: 40px;
-    
+   
       .office-inner {
         max-width: 75%;
         margin: 0 auto;
       }
-    
+   
       h2 {
         font-size: g.$font-size-xl;
         font-family: g.$font-family-base;
@@ -506,33 +581,49 @@
         margin-bottom: 30px;
         text-transform: uppercase;
       }
-    
+   
       .general-presentation-paragraph {
         margin-bottom: 40px;
         max-width: 60%;
-        font-size:g.$font-size-md;
+        font-size: g.$font-size-md;
         font-weight: g.$font-weight-regular;
         font-family: g.$font-family-base;
       }
-    
+   
       .presentation-office-list {
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        gap: 20px;
-      
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+     
         .presentation-office-item {
           text-align: center;
           padding: 20px 0;
-          max-width: 80%;
-          margin: 0 auto;
-      
+          width: calc((100% - 80px) / 3); // Pour les lignes de 3 éléments (gap de 40px entre chaque élément)
+          
+          // Style pour les éléments qui doivent s'afficher sur une ligne de 2
+          &:nth-child(3n+4) {
+            width: calc((100% - 40px) / 2); // Pour les lignes de 2 éléments
+          }
+          
+          &:nth-child(3n+5) {
+            width: calc((100% - 40px) / 2); // Pour les lignes de 2 éléments
+          }
+          
+          // Rétablir pour les éléments suivants qui doivent revenir à 3 par ligne
+          &:nth-child(5n+6),
+          &:nth-child(5n+7),
+          &:nth-child(5n+8) {
+            width: calc((100% - 80px) / 3);
+          }
+     
           h3 {
             font-weight: g.$font-weight-bold;
             font-family: g.$font-family-base;
             font-size: g.$font-size-lg;
             margin-bottom: 10px;
           }
-      
+     
           .presentation-office-text {
             p {
               margin: 0;
@@ -540,19 +631,15 @@
               font-weight: g.$font-weight-regular;
             }
           }
-      
-          &.offset-row {
-            transform: translateX(80%); // ou ajuster selon l'effet voulu
-          }
         }
       }
     }
-
+   
     .presentation-administration-list {
       padding: 40px 0px 90px 0px;
       max-width: 75%;
       margin: 0 auto;
-      
+     
       h2 {
         font-size: g.$font-size-xl;
         font-family: g.$font-family-base;
@@ -561,35 +648,52 @@
         text-align: right;
         text-transform: uppercase;
       }
-      
+     
       .general-presentation-paragraph {
-        margin-bottom: 40px;
+        margin-bottom: 60px;
         text-align: right;
         max-width: 60%;
         margin-left: auto;
-        font-size:g.$font-size-md;
+        font-size: g.$font-size-md;
         font-weight: g.$font-weight-regular;
         font-family: g.$font-family-base;
       }
-      
+     
       .administration-office-list {
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        gap: 20px;
-      
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+        margin-bottom: 60px;
+     
         .administration-item {
           text-align: center;
           padding: 20px 0px;
-          max-width: 80%;
-          margin: 0 auto;
-      
+          width: calc((100% - 80px) / 3); // Pour les lignes de 3 éléments
+          
+          // Style pour les éléments qui doivent s'afficher sur une ligne de 2
+          &:nth-child(3n+4) {
+            width: calc((100% - 40px) / 2); // Pour les lignes de 2 éléments
+          }
+          
+          &:nth-child(3n+5) {
+            width: calc((100% - 40px) / 2); // Pour les lignes de 2 éléments
+          }
+          
+          // Rétablir pour les éléments suivants qui doivent revenir à 3 par ligne
+          &:nth-child(5n+6),
+          &:nth-child(5n+7),
+          &:nth-child(5n+8) {
+            width: calc((100% - 80px) / 3);
+          }
+     
           h3 {
             font-weight: g.$font-weight-bold;
             font-family: g.$font-family-base;
             font-size: g.$font-size-lg;
             margin-bottom: 10px;
           }
-      
+     
           .administration-text {
             p {
               margin: 0;
@@ -597,11 +701,12 @@
               font-weight: g.$font-weight-regular;
             }
           }
-      
-          &.offset-row {
-            transform: translateX(80%);
-          }
         }
+      }
+     
+      .button-administration{
+        display: flex;
+        justify-content: center;
       }
     }
   }
@@ -612,14 +717,36 @@
   .general-presentation-section {
     .general-presentation-container {
       .all-section-office {
+        .office-inner {
+          max-width: 90%;
+        }
+        
         .presentation-office-list {
           grid-template-columns: repeat(2, 1fr);
+          
+          // Remove offset on tablet
+          &:has(.presentation-office-item:nth-child(4)) {
+            .presentation-office-item:nth-child(4),
+            .presentation-office-item:nth-child(5) {
+              transform: none;
+            }
+          }
         }
       }
-      
+     
       .presentation-administration-list {
+        max-width: 90%;
+        
         .administration-office-list {
           grid-template-columns: repeat(2, 1fr);
+          
+          // Remove offset on tablet
+          &:has(.administration-item:nth-child(4)) {
+            .administration-item:nth-child(4),
+            .administration-item:nth-child(5) {
+              transform: none;
+            }
+          }
         }
       }
     }
@@ -630,17 +757,31 @@
   .general-presentation-section {
     .general-presentation-container {
       .all-section-office {
-        padding: 20px;
+        padding: 30px 20px;
+        
+        .office-inner {
+          max-width: 100%;
+        }
+        
+        .general-presentation-paragraph {
+          max-width: 80%;
+        }
         
         .presentation-office-list {
           grid-template-columns: 1fr;
         }
       }
-      
+     
       .presentation-administration-list {
+        max-width: 100%;
+        padding: 30px 20px 60px;
+        
+        .general-presentation-paragraph {
+          max-width: 80%;
+        }
+        
         .administration-office-list {
           grid-template-columns: 1fr;
-          gap: 20px;
         }
       }
     }
@@ -845,6 +986,20 @@
     
         // Colonne 4 — bloc vertical plein
         &:nth-child(6) { grid-column: 4 / 5; grid-row: 1 / 7; }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .gallery-section {
+      .gallery-tabs {
+          gap:75px;  
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .gallery-section {
+      .gallery-tabs {
+          gap:50px;  
       }
     }
   }
