@@ -399,13 +399,13 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-230%); 
+    transform: translateX(-245%); 
   }
 }
 
 
 // Media queries
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .valeurs-section {
       .valeurs-container {
           .valeurs-list {
@@ -420,6 +420,14 @@
           }
       }
   }
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-335%); 
+    }
+  }
 }
 // Media queries
 @media (max-width: 500px) {
@@ -427,7 +435,7 @@
       .valeurs-container {
           .valeurs-list {
               .valeur-item {
-                  flex: 0 0 40%;
+                  flex: 0 0 60%;
                   animation: slide 7s linear infinite;
                  
                   .valeur-text {
@@ -444,14 +452,6 @@
 /*section 5*/
 .gens-du-mois-section {
   padding: 90px 30px;
-  
-  @media (max-width: 1024px) {
-    padding: 70px 25px;
-  }
-  
-  @media (max-width: 768px) {
-    padding: 50px 20px;
-  }
  
   .gens-du-mois-container {
     h2 {
@@ -461,11 +461,6 @@
       margin-bottom: 60px;
       color: g.$color-black;
       font-family: g.$font-family-base;
-      
-      @media (max-width: 768px) {
-        margin-bottom: 40px;
-        font-size: calc(g.$font-size-xl * 0.9);
-      }
     }
    
     .gens-du-mois-blocs {
@@ -473,17 +468,6 @@
       grid-template-columns: 1fr 1.2fr 1fr;
       gap: 80px;
       align-items: start;
-      
-      @media (max-width: 1024px) {
-        gap: 40px;
-      }
-      
-      @media (max-width: 768px) {
-        display: flex;
-        flex-direction: column;
-        gap: 50px;
-        align-items: center; /* Centre les blocs horizontalement */
-      }
        
       .bloc {
         &.bloc-gauche,
@@ -500,16 +484,6 @@
             object-fit: cover;
             margin-bottom: 20px;
             background-color: g.$color-gray;
-            
-            @media (max-width: 1024px) {
-              width: 320px;
-              height: 320px;
-            }
-            
-            @media (max-width: 768px) {
-              width: 260px;
-              height: 260px;
-            }
           }
          
           h3 {
@@ -518,10 +492,6 @@
             font-family: g.$font-family-base;
             margin-bottom: 8px;
             color: g.$color-black;
-            
-            @media (max-width: 768px) {
-              font-size: calc(g.$font-size-lg * 0.9);
-            }
           }
          
           p {
@@ -530,21 +500,6 @@
             font-weight: g.$font-weight-regular;
             font-family: g.$font-family-base;
             max-width: 80%;
-            
-            @media (max-width: 1024px) {
-              max-width: 90%;
-            }
-            
-            @media (max-width: 768px) {
-              max-width: 100%;
-              font-size: calc(g.$font-size-base * 0.95);
-            }
-          }
-        }
-        
-        &.bloc-gauche {
-          @media (max-width: 768px) {
-            margin-bottom: 0;
           }
         }
        
@@ -555,17 +510,6 @@
           gap: 120px;
           max-width: 80%;
           margin: 0 auto;
-          
-          @media (max-width: 1024px) {
-            gap: 80px;
-            max-width: 90%;
-          }
-          
-          @media (max-width: 768px) {
-            gap: 50px;
-            max-width: 100%;
-            margin: 50px auto;
-          }
          
           .wysiwyg {
             background-color: g.$color-gray;
@@ -575,25 +519,11 @@
             border-radius: 15px;
             padding: 30px 30px 40px 30px;
             position: relative;
-            
-            @media (max-width: 1024px) {
-              padding: 25px 25px 35px 25px;
-            }
-            
-            @media (max-width: 768px) {
-              padding: 20px 20px 30px 20px;
-              border-radius: 10px;
-              font-size: calc(g.$font-size-md * 0.9);
-            }
            
             p {
               font-size: g.$font-size-md;
               color: g.$color-black;
               margin: 0;
-              
-              @media (max-width: 768px) {
-                font-size: calc(g.$font-size-md * 0.9);
-              }
             }
            
             .apostrophe {
@@ -602,29 +532,84 @@
               bottom: -46px;
               width: 100px;
               height: 100px;
-              
-              @media (max-width: 1024px) {
-                width: 80px;
-                height: 80px;
-                bottom: -40px;
-              }
-              
-              @media (max-width: 768px) {
-                width: 60px;
-                height: 60px;
-                bottom: -30px;
-                right: -5px;
-              }
             }
           }
          
           .button-gens-du-mois {
             display: flex;
             margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* --- RESPONSIVE --- */
+
+/* 1300px and below */
+@media (max-width: 1300px) {
+  .gens-du-mois-section {
+    .gens-du-mois-container {
+      .gens-du-mois-blocs {
+        gap: 60px;
+        
+        .bloc {
+          &.bloc-gauche,
+          &.bloc-droit {
+            img {
+              width: 380px;
+              height: 380px;
+            }
+          }
+          
+          &.bloc-centre {
+            gap: 100px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 1110px and below */
+@media (max-width: 1110px) {
+  .gens-du-mois-section {
+    padding: 80px 28px;
+    
+    .gens-du-mois-container {
+      h2 {
+        margin-bottom: 55px;
+      }
+      
+      .gens-du-mois-blocs {
+        gap: 50px;
+        
+        .bloc {
+          &.bloc-gauche,
+          &.bloc-droit {
+            img {
+              width: 350px;
+              height: 350px;
+            }
             
-            @media (max-width: 768px) {
-              /* Ajustez le bouton si nécessaire */
-              transform: scale(0.95);
+            p {
+              max-width: 85%;
+            }
+          }
+          
+          &.bloc-centre {
+            gap: 90px;
+            max-width: 85%;
+            
+            .wysiwyg {
+              padding: 28px 28px 38px 28px;
+              
+              .apostrophe {
+                width: 90px;
+                height: 90px;
+                bottom: -43px;
+              }
             }
           }
         }
@@ -633,6 +618,172 @@
   }
 }
 
+/* 1024px and below */
+@media (max-width: 1024px) {
+  .gens-du-mois-section {
+    padding: 70px 25px;
+    
+    .gens-du-mois-container {
+      .gens-du-mois-blocs {
+        gap: 40px;
+        
+        .bloc {
+          &.bloc-gauche,
+          &.bloc-droit {
+            img {
+              width: 320px;
+              height: 320px;
+            }
+            
+            p {
+              max-width: 90%;
+            }
+          }
+          
+          &.bloc-centre {
+            gap: 80px;
+            max-width: 90%;
+            
+            .wysiwyg {
+              padding: 25px 25px 35px 25px;
+              
+              .apostrophe {
+                width: 80px;
+                height: 80px;
+                bottom: -40px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 960px and below */
+@media (max-width: 960px) {
+  .gens-du-mois-section {
+    padding: 60px 22px;
+    
+    .gens-du-mois-container {
+      h2 {
+        margin-bottom: 50px;
+        font-size: calc(g.$font-size-xl * 0.95);
+      }
+      
+      .gens-du-mois-blocs {
+        gap: 30px;
+        grid-template-columns: 1fr 1.1fr 1fr;
+        
+        .bloc {
+          &.bloc-gauche,
+          &.bloc-droit {
+            img {
+              width: 280px;
+              height: 280px;
+            }
+            
+            h3 {
+              font-size: calc(g.$font-size-lg * 0.95);
+            }
+          }
+          
+          &.bloc-centre {
+            gap: 60px;
+            max-width: 95%;
+            
+            .wysiwyg {
+              font-size: calc(g.$font-size-md * 0.95);
+              
+              p {
+                font-size: calc(g.$font-size-md * 0.95);
+              }
+              
+              .apostrophe {
+                width: 70px;
+                height: 70px;
+                bottom: -35px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+/* 768px and below */
+@media (max-width: 820px) {
+  .gens-du-mois-section {
+    padding: 50px 20px;
+    
+    .gens-du-mois-container {
+      h2 {
+        margin-bottom: 40px;
+        font-size: calc(g.$font-size-xl * 0.9);
+      }
+      
+      .gens-du-mois-blocs {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        align-items: center;
+        
+        .bloc {
+          &.bloc-gauche,
+          &.bloc-droit {
+            img {
+              width: 260px;
+              height: 260px;
+            }
+            
+            h3 {
+              font-size: calc(g.$font-size-lg * 0.9);
+            }
+            
+            p {
+              max-width: 100%;
+              font-size: calc(g.$font-size-base * 0.95);
+            }
+          }
+          
+          &.bloc-gauche {
+            margin-bottom: 0;
+          }
+          
+          &.bloc-centre {
+            gap: 50px;
+            max-width: 100%;
+            margin: 50px auto;
+            
+            .wysiwyg {
+              padding: 20px 20px 30px 20px;
+              border-radius: 10px;
+              font-size: calc(g.$font-size-md * 0.9);
+              
+              p {
+                font-size: calc(g.$font-size-md * 0.9);
+              }
+              
+              .apostrophe {
+                width: 60px;
+                height: 60px;
+                bottom: -30px;
+                right: -5px;
+              }
+            }
+            
+            .button-gens-du-mois {
+              transform: scale(0.95);
+            }
+          }
+        }
+      }
+    }
+  }
+}
 /*section 6*/
 .general-presentation-section {
   .general-presentation-container {
@@ -841,6 +992,9 @@
         
         .presentation-office-list {
           .presentation-office-item {
+            h3{
+              font-size: g.$font-size-md;
+            }
             // Pattern alterné: 2-1-2-1...
             // Premier élément (1ère ligne, 1ère position)
             &:nth-child(3n+1) {
@@ -872,6 +1026,9 @@
         
         .administration-office-list {
           .administration-item {
+            h3{
+              font-size: g.$font-size-md;
+            }
             // Pattern alterné: 2-1-2-1...
             // Premier élément (1ère ligne, 1ère position)
             &:nth-child(3n+1) {
