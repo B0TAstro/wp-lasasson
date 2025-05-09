@@ -121,6 +121,8 @@
     // Shared Text Styles
     .paragraphe-nos-missions {
       font-size: g.$font-size-base;
+      font-weight: g.$font-weight-regular;
+      font-family: g.$font-family-base;
       text-align: center;
       margin : 0 auto;
       max-width: 75%;
@@ -522,6 +524,8 @@
            
             p {
               font-size: g.$font-size-md;
+              font-weight: g.$font-weight-regular;
+              font-family: g.$font-family-base;
               color: g.$color-black;
               margin: 0;
             }
@@ -851,6 +855,7 @@
             p {
               margin: 0;
               font-size: g.$font-size-base;
+              font-family: g.$font-family-base;
               font-weight: g.$font-weight-regular;
             }
           }
@@ -922,6 +927,7 @@
               margin: 0;
               font-size: g.$font-size-base;
               font-weight: g.$font-weight-regular;
+              font-family: g.$font-family-base;
             }
           }
         }
@@ -1071,6 +1077,9 @@
       max-width: 70%;
       margin-left: auto;
       margin-right: auto;
+      font-size: g.$font-size-md;
+      font-weight: g.$font-weight-regular;
+      font-family: g.$font-family-base;
     }
   
     .gallery-tabs {
@@ -1121,7 +1130,7 @@
       visibility: hidden;
       transition: opacity 0.5s ease;
       position: absolute;
-      width: 100%;
+      max-width: 100%;
       top: 0;
       left: 0;
     
