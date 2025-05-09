@@ -413,7 +413,7 @@
           .valeurs-list {
               .valeur-item {
                   flex: 0 0 45%;
-                  animation: slide 9s linear infinite;
+                  animation: slide 12s linear infinite;
                  
                   .valeur-text {
                       max-width: 100%;
@@ -438,7 +438,6 @@
           .valeurs-list {
               .valeur-item {
                   flex: 0 0 60%;
-                  animation: slide 7s linear infinite;
                  
                   .valeur-text {
                       max-width: 100%;
@@ -446,6 +445,14 @@
               }
           }
       }
+  }
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-415%); 
+    }
   }
 }
 
@@ -542,6 +549,10 @@
           .button-gens-du-mois {
             display: flex;
             margin: 0 auto;
+            .btn-actu:hover{
+              background-color: g.$color-black;
+              color:g.$color-white;
+            } 
           }
         }
       }

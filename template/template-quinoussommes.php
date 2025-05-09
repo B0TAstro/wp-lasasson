@@ -266,7 +266,7 @@ get_header();
                                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
                             </div>  
                             <div class="button-gens-du-mois">
-                            <a class="btn-primary btn-infos" href="<?php echo esc_url(get_permalink($bouton_article)); ?>" target="_blank">
+                            <a class="btn-primary btn-actu" href="<?php echo esc_url(get_permalink($bouton_article)); ?>" target="_blank">
                                 <?php echo esc_html($text_bouton_article); ?>
                             </a>
                             </div>
