@@ -56,6 +56,11 @@
       font-weight: g.$font-weight-regular;
       font-family: g.$font-family-base;
     }
+    .who-are-we-paragraph2 {
+      font-size: g.$font-size-md;
+      font-weight: g.$font-weight-regular;
+      font-family: g.$font-family-base;
+    }
   }
 
   .who-are-we-right {
@@ -207,7 +212,32 @@
     }
   }
 }
-
+@media (max-width: 1024px) {
+  .section-nos-missions {
+    .container-nos-missions {
+      .bloc-axes-intervention {
+       .axes-intervention-liste {
+          grid-template-columns: 1fr; // Une seule colonne sur mobile
+        }
+        .axe-contenu{
+          padding: 10px; // Réduire le padding pour les petits écrans
+        }
+      }
+    }
+  }
+}
+    @media (max-width: 768px) {
+      .section-nos-missions {
+        .container-nos-missions {
+          .bloc-axes-intervention {
+           .axes-intervention-liste {
+              grid-template-columns: 1fr; // Une seule colonne sur mobile
+            }
+          }
+        }
+      }
+    }
+  
 
 /*section 3*/
 .objectifs-section{
@@ -265,6 +295,26 @@
       // Quinconce : décaler les éléments pairs
       &:nth-child(even) {
         margin-top: 95px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .objectifs-section {
+    .objectifs-list {
+      gap:20px 10px;
+    }
+  }
+}
+@media (max-width: 390px) {
+  .objectifs-section {
+    .objectifs-list {
+      grid-template-columns: 1fr;
+      .objectif-item{
+        &:nth-child(even) {
+          margin-top: 0; // Supprimer le décalage pour les petits écrans
+        }
       }
     }
   }
@@ -353,13 +403,32 @@
   }
 }
 
+
 // Media queries
 @media (max-width: 768px) {
   .valeurs-section {
       .valeurs-container {
           .valeurs-list {
               .valeur-item {
-                  flex: 0 0 80%;
+                  flex: 0 0 45%;
+                  animation: slide 9s linear infinite;
+                 
+                  .valeur-text {
+                      max-width: 100%;
+                  }
+              }
+          }
+      }
+  }
+}
+// Media queries
+@media (max-width: 500px) {
+  .valeurs-section {
+      .valeurs-container {
+          .valeurs-list {
+              .valeur-item {
+                  flex: 0 0 40%;
+                  animation: slide 7s linear infinite;
                  
                   .valeur-text {
                       max-width: 100%;
@@ -771,7 +840,25 @@
         }
         
         .presentation-office-list {
-          grid-template-columns: 1fr;
+          .presentation-office-item {
+            // Pattern alterné: 2-1-2-1...
+            // Premier élément (1ère ligne, 1ère position)
+            &:nth-child(3n+1) {
+              width: calc((100% - 40px) / 2);
+            }
+            
+            // Deuxième élément (1ère ligne, 2ème position)
+            &:nth-child(3n+2) {
+              width: calc((100% - 40px) / 2);
+            }
+            
+            // Troisième élément (2ème ligne, seul)
+            &:nth-child(3n) {
+              width: 100%;
+            }
+            
+            // Les règles précédentes sont remplacées par nos nouveaux sélecteurs
+          }
         }
       }
      
@@ -784,13 +871,30 @@
         }
         
         .administration-office-list {
-          grid-template-columns: 1fr;
+          .administration-item {
+            // Pattern alterné: 2-1-2-1...
+            // Premier élément (1ère ligne, 1ère position)
+            &:nth-child(3n+1) {
+              width: calc((100% - 40px) / 2);
+            }
+            
+            // Deuxième élément (1ère ligne, 2ème position)
+            &:nth-child(3n+2) {
+              width: calc((100% - 40px) / 2);
+            }
+            
+            // Troisième élément (2ème ligne, seul)
+            &:nth-child(3n) {
+              width: 100%;
+            }
+            
+            // Les règles précédentes sont remplacées par nos nouveaux sélecteurs
+          }
         }
       }
     }
   }
 }
-
 
 /*section 7*/
 .gallery-section {
@@ -992,10 +1096,26 @@
       }
     }
   }
+
+  @media screen and (max-width: 1300px) {
+    .gallery-section {
+      .gallery-tabs {
+          gap:100px;  
+      }
+    }
+  }
+
   @media screen and (max-width: 1024px) {
     .gallery-section {
       .gallery-tabs {
           gap:75px;  
+      }
+    }
+  }
+  @media screen and (max-width: 868px) {
+    .gallery-section {
+      .gallery-tabs {
+          gap:60px;  
       }
     }
   }
