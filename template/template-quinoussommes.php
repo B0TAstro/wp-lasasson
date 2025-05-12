@@ -184,26 +184,30 @@ get_header();
                     </div>
 
                     <div class="valeurs-wrapper">
-                        <?php if ($repeteur_nos_valeurs) : ?>
-                            <div class="valeurs-list">
-                                <?php foreach ($repeteur_nos_valeurs as $valeur) : 
-                                    $valeur_titre = $valeur['titre_de_la_valeur'];
-                                    $valeur_texte = $valeur['texte_de_la_valeur'];
-                                    $valeur_image = $valeur['image_de_la_valeur'];
-                                ?>
-                                    <div class="valeur-item">
-                                        <h3><?php echo esc_html($valeur_titre); ?></h3>
-                                            <div class="valeur-text">
-                                                <p><?php echo wp_kses_post($valeur_texte); ?></p>
-                                            </div>
-                                            
-                                    <img src="<?php echo esc_url($valeur_image['url']); ?>" alt="<?php echo esc_attr($valeur_image['alt'] ?? ''); ?>">
-                            
+                        <div class="valeurs-list">
+                            <?php foreach ($repeteur_nos_valeurs as $valeur) : ?>
+                                <!-- Valeur normale -->
+                                <div class="valeur-item">
+                                    <h3><?php echo esc_html($valeur['titre_de_la_valeur']); ?></h3>
+                                    <div class="valeur-text">
+                                        <p><?php echo wp_kses_post($valeur['texte_de_la_valeur']); ?></p>
                                     </div>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endif; ?> 
-                    </div>     
+                                    <img src="<?php echo esc_url($valeur['image_de_la_valeur']['url']); ?>" alt="<?php echo esc_attr($valeur['image_de_la_valeur']['alt'] ?? ''); ?>">
+                                </div>
+                            <?php endforeach; ?>
+
+                            <?php foreach ($repeteur_nos_valeurs as $valeur) : ?>
+                                <!-- Doublon pour scroll infini -->
+                                <div class="valeur-item">
+                                    <h3><?php echo esc_html($valeur['titre_de_la_valeur']); ?></h3>
+                                    <div class="valeur-text">
+                                        <p><?php echo wp_kses_post($valeur['texte_de_la_valeur']); ?></p>
+                                    </div>
+                                    <img src="<?php echo esc_url($valeur['image_de_la_valeur']['url']); ?>" alt="<?php echo esc_attr($valeur['image_de_la_valeur']['alt'] ?? ''); ?>">
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                 </div>
             </section>
         <?php endif; ?> 
