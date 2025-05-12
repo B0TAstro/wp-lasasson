@@ -31,7 +31,7 @@ function load_scripts_and_style()
   ));
 }
 
-// Thème supports
+// Thèmes supports
 add_theme_support('post-thumbnails');
 add_theme_support('title-tag');
 add_theme_support('html5', array(
@@ -114,6 +114,20 @@ add_filter('wp_insert_post_data', function ($data, $postarr) {
   }
   return $data;
 }, 10, 2);
+// Ne charger le script que sur la page de recrutement
+function enqueue_job_application_link_script()
+{
+  if (is_page('recrutement')) {
+    wp_enqueue_script(
+      'job-application-link',
+      get_template_directory_uri() . '/src/js/job-application-link.js',
+      array(),
+      '1.0.1',
+      true
+    );
+  }
+}
+add_action('wp_enqueue_scripts', 'enqueue_job_application_link_script');
 
 // ================= AJAX OFFRE D'EMPLOI =================
 add_action('wp_ajax_load_more_offres', 'load_more_offres');

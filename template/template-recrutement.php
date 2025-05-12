@@ -45,7 +45,7 @@ get_header();
                     if ($section1['mode_affichage_offres'] === 'valides') {
                         $args['meta_query'] = array(
                             array(
-                                'key'     => 'section1_offreemplois_date_validite',
+                                'key'     => 'entete_offre_date_validite',
                                 'value'   => $today,
                                 'compare' => '>=',
                                 'type'    => 'DATE'

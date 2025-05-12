@@ -47,6 +47,7 @@
             cursor: default;
 
             &:hover {
+                border: 1px solid g.$color-black;
                 background-color: transparent;
             }
         }

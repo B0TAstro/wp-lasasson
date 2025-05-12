@@ -105,7 +105,8 @@ get_header();
         <?php
         $page_recrutement = get_page_by_path('recrutement');
         $recrutement_url = $page_recrutement ? get_permalink($page_recrutement->ID) : home_url('/');
-        $candidature_url = $recrutement_url . '#candidatureForm';
+        $poste_encoded = urlencode(get_the_title());
+        $candidature_url = $recrutement_url . '?poste=' . $poste_encoded;
         ?>
         <div class="offre-candidature">
             <a href="<?php echo esc_url($candidature_url); ?>" class="btn-primary btn-candidature">
