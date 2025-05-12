@@ -248,43 +248,58 @@ get_header();
             <section class="gens-du-mois-section">
                 <div class="gens-du-mois-container">
 
-                    <h2><?php echo esc_html($titre_section); ?></h2>
+                        <h2><?php echo esc_html($titre_section); ?></h2>
 
-                    <div class="gens-du-mois-blocs">
+                <div class="gens-du-mois-blocs">
 
-                        <div class="bloc bloc-gauche">
-                            <?php if ($image_gauche) : ?>
-                                <img src="<?php echo esc_url($image_gauche['url']); ?>" alt="<?php echo esc_attr($image_gauche['alt'] ?? ''); ?>">
-                            <?php endif; ?>
-                            <h3><?php echo esc_html($titre_gauche); ?></h3>
-                            <p><?php echo esc_html($soustitre_gauche); ?></p>
+                    <div class="bloc bloc-gauche">
+                        <?php if ($image_gauche) : ?>
+                        <img src="<?php echo esc_url($image_gauche['url']); ?>" alt="<?php echo esc_attr($image_gauche['alt'] ?? ''); ?>">
+                        <?php endif; ?>
+                        <h3><?php echo esc_html($titre_gauche); ?></h3>
+                        <p><?php echo esc_html($soustitre_gauche); ?></p>
+
+                        <!-- Paragraphe mobile (wysiwyg haut) -->
+                        <div class="wysiwyg wysiwyg-mobile wysiwyg-gauche-mobile">
+                        <?php echo wp_kses_post($wysiwyg_haut); ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
+                        </div>
+                    </div>
+
+                    <div class="bloc bloc-centre">
+                        <!-- Version desktop -->
+                        <div class="wysiwyg wysiwyg-haut wysiwyg-desktop">
+                        <?php echo wp_kses_post($wysiwyg_haut); ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
                         </div>
 
-                        <div class="bloc bloc-centre">
-                            <div class="wysiwyg wysiwyg-haut">
-                                <?php echo wp_kses_post($wysiwyg_haut); ?>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
-                            </div>
-                            <div class="wysiwyg wysiwyg-bas">
-                                <?php echo wp_kses_post($wysiwyg_bas); ?>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
-                            </div>  
-                            <div class="button-gens-du-mois">
-                            <a class="btn-primary btn-actu" href="<?php echo esc_url(get_permalink($bouton_article)); ?>" target="_blank">
-                                <?php echo esc_html($text_bouton_article); ?>
-                            </a>
-                            </div>
-                        </div>
+                        <div class="wysiwyg wysiwyg-bas wysiwyg-desktop">
+                        <?php echo wp_kses_post($wysiwyg_bas); ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
+                        </div>  
 
-                        <div class="bloc bloc-droit">
-                            <?php if ($image_droit) : ?>
-                                <img src="<?php echo esc_url($image_droit['url']); ?>" alt="<?php echo esc_attr($image_droit['alt'] ?? ''); ?>">
-                            <?php endif; ?>
-                            <h3><?php echo esc_html($titre_droit); ?></h3>                       
-                            <p><?php echo esc_html($soustitre_droit); ?></p>
+                        <div class="button-gens-du-mois">
+                        <a class="btn-primary btn-actu" href="<?php echo esc_url(get_permalink($bouton_article)); ?>" target="_blank">
+                            <?php echo esc_html($text_bouton_article); ?>
+                        </a>
+                        </div>
+                    </div>
+
+                    <div class="bloc bloc-droit">
+                        <?php if ($image_droit) : ?>
+                        <img src="<?php echo esc_url($image_droit['url']); ?>" alt="<?php echo esc_attr($image_droit['alt'] ?? ''); ?>">
+                        <?php endif; ?>
+                        <h3><?php echo esc_html($titre_droit); ?></h3>                       
+                        <p><?php echo esc_html($soustitre_droit); ?></p>
+
+                        <!-- Paragraphe mobile (wysiwyg bas) -->
+                        <div class="wysiwyg wysiwyg-mobile wysiwyg-droit-mobile">
+                        <?php echo wp_kses_post($wysiwyg_bas); ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
                         </div>
                     </div>
                 </div>
+
             </section>
         <?php endif; ?>
 
