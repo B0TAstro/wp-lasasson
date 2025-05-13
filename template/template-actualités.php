@@ -19,7 +19,7 @@ get_header();
     <h1><?php the_title(); ?></h1>
 
     <?php
-    $section1 = get_field('section1');
+    $section1 = get_field('section1_actu');
     ?>
     <section class="section-actus">
         <div class="container">
@@ -43,9 +43,7 @@ get_header();
                             <?php if (has_post_thumbnail()) : ?>
                                 <div class="news-content">
                                     <div>
-                                        <h3>
-                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                        </h3>
+                                        <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                                         <div class="news-date"><?php echo get_the_date(); ?></div>
                                         <div class="news-excerpt">
                                             <?php the_excerpt(); ?>
@@ -61,9 +59,7 @@ get_header();
                             <?php else : ?>
                                 <div class="news-content">
                                     <div>
-                                        <h3>
-                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                        </h3>
+                                        <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                                         <div class="news-date"><?php echo get_the_date(); ?></div>
                                         <div class="news-excerpt">
                                             <?php the_excerpt(); ?>
@@ -73,38 +69,42 @@ get_header();
                                 </div>
                             <?php endif; ?>
                         </article>
-                <?php
+                    <?php
                     endwhile;
                     wp_reset_postdata();
-                endif;
-                ?>
+                else :
+                    ?>
+                    <p class="no-actus">Aucun article n'est disponible pour le moment.</p>
+                <?php endif; ?>
             </div>
 
-            <button class="btn-primary btn-load-more" id="load-more-actus" data-page="1" data-max="<?php echo $actus_query->max_num_pages; ?>">
-                <?php echo $section1['texte_bouton_plus_actus']; ?>
-            </button>
+            <?php if ($actus_query->have_posts() && $actus_query->max_num_pages > 1) : ?>
+                <button class="btn-primary btn-load-more" id="load-more-actus" data-page="1" data-max="<?php echo $actus_query->max_num_pages; ?>">
+                    <?php echo $section1['texte_bouton_plus_actus']; ?>
+                </button>
+            <?php endif; ?>
         </div>
     </section>
 
     <?php
-    $section2 = get_field('section2');
+    $section2 = get_field('section2_actu');
+    $magazines = $section2['magazines'];
     ?>
     <section class="section-magazines">
         <h2><?php echo $section2['titre_section_magazines']; ?></h2>
 
         <p><?php echo $section2['description_magazines']; ?></p>
 
-        <div class="magazines-wrapper">
-            <button class="magazines-prev" aria-label="Magazine précédent">&lt;</button>
+        <?php if (!empty($magazines)) : ?>
+            <div class="magazines-wrapper">
+                <button class="magazines-prev" aria-label="Magazine précédent">&lt;</button>
 
-            <?php if (have_rows('section2_magazines')) : ?>
                 <div class="magazines-container">
                     <div class="magazines-slider">
-                        <?php
-                        while (have_rows('section2_magazines')) : the_row();
-                            $pdf = get_sub_field('fichier_pdf');
-                            $cover = get_sub_field('image_couverture');
-                            $numero = get_sub_field('numero');
+                        <?php foreach ($magazines as $magazine) :
+                            $pdf = $magazine['fichier_pdf'];
+                            $cover = $magazine['image_couverture'];
+                            $numero = $magazine['numero'];
                         ?>
                             <div class="magazine-item">
                                 <a href="<?php echo esc_url($pdf['url']); ?>" target="_blank" class="magazine-link">
@@ -116,17 +116,19 @@ get_header();
                                     <p class="magazine-number"><?php echo esc_html($numero); ?></p>
                                 </a>
                             </div>
-                        <?php endwhile; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            <?php endif; ?>
 
-            <button class="magazines-next" aria-label="Magazine suivant">&gt;</button>
-        </div>
+                <button class="magazines-next" aria-label="Magazine suivant">&gt;</button>
+            </div>
+        <?php else : ?>
+            <p class="no-magazines">Aucun magazine n'est disponible pour le moment.</p>
+        <?php endif; ?>
     </section>
 
     <?php
-    $section3 = get_field('section3');
+    $section3 = get_field('section3_actu');
     ?>
     <section class="section-presse">
         <h2><?php echo $section3['titre_section_presse']; ?></h2>
@@ -135,36 +137,41 @@ get_header();
 
         <?php
         $articles_presse = $section3['articles_presse'];
-        $total_articles = count($articles_presse);
+        $total_articles = is_array($articles_presse) ? count($articles_presse) : 0;
         $initial_display = 6;
-        ?>
-        <div class="presse-container">
-            <?php
-            for ($i = 0; $i < min($initial_display, $total_articles); $i++) :
-                $article = $articles_presse[$i];
-                $titre_article = $article['titre_article'];
-                $image = $article['image_article'];
-                $lien = $article['lien_article'];
-            ?>
-                <div class="presse-item">
-                    <a href="<?php echo esc_url($lien); ?>" target="_blank" class="presse-link">
-                        <?php if ($image) : ?>
-                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" class="presse-image">
-                        <?php else : ?>
-                            <img class="presse-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-press-icon.png" alt="Cover">
-                        <?php endif; ?>
-                        <div class="overlay">
-                            <p class="article-title"><?php echo esc_html($titre_article); ?></p>
-                        </div>
-                    </a>
-                </div>
-            <?php endfor; ?>
-        </div>
 
-        <?php if ($total_articles > $initial_display) : ?>
-            <button class="btn-primary btn-load-more" id="load-more-presse" data-page="1" data-per-page="3" data-total="<?php echo $total_articles; ?>" data-loaded="<?php echo $initial_display; ?>" data-page-id="<?php echo get_the_ID(); ?>">
-                <?php echo get_field('section3')['texte_bouton_plus_presse']; ?>
-            </button>
+        if (!empty($articles_presse)) :
+        ?>
+            <div class="presse-container">
+                <?php
+                for ($i = 0; $i < min($initial_display, $total_articles); $i++) :
+                    $article = $articles_presse[$i];
+                    $titre_article = $article['titre_article'];
+                    $image = $article['image_article'];
+                    $lien = $article['lien_article'];
+                ?>
+                    <div class="presse-item">
+                        <a href="<?php echo esc_url($lien); ?>" target="_blank" class="presse-link">
+                            <?php if ($image) : ?>
+                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" class="presse-image">
+                            <?php else : ?>
+                                <img class="presse-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pdf-press-icon.png" alt="Cover">
+                            <?php endif; ?>
+                            <div class="overlay">
+                                <p class="article-title"><?php echo esc_html($titre_article); ?></p>
+                            </div>
+                        </a>
+                    </div>
+                <?php endfor; ?>
+            </div>
+
+            <?php if ($total_articles > $initial_display) : ?>
+                <button class="btn-primary btn-load-more" id="load-more-presse" data-page="1" data-per-page="3" data-total="<?php echo $total_articles; ?>" data-loaded="<?php echo $initial_display; ?>" data-page-id="<?php echo get_the_ID(); ?>">
+                    <?php echo isset($section3['texte_bouton_plus_presse']) ? $section3['texte_bouton_plus_presse'] : 'Voir plus'; ?>
+                </button>
+            <?php endif; ?>
+        <?php else : ?>
+            <p class="no-presse">Aucun article de presse n'est disponible pour le moment.</p>
         <?php endif; ?>
     </section>
 </main>

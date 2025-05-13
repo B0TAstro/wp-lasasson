@@ -184,7 +184,7 @@
     
     .siege-info {
         display: flex;
-        gap: 30px;
+        gap: 20px;
         font-family: g.$font-family-base;
         font-size: g.$font-size-base;
         font-weight: g.$font-weight-light;
@@ -197,7 +197,7 @@
         .siege-address,
         .siege-hours {
             background-color: g.$color-gray;
-            padding: 25px 60px;
+            padding: 25px 50px;
             text-align: center;
             flex: 1;
         }

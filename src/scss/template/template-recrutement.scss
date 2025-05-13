@@ -1,0 +1,343 @@
+// scss/template/template-recrutement.scss
+@use "../global" as g;
+
+
+/* Global Styles */
+.recrutement-container {
+    max-width: 75%;
+    margin: 0 auto;
+}
+
+/* Recrutement Nav */
+.recrutement-nav {
+    display: flex;
+    align-items: center;
+    margin-top: 60px;
+    gap: 20px;
+
+    .btn-nav {
+        flex: 1;
+        text-align: center;
+        font-weight: g.$font-weight-bold;
+    }
+}
+
+/* Section 1 */
+.section-offres-emplois {
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    font-family: g.$font-family-base;
+
+    h2 {
+        font-size: g.$font-size-xl;
+        font-weight: bold;
+        text-align: center;
+        max-width: 75%;
+    }
+
+    .offres-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        width: 100%;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+
+        .offre-item {
+            display: flex;
+            flex-direction: column;
+            background-color: g.$color-gray;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25);
+            }
+
+            .offre-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                flex-grow: 1;
+
+                div {
+                    flex-grow: 1;
+
+                    h3 {
+                        font-size: g.$font-size-lg;
+                        font-weight: g.$font-weight-medium;
+                        line-height: normal;
+
+                        a {
+                            color: g.$color-black;
+                            text-decoration: none;
+                            transition: color 0.2s ease;
+
+                            &:hover {
+                                color: g.$primary-color
+                            }
+                        }
+                    }
+
+                    .offre-date {
+                        color: #666;
+                        font-size: g.$font-size-xs;
+                        font-weight: g.$font-weight-light;
+                        margin: 5px 0 10px 0;
+                    }
+
+                    .offre-description {
+                        font-size: g.$font-size-sm;
+                        font-weight: g.$font-weight-regular;
+                        color: g.$color-black;
+                        margin-bottom: 15px;
+                        line-height: 1.5;
+                    }
+
+                    .offre-lieu {
+                        font-size: g.$font-size-sm;
+                        margin-bottom: 5px;
+                    }
+
+                    .offre-expiration {
+                        font-size: g.$font-size-xs;
+                        font-weight: g.$font-weight-medium;
+                        margin-bottom: 20px;
+                    }
+                }
+
+                .offre-link {
+                    align-self: flex-start;
+                    background-color: g.$primary-color;
+                    color: g.$color-black;
+                    padding: 5px 15px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    font-size: g.$font-size-sm;
+                    border-radius: 3px;
+                    display: inline-block;
+                    margin-top: 15px;
+
+                    &:hover {
+                        background-color: g.$primary-contrast-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.no-offres {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: g.$font-family-base;
+    font-size: g.$font-size-base;
+    font-weight: g.$font-weight-light;
+    color: g.$color-black;
+    font-style: italic;
+    padding: 60px 0;
+}
+
+/* Section 2 */
+.candidature-form-section {
+    padding: 60px 0;
+    background-color: g.$color-gray;
+
+    .container-candidature-form {
+        max-width: 75%;
+        margin: 0 auto;
+
+        h2 {
+            text-align: center;
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-xl;
+            font-weight: g.$font-weight-bold;
+            color: g.$color-black;
+            margin-bottom: 30px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-base;
+            font-weight: g.$font-weight-light;
+            color: g.$color-black;
+            margin-bottom: 60px;
+        }
+
+        .candidature-form {
+            .required-note {
+                font-family: g.$font-family-base;
+                font-size: g.$font-size-xs;
+                font-weight: g.$font-weight-light;
+                color: g.$color-black;
+                margin-bottom: 15px;
+            }
+
+            .form-row {
+                margin-bottom: 30px;
+
+                &.two-columns {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 30px;
+
+                    .form-group {
+                        flex: 1;
+                    }
+
+                    @media (max-width: 1024px) {
+                        flex-direction: column;
+                    }
+                }
+
+                .form-group {
+
+                    input[type="text"],
+                    input[type="email"],
+                    input[type="tel"],
+                    select,
+                    textarea {
+                        width: 100%;
+                        padding: 12px 30px;
+                        border: none;
+                        border-radius: 5px;
+                        box-sizing: border-box;
+                        background-color: white;
+                        color: g.$color-black;
+                        font-family: g.$font-family-base;
+                        font-size: g.$font-size-base;
+                        font-weight: g.$font-weight-regular;
+                        transition: border-color 0.3s;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    &.checkbox {
+                        display: flex;
+                        align-items: center;
+
+                        input[type="checkbox"] {
+                            margin-top: 4px;
+                            margin-right: 10px;
+                        }
+
+                        label {
+                            margin-left: 10px;
+                            font-family: g.$font-family-base;
+                            font-size: g.$font-size-xs;
+                            font-weight: g.$font-weight-light;
+                            color: g.$color-black;
+                        }
+                    }
+
+                    .select-wrapper {
+                        position: relative;
+                        background-color: white;
+                        border-radius: 5px;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            right: 15px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 0;
+                            height: 0;
+                            border-left: 6px solid transparent;
+                            border-right: 6px solid transparent;
+                            border-top: 6px solid g.$color-black;
+                            pointer-events: none;
+                        }
+
+                        select {
+                            appearance: none;
+                            padding-right: 30px;
+                        }
+                    }
+
+                    &.file-upload {
+                        position: relative;
+                        margin-bottom: 30px;
+
+                        label {
+                            display: block;
+                            font-family: g.$font-family-base;
+                            font-size: g.$font-size-base;
+                            font-weight: g.$font-weight-regular;
+                            margin-bottom: 10px;
+                            color: g.$color-black;
+                        }
+
+                        .custom-file-upload {
+                            display: block;
+                            height: 43px;
+                            width: auto;
+                            position: relative;
+                            cursor: pointer;
+
+                            .custom-file-button {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: auto;
+                                max-width: 100%;
+                                padding: 12px 30px;
+                                background-color: white;
+                                border-radius: 5px;
+                                color: g.$color-black;
+                                font-family: g.$font-family-base;
+                                font-size: g.$font-size-base;
+                                font-weight: g.$font-weight-regular;
+                                box-sizing: border-box;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+
+                            input[type="file"] {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: auto;
+                                height: 100%;
+                                opacity: 0;
+                                cursor: pointer;
+                                z-index: 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .btn-submit {
+                width: 100%;
+                font-weight: g.$font-weight-bold;
+                border: none;
+                cursor: pointer;
+                text-transform: uppercase;
+                margin-top: 60px;
+            }
+        }
+    }
+}
+
+.file-name-display {
+    margin-top: 5px;
+    font-size: g.$font-size-xs;
+    color: g.$color-black;
+}
+
+#offre-select-row {
+    transition: all 0.3s ease;
+}

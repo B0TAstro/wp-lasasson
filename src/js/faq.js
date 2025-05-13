@@ -1,3 +1,5 @@
+// js/faq.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const faqItems = document.querySelectorAll('.faq-item');
   

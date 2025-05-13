@@ -6,22 +6,20 @@
 get_header();
 ?>
 
-<main class="dispositifs-page">
+<main>
     <?php $btn = get_field('bouton_soutenir_lien', 'option'); ?>
     <a class="btn-soutenir" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
-        <div class="icon">
+        <span class="icon">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-empty.svg" alt="Soutenir" class="heart-empty">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-full.svg" alt="Soutenir" class="heart-full">
-        </div>
+        </span>
         <p class="label"><?php echo esc_html($btn['title']); ?></p>
     </a>
 
-    <div class="page-header">
-        <h1><?php the_title(); ?></h1>
-    </div>
+    <h1><?php the_title(); ?></h1>
 
     <?php
-    $section1 = get_field('section1');
+    $section1 = get_field('section1_dispositifs');
     if ($section1) :
     ?>
         <section class="section-presentation">
@@ -36,7 +34,7 @@ get_header();
     <?php endif; ?>
 
     <?php
-    $section2 = get_field('section2');
+    $section2 = get_field('section2_dispositifs');
     if ($section2) :
     ?>
         <section class="section-liste-dispositifs">
@@ -78,18 +76,12 @@ get_header();
                 ?>
                         <div class="dispositif-card">
                             <a href="<?php echo esc_url($permalink); ?>" class="dispositif-link">
-                                <div class="dispositif-image">
-                                    <?php if ($thumbnail) : ?>
-                                        <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr($titre); ?>">
-                                    <?php else : ?>
-                                        <div class="placeholder-image">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder.svg" alt="Image">
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="dispositif-title">
-                                    <h3><?php echo esc_html($titre); ?></h3>
-                                </div>
+                                <?php if ($thumbnail) : ?>
+                                    <img class="dispositif-image" src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr($titre); ?>">
+                                <?php else : ?>
+                                    <img class="dispositif-placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/dispositif-placeholder.png" alt="Image">
+                                <?php endif; ?>
+                                <h3><?php echo esc_html($titre); ?></h3>
                             </a>
                         </div>
                     <?php
@@ -103,7 +95,7 @@ get_header();
     <?php endif; ?>
 
     <?php
-    $section3 = get_field('section3');
+    $section3 = get_field('section3_dispositifs');
     if ($section3 && !empty($section3['faq'])) :
     ?>
         <section class="section-faq">

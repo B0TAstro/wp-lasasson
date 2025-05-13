@@ -31,7 +31,7 @@ jQuery(document).ready(function ($) {
         if (width <= 1064) return 2;
         return 3;
     }
-    
+
     $('#load-more-presse').on('click', function () {
         const button = $(this);
 
@@ -70,6 +70,29 @@ jQuery(document).ready(function ($) {
             },
             complete: function () {
                 button.removeClass('loading');
+            }
+        });
+    });
+    // Chargement des offres d'emploi
+    $('#load-more-offres').on('click', function () {
+        const button = $(this);
+        const page = button.data('page') + 1;
+        const max = button.data('max');
+
+        $.ajax({
+            url: ajaxVars.ajaxUrl,
+            type: 'post',
+            data: {
+                action: 'load_more_offres',
+                page: page,
+                _ajax_nonce: ajaxVars.nonce
+            },
+            success: function (response) {
+                if (response) {
+                    $('.offres-container').append(response);
+                    button.data('page', page);
+                    if (page >= max) button.hide();
+                }
             }
         });
     });
