@@ -219,10 +219,10 @@
     .container-nos-missions {
       .bloc-axes-intervention {
        .axes-intervention-liste {
-          grid-template-columns: 1fr; // Une seule colonne sur mobile
+          grid-template-columns: 1fr;
         }
         .axe-contenu{
-          padding: 10px; // Réduire le padding pour les petits écrans
+          padding: 10px;
         }
       }
     }
@@ -233,7 +233,7 @@
         .container-nos-missions {
           .bloc-axes-intervention {
            .axes-intervention-liste {
-              grid-template-columns: 1fr; // Une seule colonne sur mobile
+              grid-template-columns: 1fr; 
             }
           }
         }
@@ -294,7 +294,6 @@
           font-family: g.$font-family-base;
         }
 
-      // Quinconce : décaler les éléments pairs
       &:nth-child(even) {
         margin-top: 95px;
       }
@@ -315,7 +314,7 @@
       grid-template-columns: 1fr;
       .objectif-item{
         &:nth-child(even) {
-          margin-top: 0; // Supprimer le décalage pour les petits écrans
+          margin-top: 0; 
         }
       }
     }
@@ -347,7 +346,7 @@
   .valeurs-wrapper {
       position: relative;
       overflow: hidden;
-      width: 100%;
+      max-width: 100%;
       margin-bottom: 30px;
   }
   
@@ -355,19 +354,19 @@
   .valeurs-list {
       display: flex;
       gap: 20px;
-      padding-left: 0; // Assure qu'il n'y a pas de padding initial
-      margin-left: 0; // Assure qu'il n'y a pas de margin initial
-      width: fit-content; // Permet à la liste de s'étendre naturellement
-      animation: slideList 40s linear infinite; // Animation plus lente pour une transition plus douce
+      padding-left: 0; 
+      margin-left: 0; 
+      width: fit-content; 
+      animation: slideList 40s linear infinite; 
       
       &:hover {
           animation-play-state: paused;
       }
   }
   
-  // Les éléments individuels
+
   .valeur-item {
-      flex: 0 0 calc((100vw - 60px) / 3); // Affiche exactement 3 éléments
+      flex: 0 0 calc((100vw - 60px) / 3); 
       max-width: 400px;
       min-width: 250px;
       height: auto;
@@ -378,7 +377,7 @@
       border-radius: 10px;
       margin-top: 40px;
       
-      // Assurez-vous qu'il n'y a pas de marges additionnelles qui pourraient causer des sauts
+
       margin-left: 0;
       margin-right: 0;
      
@@ -410,24 +409,24 @@
   }
 }
 
-// Animation modifiée pour un défilement parfaitement continu
+
 @keyframes slideList {
   0% {
     transform: translateX(0);
   }
   100% {
-    // Calcul exact pour que le dernier élément original atteigne exactement la position du premier clone
-    transform: translateX(calc(-78.15%)); // Ajuster le +10px selon votre cas
+   
+    transform: translateX(calc(-78.15%)); 
   }
 }
 
-// Media queries adaptées
+
 @media (max-width: 1024px) {
   .valeurs-section {
      .valeurs-list{
-       animation: slideList 30s linear infinite; // Animation plus lente pour une transition plus douce
+       animation: slideList 30s linear infinite; 
     .valeur-item {
-      flex: 0 0 calc((100vw - 40px) / 2); // 2 éléments visibles
+      flex: 0 0 calc((100vw - 40px) / 2); 
     }
   }
 }
@@ -437,18 +436,18 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-78%)); // Ajuster également ici
+      transform: translateX(calc(-78%));
     }
   }
 }
 
-// Media queries adaptées
+
 @media (max-width: 768px) {
   .valeurs-section {
      .valeurs-list{
-       animation: slideList 20s linear infinite; // Animation plus lente pour une transition plus douce
+       animation: slideList 20s linear infinite; 
     .valeur-item {
-      flex: 0 0 calc((100vw - 40px) / 2); // 2 éléments visibles
+      flex: 0 0 calc((100vw - 40px) / 2); 
     }
   }
 }
@@ -458,7 +457,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-70.90%)); // Ajuster également ici
+      transform: translateX(calc(-70.90%)); 
     }
   }
 }
@@ -466,9 +465,9 @@
 @media (max-width: 500px) {
   .valeurs-section {
     .valeurs-list{
-       animation: slideList 20s linear infinite; // Animation plus lente pour une transition plus douce
+       animation: slideList 20s linear infinite; 
     .valeur-item {
-      flex: 0 0 calc(100vw - 40px); // 1 élément visible
+      flex: 0 0 calc(100vw - 40px); 
     }
   }
 }
@@ -478,7 +477,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-78.45%)); // Ajuster également ici
+      transform: translateX(calc(-78.45%)); 
     }
   }
 }
@@ -486,9 +485,9 @@
 @media (max-width: 350px) {
   .valeurs-section {
     .valeurs-list{
-       animation: slideList 20s linear infinite; // Animation plus lente pour une transition plus douce
+       animation: slideList 20s linear infinite; 
     .valeur-item {
-      flex: 0 0 calc(100vw - 40px); // 1 élément visible
+      flex: 0 0 calc(100vw - 40px); 
     }
   }
 }
@@ -498,7 +497,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-61.30%)); // Ajuster également ici
+      transform: translateX(calc(-61.30%));
     }
   }
 }
