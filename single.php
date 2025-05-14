@@ -1,5 +1,14 @@
 <?php get_header(); ?>
 <main id="main" class="site-main" role="main">
+     <?php $btn = get_field('bouton_soutenir_lien', 'option'); ?>
+    <a class="btn-soutenir" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
+        <span class="icon">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-empty.svg" alt="Soutenir" class="heart-empty">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-full.svg" alt="Soutenir" class="heart-full">
+        </span>
+        <p class="label"><?php echo esc_html($btn['title']); ?></p>
+    </a>
+    
     <?php while (have_posts()) : the_post(); ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <header class="entry-header">
@@ -11,95 +20,101 @@
 
             <div class="entry-content">
                 <?php
-                $layout_option = get_field('layout_option');
+                    $layout_option = get_field('layout_option');
 
-                if (!$layout_option) {
-                    $layout_option = 'option_de_base';
-                }
+                    switch ($layout_option) {
 
-                switch ($layout_option) {
-                    case 'option_de_base':
-                        $option_de_base = get_field('option_de_base');
-                        if (!empty($option_de_base['contenu_option_de_base'])) {
-                            echo $option_de_base['contenu_option_de_base'];
-                        }
-                        break;
-
-                    case 'image_gauche_droite_option_2':
-                        $image_gauche_droite_option_2 = get_field('image_gauche_droite_option_2');
-                        {
-                            $titre = $image_gauche_droite_option_2['titre_option_2'];
-                            $contenu = $image_gauche_droite_option_2['contenu_option_2'];
-                            $image = $image_gauche_droite_option_2['image_gauche_droite_option_2'];
-                            $position = $image_gauche_droite_option_2['image_position'];
-                            $lien = $image_gauche_droite_option_2['lien_option_2'];
-
-                            echo '<h2>' . esc_html($titre) . '</h2>';
-                            echo '<div class="layout-image-text">';
-
-                            if ($position === 'gauche') {
-                                echo '<div class="image-left">';
-                                echo wp_get_attachment_image($image, 'large');
+                        case 'base':
+                            echo '<div class="acf-option-base">';
+                                $option_de_base = get_field('option_de_base');
+                                echo '<div class="base-content">';
+                                    if (!empty($option_de_base['contenu_option_de_base'])) {
+                                        echo wp_kses_post($option_de_base['contenu_option_de_base']);
+                                    }
                                 echo '</div>';
-                            }
+                            echo'</div>';
+                            break;
 
-                            echo '<div class="content">';
-                            echo $contenu;
+                        case 'image_gauche_droite':
+                            echo '<div class="acf-option-image-gauche-droite">';
 
-                            if (!empty($lien)) {
-                                echo '<a href="' . esc_url($lien['url']) . '" class="button" target="' . esc_attr($lien['target']) . '">' . esc_html($lien['title']) . '</a>';
-                            }
-                            echo '</div>';
+$image_gauche_droite_option_2 = get_field('image_gauche_droite_option_2');
 
-                            if ($position === 'droite') {
-                                echo '<div class="image-right">';
-                                echo wp_get_attachment_image($image, 'large');
-                                echo '</div>';
-                            }
+$titre    = $image_gauche_droite_option_2['titre_option_2'];
+$contenu  = $image_gauche_droite_option_2['contenu_option_2'];
+$image    = $image_gauche_droite_option_2['image_option_2']; 
+$position = $image_gauche_droite_option_2['image_position']; // 'gauche' ou 'droite'
+$lien     = $image_gauche_droite_option_2['lien_option_2'];
 
-                            echo '</div>';
-                        }
-                        break;
+echo '<div class="layout-image-text ' . esc_attr($position) . '">';
 
-                    case 'pleine_image_option_3':
-                        $pleine_image_option_3 = get_field('pleine_image_option_3');
-                        {
-                            $image_full = $pleine_image_option_3['image'];
+// Affiche l'image
+if (!empty($image)) {
+    echo '<div class="image-block">';
+    echo '<img src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '">';
+    echo '</div>';
+}
+
+// Contenu texte
+echo '<div class="content">';
+echo '<h2>' . esc_html($titre) . '</h2>';
+echo wp_kses_post($contenu);
+
+if (!empty($lien)) {
+    echo '<a href="' . esc_url($lien['url']) . '" class="button" target="' . esc_attr($lien['target']) . '">';
+    echo esc_html($lien['title']);
+    echo '</a>';
+}
+
+echo '</div>'; // .content
+echo '</div>'; // .layout-image-text
+echo '</div>'; // .acf-option-image-gauche-droite
+
+
+                            break;
+
+                        case 'pleine_image':
+                            echo '<div class="acf-option-pleine-image">';
+                            $pleine_image_option_3 = get_field('pleine_image_option_3');
+
+                            $image_full   = $pleine_image_option_3['image_option_3'];
                             $contenu_full = $pleine_image_option_3['contenu_option_3'];
-                            $lien_full = $pleine_image_option_3['lien_option_3'];
 
                             echo '<div class="full-image">';
-                            echo wp_get_attachment_image($image_full, 'full');
+                            if (!empty($image_full)) {
+                                echo '<img src="' . esc_url($image_full['url']) . '" alt="' . esc_attr($image_full['alt']) . '">';
+                            }
                             echo '</div>';
 
                             echo '<div class="full-content">';
-                            echo $contenu_full;
+                            echo wp_kses_post($contenu_full);
 
-                            if (!empty($lien_full)) {
-                                echo '<a href="' . esc_url($lien_full['url']) . '" class="button" target="' . esc_attr($lien_full['target']) . '">' . esc_html($lien_full['title']) . '</a>';
-                            }
                             echo '</div>';
-                        }
-                        break;
+                            echo '</div>';
+                            break;
 
-                    case 'option_4_simple':
-                        $option_4_simple = get_field('option_4_simple');
-                       {
-                            $titre_simple = $option_4_simple['titre_option_4_simple'];
+                        case 'simple':
+                            echo '<div class="acf-option-simple">';
+                            $option_4_simple = get_field('option_4_simple');
+
+                            $titre_simple   = $option_4_simple['titre_option_4_simple'];
                             $contenu_simple = $option_4_simple['contenu_option_4_simple'];
-                            $lien_simple = $option_4_simple['lien_option_4_simple'];
+                            $lien_simple    = $option_4_simple['lien_option_4_simple'];
 
                             echo '<h2>' . esc_html($titre_simple) . '</h2>';
                             echo '<div class="simple-content">';
-                            echo $contenu_simple;
+                            echo wp_kses_post($contenu_simple);
 
                             if (!empty($lien_simple)) {
-                                echo '<a href="' . esc_url($lien_simple['url']) . '" class="button" target="' . esc_attr($lien_simple['target']) . '">' . esc_html($lien_simple['title']) . '</a>';
+                                echo '<a href="' . esc_url($lien_simple['url']) . '" class="button" target="' . esc_attr($lien_simple['target']) . '">';
+                                echo esc_html($lien_simple['title']);
+                                echo '</a>';
                             }
+
                             echo '</div>';
-                        }
-                        break;
-                }
+                            echo '</div>';
+                            break;
+                    }
                 ?>
             </div>
 
