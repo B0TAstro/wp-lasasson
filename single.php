@@ -38,37 +38,41 @@
                         case 'image_gauche_droite':
                             echo '<div class="acf-option-image-gauche-droite">';
 
-$image_gauche_droite_option_2 = get_field('image_gauche_droite_option_2');
+                                $image_gauche_droite_option_2 = get_field('image_gauche_droite_option_2');
 
-$titre    = $image_gauche_droite_option_2['titre_option_2'];
-$contenu  = $image_gauche_droite_option_2['contenu_option_2'];
-$image    = $image_gauche_droite_option_2['image_option_2']; 
-$position = $image_gauche_droite_option_2['image_position']; // 'gauche' ou 'droite'
-$lien     = $image_gauche_droite_option_2['lien_option_2'];
+                                $titre    = $image_gauche_droite_option_2['titre_option_2'];
+                                $contenu  = $image_gauche_droite_option_2['contenu_option_2'];
+                                $image    = $image_gauche_droite_option_2['image_option_2']; 
+                                $position = $image_gauche_droite_option_2['image_position']; // 'gauche' ou 'droite'
+                                $lien     = $image_gauche_droite_option_2['lien_option_2'];
 
-echo '<div class="layout-image-text ' . esc_attr($position) . '">';
+                                echo '<div class="layout-image-text ' . esc_attr($position) . '">';
 
-// Affiche l'image
-if (!empty($image)) {
-    echo '<div class="image-block">';
-    echo '<img src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '">';
-    echo '</div>';
-}
+                                // Affiche l'image
+                                if (!empty($image)) {
+                                    echo '<div class="image-block">';
+                                    echo '<img src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '">';
+                                    echo '</div>';
+                                }
 
-// Contenu texte
-echo '<div class="content">';
-echo '<h2>' . esc_html($titre) . '</h2>';
-echo wp_kses_post($contenu);
+                                // Contenu texte
+                                echo '<div class="content">';
+                                echo '<h2>' . esc_html($titre) . '</h2>';
+                                echo '<div class=text-option2>';
+                                echo wp_kses_post($contenu);
+                                echo '</div>';
 
-if (!empty($lien)) {
-    echo '<a href="' . esc_url($lien['url']) . '" class="button" target="' . esc_attr($lien['target']) . '">';
-    echo esc_html($lien['title']);
-    echo '</a>';
-}
+                                echo'<div class="button">';
+                                if (!empty($lien)) {
+                                    echo '<a href="' . esc_url($lien['url']) . '" class="btn-secondary btn-infos" target="' . esc_attr($lien['target']) . '">';
+                                    echo esc_html($lien['title']);
+                                    echo '</a>';
+                                }
+                                echo '</div>';
 
-echo '</div>'; // .content
-echo '</div>'; // .layout-image-text
-echo '</div>'; // .acf-option-image-gauche-droite
+                                echo '</div>'; // .content
+                                echo '</div>'; // .layout-image-text
+                                echo '</div>'; // .acf-option-image-gauche-droite
 
 
                             break;
@@ -94,7 +98,7 @@ echo '</div>'; // .acf-option-image-gauche-droite
                             break;
 
                         case 'simple':
-                            echo '<div class="acf-option-simple">';
+                        echo '<div class="acf-option-simple">';
                             $option_4_simple = get_field('option_4_simple');
 
                             $titre_simple   = $option_4_simple['titre_option_4_simple'];
@@ -105,38 +109,46 @@ echo '</div>'; // .acf-option-image-gauche-droite
                             echo '<div class="simple-content">';
                             echo wp_kses_post($contenu_simple);
 
+
+                            echo '<div class="button-simple">';
                             if (!empty($lien_simple)) {
-                                echo '<a href="' . esc_url($lien_simple['url']) . '" class="button" target="' . esc_attr($lien_simple['target']) . '">';
+                                echo '<a href="' . esc_url($lien_simple['url']) . '" class="btn-secondary btn-infos" target="' . esc_attr($lien_simple['target']) . '">';
                                 echo esc_html($lien_simple['title']);
                                 echo '</a>';
                             }
+                           echo '</div>';
 
                             echo '</div>';
-                            echo '</div>';
-                            break;
+                        echo '</div>';
+                        break;
                     }
                 ?>
             </div>
-
-            <footer class="entry-footer">
-                <?php if (has_category()) : ?>
-                    <div class="cat-links">
-                        <?php the_category(', '); ?>
-                    </div>
-                <?php endif; ?>
-                <?php if (has_tag()) : ?>
-                    <div class="tags-links">
-                        <?php the_tags('', ', ', ''); ?>
-                    </div>
-                <?php endif; ?>
-            </footer>
         </article>
+        <?php
+            $navigation = get_field('navigation_actualite');
+            $actu_prec = $navigation['actu_precedente'] ?? null;
+            $actu_suiv = $navigation['actu-recente'] ?? null; // Changed from actu_recente to actu-recente
+
+            if (!empty($actu_prec) || !empty($actu_suiv)) :
+            ?>
+
+            <div class="navigation-actualites">
+                <?php if (!empty($actu_prec)) : ?>
+                    <a href="<?php echo esc_url($actu_prec['url']); ?>" class="btn" target="<?php echo esc_attr($actu_prec['target']); ?>">
+                         <img class="arrow-left" src="<?php echo get_template_directory_uri(); ?>/assets/img/arrow-article-left.svg" alt="arrow">
+                        <?php echo esc_html($actu_prec['title']); ?>
+                    </a>
+                <?php endif; ?>
+
+                <?php if (!empty($actu_suiv)) : ?>
+                    <a href="<?php echo esc_url($actu_suiv['url']); ?>" class="btn" target="<?php echo esc_attr($actu_suiv['target']); ?>">
+                        <?php echo esc_html($actu_suiv['title']); ?>
+                         <img class="arrow-right" src="<?php echo get_template_directory_uri(); ?>/assets/img/arrow-article-right.svg" alt="arrow">
+                    </a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
     <?php endwhile; ?>
-    <button id="backButton">RETOUR</button>
-    <script>
-        document.getElementById('backButton').addEventListener('click', function() {
-            window.history.back();
-        });
-    </script>
 </main>
 <?php get_footer(); ?>
