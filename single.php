@@ -10,18 +10,28 @@
                 <p class="label"><?php echo esc_html($btn['title']); ?></p>
         </a>
         
-    <div class="hero-article">
-        <?php
-            $parent_id = wp_get_post_parent_id(get_the_ID());
-            $return_url = $parent_id ? get_permalink($parent_id) : home_url();
-        ?>
-        <a href="<?php echo esc_url($return_url); ?>" class="return-button">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/back-button.svg" alt="Retour">
-        </a>
+       <div class="hero-article">
+            <?php
+                $parent_id = wp_get_post_parent_id(get_the_ID());
+                $return_url = $parent_id ? get_permalink($parent_id) : home_url();
+            ?>
+                <div class="header-row">
+                    <div class="left-side">
+                        <a href="<?php echo esc_url($return_url); ?>" class="return-button">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/back-button.svg" alt="Retour">
+                        </a>
+                    </div>
+                    
+                    <div class="title-container">
+                        <h1 class="article-title"><?php the_title(); ?></h1>
+                    </div>
+                </div>
+            
+            <div class="date-container">
+                <span class="posted-on"><?php echo get_the_date('d.m.Y'); ?> (date du post de l'actu)</span>
+            </div>
+        </div>
 
-        <h1 class="article-title"><?php the_title(); ?></h1>
-        <span class="posted-on"><?php echo get_the_date(); ?></span>
-    </div>
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <div class="entry-content">
                 <?php
@@ -135,7 +145,7 @@
             $navigation = get_field('navigation_actualite');
 
             // Récupérer les textes depuis le groupe ACF
-            $texte_precedent = isset($navigation['article_precedent']) ? $navigation['article_precedent'] : "Actualité précédent";
+            $texte_precedent = isset($navigation['article_precedent']) ? $navigation['article_precedent'] : "Actualité précédente";
             $texte_suivant = isset($navigation['article_suivant']) ? $navigation['article_suivant'] : "Actualité récente";
 
             // Le reste du code reste identique
