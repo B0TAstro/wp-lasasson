@@ -1,0 +1,445 @@
+<?php
+/*
+ * Template Name: Qui nous sommes
+ */
+
+get_header();
+?>
+    <main>
+        <?php $btn = get_field('bouton_soutenir_lien', 'option'); ?>
+                <a class="btn-soutenir" href="<?php echo esc_url($btn['url']); ?>" target="<?php echo esc_attr($btn['target']); ?>">
+                    <span class="icon">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-empty.svg" alt="Soutenir" class="heart-empty">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/heart-full.svg" alt="Soutenir" class="heart-full">
+                    </span>
+                    <p class="label"><?php echo esc_html($btn['title']); ?></p>
+                </a>
+        <h1><?php the_title(); ?></h1>
+
+        
+        <?php 
+       
+       $section_1_qui = get_field('section_1_qui');
+
+            if ($section_1_qui) :
+                $titre_qui_somme_nous = $section_1_qui['titre_qui_sommes_nous'] ;
+                $texte_qui_somme_nous = $section_1_qui['texte_qui_somme_nous'] ;
+                $texte2_qui_somme_nous = $section_1_qui['texte_qui_somme_nous2'] ;
+                $image_qui_somme_nous = $section_1_qui['image_qui_sommes_nous'] ;
+                $texte3_qui_somme_nous = $section_1_qui['texte_qui_somme_nous_3'] ;
+                $bouton_telechargement_qui_somme_nous = $section_1_qui['bouton_telechargement'] ;
+                $texte_du_bouton_de_telechargment=$section_1_qui['texte_du_bouton_telechargement']
+                
+            ?>
+           <section class="who-are-we-section">
+                <div class="who-are-we-wrapper">
+                    <div class="who-are-we-content">
+                        <div class="who-are-we-left">
+                            <h2><?php echo esc_html($titre_qui_somme_nous); ?></h2>
+                            <div class="wysiwyg who-are-we-paragraph">
+                                <?php echo $texte_qui_somme_nous; ?>
+                            </div>
+                            <div class="wysiwyg who-are-we-paragraph2">
+                                <?php echo $texte2_qui_somme_nous; ?>
+                            </div>
+                        </div>
+
+                        <div class="who-are-we-right">
+                            <img src="<?php echo esc_url($image_qui_somme_nous['url']); ?>" alt="<?php echo esc_attr($image_qui_somme_nous['alt'] ?? ''); ?>">
+                        </div>
+                    </div>
+
+                    <div class="who-are-we-bottom">
+                        <div class="wysiwyg who-are-we-paragraph2">
+                            <?php echo $texte3_qui_somme_nous; ?>
+                        </div>
+                        <a class="btn-secondary btn-infos" href="<?php echo esc_url($bouton_telechargement_qui_somme_nous['url']); ?>" target="_blank" download>
+                                <?php echo esc_html($texte_du_bouton_de_telechargment); ?>
+                        </a>
+                    </div>
+                </div>
+            </section>
+     
+        <?php endif; ?>  
+
+        <div class="bandeau">
+            <?php 
+            // bandeau entre la section 1 et 2
+                $bandeau_1_quimission = get_field('bandeau_1_quimission');
+            ?>
+                <img src="<?php echo esc_url($bandeau_1_quimission['url']); ?>" alt="<?php echo esc_attr($bandeau_1_quimission['alt'] ?? ''); ?>">
+        </div>
+
+        <?php 
+   
+            $section_2_nos_missions = get_field('section_2_nos_missions');
+
+            if ($section_2_nos_missions):
+                $title_nos_missions = $section_2_nos_missions['titre_nos_missions'];
+                $text_nos_missions = $section_2_nos_missions['texte_nos_missions'];
+                $title_axes_intervention = $section_2_nos_missions['titre_axes_intervention'];
+                $axes_items = $section_2_nos_missions['repeteur_axes_dintervention'];
+            ?>
+
+            <section class="section-nos-missions">
+                <div class="container-nos-missions">
+
+                    <div class="bloc-nos-missions">
+                        <h2><?php echo esc_html($title_nos_missions); ?></h2>
+
+                        <div class="paragraphe-nos-missions wysiwyg">
+                            <?php echo wp_kses_post($text_nos_missions); ?>
+                        </div>
+                    </div>
+
+                    <div class="bloc-axes-intervention">
+                        <h3><?php echo esc_html($title_axes_intervention); ?></h3>
+
+                        <div class="axes-intervention-liste">
+                            <?php foreach ($axes_items as $axe) : 
+                                $axe_titre = $axe['titre_de_laxe_dintervention'];
+                                $axe_texte = $axe['texte_de_laxe_de_lintervention'];
+                                $axe_image = $axe['image_de_laxe_de_lintervention'];
+                            ?>
+                                <div class="axe-intervention-item">
+                                        <div class="axe-image">
+                                            <img src="<?php echo esc_url($axe_image['url']); ?>" alt="<?php echo esc_attr($axe_image['alt'] ?? ''); ?>">
+                                        </div>
+
+                                    <div class="axe-contenu">                                   
+                                            <h4><?php echo esc_html($axe_titre); ?></h4>    
+                                            
+                                        <div class="paragraphe-des-missions wysiwyg">
+                                            <p><?php echo wp_kses_post($axe_texte); ?></p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <div class="bandeau">
+            <?php 
+            // bandeau entre la section 2 et 3
+                $bandeau_2_missionnos_objectifs = get_field('bandeau_2_missionnos_objectifs');
+            ?>
+                <img src="<?php echo esc_url($bandeau_2_missionnos_objectifs['url']); ?>" alt="<?php echo esc_attr($bandeau_2_missionnos_objectifs['alt'] ?? ''); ?>">
+        </div>
+
+        <?php
+            $section_3_nos_objectifs = get_field('section_3_nos_objectifs');
+            if ($section_3_nos_objectifs) :
+                $titre_nosobjectifs = $section_3_nos_objectifs['titre_nos_objectifs'];
+                $texte_nosobjectifs = $section_3_nos_objectifs['texte_nos_objectifs'];
+                $repeteur_nosobjectifs = $section_3_nos_objectifs['repeteur_nos_objectifs'];
+            ?>
+
+            <section class="objectifs-section">
+                <div class="objectifs-container">
+
+                    <h2><?php echo esc_html($titre_nosobjectifs); ?></h2>
+
+                    <div class="objectifs-paragraph wysiwyg">
+                        <?php echo wp_kses_post($texte_nosobjectifs); ?>
+                    </div>
+
+                        <div class="objectifs-list">
+                            <?php $counter = 1; ?>
+                            <?php foreach ($repeteur_nosobjectifs as $objectif) : 
+                                $objectif_titre = $objectif['titre_de_lobjectif'];
+                                $objectif_texte = $objectif['texte_de_lobjectif'];
+                            ?>
+                                <div class="objectif-item">
+                                    <h3><span class="objectif-numero"><?php echo $counter; ?>.</span> 
+                                        <?php echo esc_html($objectif_titre); ?></h3>
+                                    <div class="objectif-text">
+                                        <p><?php echo wp_kses_post($objectif_texte); ?></p>
+                                    </div>
+                                </div>
+                            <?php $counter++; ?>
+                            <?php endforeach; ?>
+                        </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <?php 
+            $section_4_nos_valeurs = get_field('section_4_nos_valeurs');
+            if ($section_4_nos_valeurs) :
+                $titre_nos_valeurs = $section_4_nos_valeurs['titre_nos_valeurs'];
+                $texte_nos_valeurs = $section_4_nos_valeurs['texte_nos_valeurs'];
+                $repeteur_nos_valeurs = $section_4_nos_valeurs['repeteur_nos_valeurs'];
+          
+            ?>
+            <section class="valeurs-section">
+                <div class="valeurs-container">
+
+                    <h2><?php echo esc_html($titre_nos_valeurs); ?></h2>
+
+                    <div class="valeurs-paragraph wysiwyg">
+                        <?php echo wp_kses_post($texte_nos_valeurs); ?>
+                    </div>
+
+                    <div class="valeurs-wrapper">
+                        <div class="valeurs-list">
+                            <?php foreach ($repeteur_nos_valeurs as $valeur) : ?>
+                                <!-- Valeur normale -->
+                                <div class="valeur-item">
+                                    <h3><?php echo esc_html($valeur['titre_de_la_valeur']); ?></h3>
+                                    <div class="valeur-text">
+                                        <p><?php echo wp_kses_post($valeur['texte_de_la_valeur']); ?></p>
+                                    </div>
+                                    <img src="<?php echo esc_url($valeur['image_de_la_valeur']['url']); ?>" alt="<?php echo esc_attr($valeur['image_de_la_valeur']['alt'] ?? ''); ?>">
+                                </div>
+                            <?php endforeach; ?>
+
+                            <?php foreach ($repeteur_nos_valeurs as $valeur) : ?>
+                                <!-- Doublon pour scroll infini -->
+                                <div class="valeur-item">
+                                    <h3><?php echo esc_html($valeur['titre_de_la_valeur']); ?></h3>
+                                    <div class="valeur-text">
+                                        <p><?php echo wp_kses_post($valeur['texte_de_la_valeur']); ?></p>
+                                    </div>
+                                    <img src="<?php echo esc_url($valeur['image_de_la_valeur']['url']); ?>" alt="<?php echo esc_attr($valeur['image_de_la_valeur']['alt'] ?? ''); ?>">
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?> 
+
+        <div class="bandeau">
+            <?php 
+            // bandeau entre la section 4 et 5
+                $bandeau_3_nos_valeursles_gens_du_mois = get_field('bandeau_3_nos_valeursles_gens_du_mois');
+            ?>
+                <img src="<?php echo esc_url($bandeau_3_nos_valeursles_gens_du_mois['url']); ?>" alt="<?php echo esc_attr($bandeau_3_nos_valeursles_gens_du_mois['alt'] ?? ''); ?>">
+        </div>
+
+        <?php 
+            $section_5_les_gens_du_mois = get_field('section_5_les_gens_du_mois');
+            if ($section_5_les_gens_du_mois) :
+
+                $titre_section = $section_5_les_gens_du_mois['titre_les_gens_du_mois'];
+
+                $bloc_de_gauche = $section_5_les_gens_du_mois['bloc_de_gauche'];
+                $image_gauche = $bloc_de_gauche['image_de_la_personne_de_gauche'];
+                $titre_gauche = $bloc_de_gauche['titre_de_la_personne_de_gauche'];
+                $soustitre_gauche = $bloc_de_gauche['sous-titre_de_la_personne_de_gauche'];
+
+                $bloc_du_centre = $section_5_les_gens_du_mois['bloc_du_centre'];
+                $wysiwyg_haut = $bloc_du_centre['texte_du_haut'];
+                $wysiwyg_bas = $bloc_du_centre['texte_du_bas'];
+                $bouton_article = $bloc_du_centre['bouton_vers_larticle'];
+                $text_bouton_article = $bloc_du_centre['texte_bouton_article'];
+
+
+                $bloc_de_droite = $section_5_les_gens_du_mois['bloc_de_droite'];
+                $image_droit = $bloc_de_droite['image_de_la_personne_de_droite'];
+                $titre_droit = $bloc_de_droite['titre_de_la_personne_de_droite'];
+                $soustitre_droit = $bloc_de_droite['sous-titre_de_la_personne_de_droite'];
+
+            ?>
+
+            <section class="gens-du-mois-section">
+                <div class="gens-du-mois-container">
+
+                        <h2><?php echo esc_html($titre_section); ?></h2>
+
+                <div class="gens-du-mois-blocs">
+
+                    <div class="bloc bloc-gauche">
+                        <?php if ($image_gauche) : ?>
+                        <img src="<?php echo esc_url($image_gauche['url']); ?>" alt="<?php echo esc_attr($image_gauche['alt'] ?? ''); ?>">
+                        <?php endif; ?>
+                        <h3><?php echo esc_html($titre_gauche); ?></h3>
+                        <p><?php echo esc_html($soustitre_gauche); ?></p>
+
+                        <!-- Paragraphe mobile (wysiwyg haut) -->
+                        <div class="wysiwyg wysiwyg-mobile wysiwyg-gauche-mobile">
+                        <?php echo wp_kses_post($wysiwyg_haut); ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
+                        </div>
+                    </div>
+
+                    <div class="bloc bloc-centre">
+                        <!-- Version desktop -->
+                        <div class="wysiwyg wysiwyg-haut wysiwyg-desktop">
+                        <?php echo wp_kses_post($wysiwyg_haut); ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
+                        </div>
+
+                        <div class="wysiwyg wysiwyg-bas wysiwyg-desktop">
+                        <?php echo wp_kses_post($wysiwyg_bas); ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
+                        </div>  
+
+                        <div class="button-gens-du-mois">
+                        <a class="btn-primary btn-actu" href="<?php echo esc_url(get_permalink($bouton_article)); ?>" target="_blank">
+                            <?php echo esc_html($text_bouton_article); ?>
+                        </a>
+                        </div>
+                    </div>
+
+                    <div class="bloc bloc-droit">
+                        <?php if ($image_droit) : ?>
+                        <img src="<?php echo esc_url($image_droit['url']); ?>" alt="<?php echo esc_attr($image_droit['alt'] ?? ''); ?>">
+                        <?php endif; ?>
+                        <h3><?php echo esc_html($titre_droit); ?></h3>                       
+                        <p><?php echo esc_html($soustitre_droit); ?></p>
+
+                        <!-- Paragraphe mobile (wysiwyg bas) -->
+                        <div class="wysiwyg wysiwyg-mobile wysiwyg-droit-mobile">
+                        <?php echo wp_kses_post($wysiwyg_bas); ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/apostrophe.svg" alt="apostrophe" class="apostrophe">
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        <?php endif; ?>
+
+        <?php 
+                $section_6_presentation_equipe = get_field('section_6_presentation_equipe');
+                if ($section_6_presentation_equipe) :
+                    $titre_bureau = $section_6_presentation_equipe['titre_bureau'];
+                    $texte_bureau= $section_6_presentation_equipe['texte_bureau'];
+                    $repeteur_bureau = $section_6_presentation_equipe['repeteur_personnes_du_bureau'];
+
+                    $titre_administrateur = $section_6_presentation_equipe['titre_administrateur'];
+                    $texte_personnes_de_ladministration= $section_6_presentation_equipe['texte_personnes_de_ladministration'];
+                    $repeteur_administration = $section_6_presentation_equipe['repeteur_personnes_de_ladministration'];
+
+                    $bouton_telechargement_organigramme_de_la_sasson = $section_6_presentation_equipe['bouton_telechargement_organigramme_de_la_sasson'];
+                    $texte_du_bouton_de_telechargement = $section_6_presentation_equipe['texte_du_bouton_de_telechargement'];
+                ?>
+
+<section class="general-presentation-section">
+    <div class="general-presentation-container">
+        <div class="all-section-office">
+            <div class="office-inner">
+                <h2><?php echo esc_html($titre_bureau); ?></h2>
+
+                <div class="general-presentation-paragraph wysiwyg">
+                    <?php echo wp_kses_post($texte_bureau); ?>
+                </div>
+
+                <div class="presentation-office-list">
+                    <?php 
+                        $index = 0;
+                        foreach ($repeteur_bureau as $bureau) : 
+                        $bureau_nom = $bureau['fonction'];
+                        $bureau_fonction = $bureau['nom_prenom'];
+
+                        $ligne = floor($index / 3);
+                        $offset_class = ($ligne % 2 === 1) ? 'offset-row' : '';
+                    ?>
+                        <div class="presentation-office-item <?php echo $offset_class; ?>">
+                            <h3><?php echo esc_html($bureau_nom); ?></h3>
+                            <div class="presentation-office-text">
+                                <p><?php echo esc_html($bureau_fonction); ?></p>
+                            </div>
+                        </div>
+                    <?php 
+                        $index++;
+                        endforeach; 
+                    ?>
+                </div>
+            </div>
+        </div>  
+
+        <div class="presentation-administration-list">
+            <h2><?php echo esc_html($titre_administrateur); ?></h2>
+            
+            <div class="general-presentation-paragraph wysiwyg">
+                <?php echo wp_kses_post($texte_personnes_de_ladministration); ?>
+            </div>
+            <div class="administration-office-list">
+                <?php 
+                    $index = 0;
+                    foreach ($repeteur_administration as $administration) : 
+                    $administration_fonction = $administration['fonction'];
+                    $administration_nom = $administration['prenomnom'];
+
+                    // calcul de la ligne
+                    $ligne = floor($index / 3);
+                    $offset_class = ($ligne % 2 === 1) ? 'offset-row' : '';
+                ?>
+                    <div class="administration-item <?php echo $offset_class; ?>">
+                        <h3><?php echo esc_html($administration_fonction); ?></h3>
+                        <div class="administration-text">
+                        <p><?php echo esc_html($administration_nom); ?></p>
+                        </div>                        
+                    </div>
+                <?php 
+                    $index++;
+                    endforeach; 
+                ?>
+            </div>
+            <div class="button-administration">
+            <a class="btn-secondary btn-infos" href="<?php echo esc_url($bouton_telechargement_organigramme_de_la_sasson['url']); ?>" target="_blank" download>
+                <?php echo esc_html($texte_du_bouton_de_telechargement); ?> </a> 
+            </div>
+            
+        </div>  
+    </div>         
+</section>
+
+        <?php endif; ?>
+
+        <div class="bandeau">
+            <?php 
+            // bandeau entre la section 6 et 7
+                $bandeau_4_presentationgaleries_photos = get_field('bandeau_4_presentationgaleries_photos');
+            ?>
+                <img src="<?php echo esc_url($bandeau_4_presentationgaleries_photos['url']); ?>" alt="<?php echo esc_attr($bandeau_4_presentationgaleries_photos['alt'] ?? ''); ?>">
+        </div>
+        
+        <?php 
+            $section_7_galeries_photos = get_field('section_7_galeries_photos');
+            if ($section_7_galeries_photos) :
+                $titre_galeries_photos = $section_7_galeries_photos['titre_galeries_photos'];
+                $texte_de_la_section_galerie = $section_7_galeries_photos['texte_de_la_section_galerie'];
+                $repeteur_groupes_dimages = $section_7_galeries_photos['repeteur_groupes_dimages'];
+            ?>
+            <section class="gallery-section">
+                <h2><?php echo esc_html($titre_galeries_photos); ?></h2>
+                <div class="gallery-description wysiwyg">
+                    <?php echo wp_kses_post($texte_de_la_section_galerie); ?>
+                </div>
+
+                <div class="gallery-tabs">
+                    <?php foreach ($repeteur_groupes_dimages as $index => $groupe) : ?>
+                        <button 
+                            class="gallery-tab-button<?php echo $index === 0 ? ' active' : ''; ?>" 
+                            data-tab="tab-<?php echo $index; ?>">
+                            <?php echo esc_html($groupe['titre_de_la_galerie']); ?>
+                        </button>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="gallery-groups">
+                    <?php foreach ($repeteur_groupes_dimages as $index => $groupe) : 
+                        $images = $groupe['galerie_pour_les_images']; // galerie ACF = tableau d'images
+                    ?>
+                        <div class="gallery-group<?php echo $index === 0 ? ' active' : ''; ?>" id="tab-<?php echo $index; ?>">
+                            <div class="gallery-grid">
+                                <?php foreach ($images as $image) : ?>
+                                    <div class="gallery-item">
+                                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </section>
+        <?php endif; ?>
+    </main>
+<?php
+get_footer();
+?>
