@@ -1,5 +1,19 @@
 @use "../global" as g;
 
+/*style général des bandeaux*/
+.bandeauformation {
+  height: 200px;
+  max-width: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+
 /* Section 1 */
 .section-formation {
     padding: 90px 30px;
@@ -8,7 +22,7 @@
     margin: 0 auto;
     text-align: center;
 
-    // Boutons en haut (professionnels et salariés)
+    
     .btn-secondary.btn-formation {
       display: inline-block;
       padding: 12px 110px;
@@ -31,7 +45,7 @@
       }
     }
 
-    // Titre h2 "Former pour mieux accompagner"
+
     h2 {
       font-size: g.$font-size-xl;
       font-family: g.$font-family-base;
@@ -40,7 +54,7 @@
       margin: 0px 0 30px 0;
     }
 
-    // Paragraphe principal de formation
+    
     .Paragraphe-formation.wysiwyg {
         max-width: 70%;
         margin: 0 auto 30px auto;
@@ -51,7 +65,7 @@
         margin-bottom: 20px;
     }
 
-    // Section des objectifs
+  
     .Paragraphe-objectifs.wysiwyg {
         max-width: 70%;
         margin: 0 auto;
@@ -107,208 +121,463 @@
 }
 
 /*section 2*/
-
 .section-aqui {
   padding: 90px 30px;
 
   .container-aqui {
     margin: 0 auto;
 
-    // Titre principal centré
+   
     h2 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #333;
+      font-size: g.$font-size-xl;
+      font-family: g.$font-family-base;
+      font-weight: g.$font-weight-bold;
       text-align: center;
       margin: 0 0 50px 0;
     }
 
-    // Conteneur pour les deux blocs
+    
     .blocs-container {
       display: flex;
       gap: 30px;
       justify-content: space-between;
       align-items: stretch;
       max-width: 75%;
-        margin: 0 auto;
+      margin: 0 auto;
 
-      // Paragraphe de gauche (professionnels)
+     
       .Paragraphe-de-gauche.wysiwyg {
         flex: 1;
-        background-color: #D3D3D3;
-        padding: 10px 10px;
+        background-color: g.$color-gray;
+        padding: 30px 30px;
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        min-height: 120px;
-
-        p {
-          font-size: 1rem;
-          line-height: 1.5;
-          color: #333;
-          margin: 0;
-          font-weight: 600;
-
-          @media (max-width: 768px) {
-            font-size: 0.95rem;
-          }
+        font-size: g.$font-size-md;
+        font-family: g.$font-family-base;
+        font-weight: g.$font-weight-medium;
         }
-      }
+      
 
-      // Paragraphe de droite (futurs travailleurs)
+     
       .Paragraphe-de-droite.wysiwyg {
         flex: 1;
         background-color: #C0C0C0;
-        padding: 10px 10px;
+        padding: 30px 30px;
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        min-height: 120px;
+        font-size: g.$font-size-md;
+        font-family: g.$font-family-base;
+        font-weight: g.$font-weight-medium;
+        margin: 0;
 
-        p {
-          font-size: 1rem;
-          line-height: 1.5;
-          color: #333;
-          margin: 0;
-          font-weight: 600;
-
-          @media (max-width: 768px) {
-            font-size: 0.95rem;
-          }
-        }
-      }
-
-      // Responsive - passage en colonne sur mobile
-      @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 20px;
-
-        .Paragraphe-de-gauche.wysiwyg,
-        .Paragraphe-de-droite.wysiwyg {
-          padding: 30px 20px;
-          min-height: 100px;
-        }
       }
     }
-
-    @media (max-width: 480px) {
-      padding: 0 15px;
-
-      .blocs-container {
-        .Paragraphe-de-gauche.wysiwyg,
-        .Paragraphe-de-droite.wysiwyg {
-          padding: 25px 15px;
+  }
+}
+  @media (max-width: 1024px) {
+    .section-aqui {
+      .container-aqui {
+        .blocs-container {
+          max-width: 100%;
         }
       }
     }
   }
 
+  @media (max-width: 468px) {
+    .section-aqui {
+      .container-aqui {
+        .blocs-container {
+          flex-direction: column;
+          gap: 20px;
+          max-width: 90%;
+        }
+      }
+    }
+  }
+
+  /*section 3*/
+  .approche {
+  padding: 90px 30px;
+  background-color: #f8f9fa;
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  // Header section
+  .approche-header {
+    text-align: center;
+    margin-bottom: 60px;
+    
+    .section-title {
+      font-size: g.$font-size-xl;
+      font-family: g.$font-family-base;
+      font-weight: g.$font-weight-bold;
+      color: g.$color-black;
+      margin: 0;
+      line-height: 1.2;
+    }
+  }
+  
+  // Introduction section
+  .approche-introduction {
+    margin-bottom: 80px;
+    
+    .intro-text.wysiwyg {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+      
+      p {
+        font-size: g.$font-size-base;
+        line-height: 1.6;
+        margin: 0 0 20px 0;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      // Style pour les listes à puces avec flèches
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+        
+        li {
+          position: relative;
+          padding-left: 20px;
+          margin-bottom: 8px;
+          font-size: g.$font-size-base;
+          line-height: 1.5;
+          
+          &:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: g.$primary-color;
+            font-weight: bold;
+          }
+        }
+      }
+      
+      // Texte en italique centré
+      .highlight-text {
+        font-style: italic;
+        text-align: center;
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(255, 215, 0, 0.1);
+        border-radius: 8px;
+      }
+    }
+  }
+  
+  // Section formations
+  .approche-formations {
+    .formations-title {
+      text-align: center;
+      margin-bottom: 50px;
+      
+      .sub-title {
+        font-size: g.$font-size-lg;
+        font-family: g.$font-family-base;
+        font-weight: g.$font-weight-bold;
+        color: g.$color-black;
+        margin: 0;
+        line-height: 1.3;
+      }
+    }
+    
+    .formations-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      
+      .formation-item {
+        background-color: #d3d3d3;
+        border-radius: 12px;
+        padding: 30px;
+        transition: all 0.3s ease;
+        
+        
+        .item-title {
+          font-size: g.$font-size-md;
+          font-family: g.$font-family-base;
+          font-weight: g.$font-weight-bold;
+          color: g.$color-black;
+          margin: 0 0 20px 0;
+          line-height: 1.3;
+        }
+        
+        .item-text.wysiwyg {
+          margin-bottom: 25px;
+          
+          p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #333;
+            margin: 0 0 15px 0;
+            
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+          
+          // Style pour les infos durée et public
+          ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+            
+            li {
+              display: flex;
+              align-items: center;
+              margin-bottom: 8px;
+              font-size: 0.9rem;
+              color: #555;
+              
+              &:before {
+                content: "•";
+                margin-right: 8px;
+                color: g.$primary-color;
+                font-weight: bold;
+              }
+              
+              strong {
+                font-weight: 600;
+                margin-right: 5px;
+              }
+            }
+          }
+        }
+        
+        .pdf-link {
+          display: inline-flex;
+          align-items: center;
+          padding: 10px 20px;
+          background-color: g.$primary-color;
+          color: g.$color-black;
+          text-decoration: none;
+          font-size: 0.9rem;
+          border-radius: 6px;
+          transition: all 0.3s ease;
+          
+          &:before {
+            content: "📄";
+            margin-right: 8px;
+          }
+          
+          &:hover {
+            background-color: #FFC107;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+          }
+        }
+      }
+      
+      // Responsive
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        
+        .formation-item {
+          padding: 25px;
+          
+          .item-title {
+            font-size: g.$font-size-base;
+          }
+          
+          .item-text.wysiwyg {
+            p {
+              font-size: 0.9rem;
+            }
+            
+            ul li {
+              font-size: 0.85rem;
+            }
+          }
+          
+          .pdf-link {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+          }
+        }
+      }
+    }
+  }
+  
+  // Responsive général
   @media (max-width: 768px) {
-    padding: 40px 0;
+    padding: 60px 20px;
+    
+    .approche-header {
+      margin-bottom: 40px;
+      
+      .section-title {
+        font-size: g.$font-size-lg;
+      }
+    }
+    
+    .approche-introduction {
+      margin-bottom: 50px;
+      
+      .intro-text.wysiwyg {
+        p {
+          font-size: 0.95rem;
+        }
+        
+        ul li {
+          font-size: 0.95rem;
+        }
+      }
+    }
+    
+    .approche-formations {
+      .formations-title {
+        margin-bottom: 30px;
+        
+        .sub-title {
+          font-size: g.$font-size-md;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    padding: 40px 15px;
+    
+    .approche-introduction {
+      .intro-text.wysiwyg {
+        ul li {
+          padding-left: 15px;
+          font-size: 0.9rem;
+        }
+      }
+    }
   }
 }
 
 /*section 5*/
 .section-engagement {
   padding: 90px 30px;
-
-
+  
   .container-engagement {
     margin: 0 auto;
     text-align: center;
-
+    
     // Titre principal
     h2 {
-        font-size: g.$font-size-xl;
-        font-family: g.$font-family-base;
-        font-weight: g.$font-weight-bold;
-        margin: 0 0 40px 0;
+      font-size: g.$font-size-xl;
+      font-family: g.$font-family-base;
+      font-weight: g.$font-weight-bold;
+      margin: 0 0 40px 0;
     }
-
+    
     // Conteneur principal avec logo et texte côte à côte
     .contenu-principal {
       display: flex;
-      gap: 40px;
       align-items: center;
       justify-content: space-around;
       max-width: 75%;
-      margin:60px auto;
-
+      margin: 60px auto;
+      
       // Logo Qualiopi
       img {
-        max-width: 200px;
+        max-width: 220px;
         height: auto;
       }
-
+      
       // Bloc texte référent handicap
       .Paragraphe-referent-handicap.wysiwyg {
         background-color: #d3d3d3;
-        padding: 25px 30px;
         border-radius: 8px;
-        max-width: 45%;
+        padding: 25px;
         text-align: center;
-
+        max-width: 45%;
+        
         p {
-          font-size: 0.95rem;
-          line-height: 1.5;
-          color: #333;
+          font-size: g.$font-size-md;
+          font-family: g.$font-family-base;
+          font-weight: g.$font-weight-medium;
           margin: 0 0 10px 0;
-          font-weight: 500;
-
+          
           &:last-child {
             margin-bottom: 0;
           }
-
-          strong {
-            font-weight: 700;
-            color: #000;
-          }
         }
-
-        @media (max-width: 768px) {
-          max-width: 100%;
+      }
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 30px;
+        max-width: 100%;
+        
+        img {
+          max-width: 180px;
+        }
+        
+        .Paragraphe-referent-handicap.wysiwyg {
           padding: 20px 25px;
-
+          max-width: 100%;
+          
           p {
             font-size: 0.9rem;
           }
         }
       }
-
-      @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 25px;
-      }
     }
-
+    
     // Conteneur des boutons
     .btns-engagement {
       display: flex;
       gap: 20px;
       justify-content: center;
       flex-wrap: wrap;
-
+      margin-top: 50px;
+      
       .btn-secondary {
-         display: inline-block;
-      padding: 12px 30px;
-      background-color: g.$primary-color;
-      color: g.$color-black;
-      text-decoration: none;
-      font-weight: g.$font-weight-bold;
-      font-family: g.$font-family-base;
-      font-size: g.$font-size-base;
-      transition: all 0.3s ease;
-      border: none;
-
-
+        display: inline-block;
+        background-color: g.$primary-color;
+        color: g.$color-black;
+        text-decoration: none;
+        font-weight: g.$font-weight-bold;
+        font-family: g.$font-family-base;
+        font-size: g.$font-size-base;
+        transition: all 0.3s ease;
+        border: none;
+        border-radius: 4px;
+        
         &:hover {
           background-color: #FFC107;
           box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
           color: #000;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        gap: 15px;
+        
+        .btn-secondary {
+          padding: 12px 25px;
+          font-size: 0.9rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: center;
+        
+        .btn-secondary {
+          width: 100%;
+          max-width: 300px;
         }
       }
     }

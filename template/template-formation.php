@@ -46,7 +46,7 @@ get_header();
                 </section>
             <?php endif; ?>
 
-            <div class="bandeau">
+            <div class="bandeauformation">
             <?php 
             // bandeau entre la section 1 et 2
                 $bandeau_1_formeraqui = get_field('bandeau_1_formeraqui');
@@ -63,21 +63,21 @@ get_header();
                     $texte_de_gauche = $section_2_aqui['texte_de_gauche'] ?? [];
                 ?>
                 <section class="section-aqui">
-    <div class="container-aqui">
-        <h2><?php echo esc_html($titre_a_qui); ?></h2>
-        <div class="blocs-container">
-            <div class="Paragraphe-de-gauche wysiwyg">
-                <?php echo $texte_de_gauche; ?>
-            </div>
-            <div class="Paragraphe-de-droite wysiwyg">
-                <?php echo $texte_de_droite; ?>
-            </div>
-        </div>
-    </div>
-</section>
+                    <div class="container-aqui">
+                        <h2><?php echo esc_html($titre_a_qui); ?></h2>
+                        <div class="blocs-container">
+                            <div class="Paragraphe-de-gauche wysiwyg">
+                                <?php echo $texte_de_gauche; ?>
+                            </div>
+                            <div class="Paragraphe-de-droite wysiwyg">
+                                <?php echo $texte_de_droite; ?>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             <?php endif; ?>
 
-            <div class="bandeau">
+            <div class="bandeauformation">
                 <?php 
                 // bandeau entre la section 1 et 2
                     $bandeau_2_aquiapproche = get_field('bandeau_2_aquiapproche');
@@ -131,7 +131,7 @@ get_header();
                     </section>
             <?php endif; ?>
 
-             <div class="bandeau">
+             <div class="bandeauformation">
                 <?php 
                 // bandeau entre la section 1 et 2
                     $bandeau_3_formation_phareformulaire = get_field('bandeau_3_formation_phareformulaire');
@@ -156,11 +156,12 @@ get_header();
                         <div class="mentions-a-remplir wysiwyg">
                             <?php echo $mentions_a_remplir; ?>
                         </div>
-                    </div>    
+                    </div> 
+                </section>   
             <?php endif; ?>
 
             
-             <div class="bandeau">
+             <div class="bandeauformation">
                 <?php 
                 // bandeau entre la section 1 et 2
                     $bandeau_4_formulaireengagement = get_field('bandeau_4_formulaireengagement');
@@ -168,52 +169,52 @@ get_header();
                     <img src="<?php echo esc_url($bandeau_4_formulaireengagement['url']); ?>" alt="<?php echo esc_attr($bandeau_4_formulaireengagement['alt'] ?? ''); ?>">
             </div>
 
-            <?php
-                $section_5_engagement = get_field('section_5_engagement');
+        <?php
+            $section_5_engagement = get_field('section_5_engagement');
 
-                if ($section_5_engagement) :
-                    $titre_engagement = $section_5_engagement['titre_engagement'] ?? null;
-                    $image_certification = $section_5_engagement['image_certification'] ?? null;
-                    $texte_referent_handicap = $section_5_engagement['texte_referent_handicap'] ?? null;
-                    $bouton_reglement_interieur = $section_5_engagement['bouton_reglement_interieur'] ?? null;
-                    $bouton_condition_generale_de_vente = $section_5_engagement['bouton_condition_generale_de_vente'] ?? null;
-                    $bouton_registre_daccessibilite = $section_5_engagement['bouton_registre_daccessibilite'] ?? null;
-                ?>
+            if ($section_5_engagement) :
+                $titre_engagement = $section_5_engagement['titre_engagement'] ?? null;
+                $image_certification = $section_5_engagement['image_certification'] ?? null;
+                $texte_referent_handicap = $section_5_engagement['texte_referent_handicap'] ?? null;
+                $bouton_reglement_interieur = $section_5_engagement['bouton_reglement_interieur'] ?? null;
+                $bouton_condition_generale_de_vente = $section_5_engagement['bouton_condition_generale_de_vente'] ?? null;
+                $bouton_registre_daccessibilite = $section_5_engagement['bouton_registre_daccessibilite'] ?? null;
+            ?>
 
-               <section class="section-engagement">
-    <div class="container-engagement">
-        <h2><?php echo esc_html($titre_engagement); ?></h2>
-        
-        <div class="contenu-principal">
-            <?php if ($image_certification) : ?>
-                <img src="<?php echo esc_url($image_certification['url']); ?>" alt="<?php echo esc_attr($image_certification['alt'] ?? ''); ?>">
-            <?php endif; ?>
-            
-            <div class="Paragraphe-referent-handicap wysiwyg">
-                <?php echo $texte_referent_handicap; ?>
-            </div>
-        </div>
-        
-        <div class="btns-engagement">
-            <?php if ($bouton_reglement_interieur) : ?>
-                <a href="<?php echo esc_url($bouton_reglement_interieur['url']); ?>" target="<?php echo esc_attr($bouton_reglement_interieur['target'] ?? '_self'); ?>" class="btn-secondary">
-                    <?php echo esc_html($bouton_reglement_interieur['title']); ?>
-                </a>
-            <?php endif; ?>
-            <?php if ($bouton_condition_generale_de_vente) : ?>
-                <a href="<?php echo esc_url($bouton_condition_generale_de_vente['url']); ?>" target="<?php echo esc_attr($bouton_condition_generale_de_vente['target'] ?? '_self'); ?>" class="btn-secondary">
-                    <?php echo esc_html($bouton_condition_generale_de_vente['title']); ?>
-                </a>
-            <?php endif; ?>
-            <?php if ($bouton_registre_daccessibilite) : ?>
-                <a href="<?php echo esc_url($bouton_registre_daccessibilite['url']); ?>" target="<?php echo esc_attr($bouton_registre_daccessibilite['target'] ?? '_self'); ?>" class="btn-secondary">
-                    <?php echo esc_html($bouton_registre_daccessibilite['title']); ?>
-                </a>
-            <?php endif; ?>
-        </div>
-    </div>    
-</section>
-            <?php endif; ?>
+            <section class="section-engagement">
+                <div class="container-engagement">
+                    <h2><?php echo esc_html($titre_engagement); ?></h2>
+                    
+                    <div class="contenu-principal">
+                        <?php if ($image_certification) : ?>
+                            <img src="<?php echo esc_url($image_certification['url']); ?>" alt="<?php echo esc_attr($image_certification['alt'] ?? ''); ?>">
+                        <?php endif; ?>
+                        
+                        <div class="Paragraphe-referent-handicap wysiwyg">
+                            <?php echo $texte_referent_handicap; ?>
+                        </div>
+                    </div>
+                    
+                    <div class="btns-engagement">
+                        <?php if ($bouton_reglement_interieur) : ?>
+                            <a href="<?php echo esc_url($bouton_reglement_interieur['url']); ?>" target="<?php echo esc_attr($bouton_reglement_interieur['target'] ?? '_self'); ?>" class="btn-secondary">
+                                <?php echo esc_html($bouton_reglement_interieur['title']); ?>
+                            </a>
+                        <?php endif; ?>
+                        <?php if ($bouton_condition_generale_de_vente) : ?>
+                            <a href="<?php echo esc_url($bouton_condition_generale_de_vente['url']); ?>" target="<?php echo esc_attr($bouton_condition_generale_de_vente['target'] ?? '_self'); ?>" class="btn-secondary">
+                                <?php echo esc_html($bouton_condition_generale_de_vente['title']); ?>
+                            </a>
+                        <?php endif; ?>
+                        <?php if ($bouton_registre_daccessibilite) : ?>
+                            <a href="<?php echo esc_url($bouton_registre_daccessibilite['url']); ?>" target="<?php echo esc_attr($bouton_registre_daccessibilite['target'] ?? '_self'); ?>" class="btn-secondary">
+                                <?php echo esc_html($bouton_registre_daccessibilite['title']); ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>    
+            </section>
+        <?php endif; ?>
     </main>
 <?php
 get_footer();
