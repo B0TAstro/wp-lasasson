@@ -43,6 +43,7 @@ get_header();
                             <?php echo wp_kses_post($texte_objectifs); ?>
                         </div>
                     </div>
+                </section>
             <?php endif; ?>
 
             <div class="bandeau">
@@ -62,15 +63,18 @@ get_header();
                     $texte_de_gauche = $section_2_aqui['texte_de_gauche'] ?? [];
                 ?>
                 <section class="section-aqui">
-                    <div class="container-aqui">
-                        <h2><?php echo esc_html($titre_a_qui); ?></h2>
-                        <div class="Paragraphe-de-gauche wysiwyg">
-                            <?php echo $texte_de_gauche; ?>
-                        </div>
-                        <div class="Paragraphe-de-droite wysiwyg">
-                            <?php echo $texte_de_droite; ?>
-                        </div>
-                    </div>
+    <div class="container-aqui">
+        <h2><?php echo esc_html($titre_a_qui); ?></h2>
+        <div class="blocs-container">
+            <div class="Paragraphe-de-gauche wysiwyg">
+                <?php echo $texte_de_gauche; ?>
+            </div>
+            <div class="Paragraphe-de-droite wysiwyg">
+                <?php echo $texte_de_droite; ?>
+            </div>
+        </div>
+    </div>
+</section>
             <?php endif; ?>
 
             <div class="bandeau">
@@ -176,35 +180,39 @@ get_header();
                     $bouton_registre_daccessibilite = $section_5_engagement['bouton_registre_daccessibilite'] ?? null;
                 ?>
 
-                <section class="section-engagement">
-                    <div class="container-engagement">
-                        <h2><?php echo esc_html($titre_engagement); ?></h2>
-                        <?php if ($image_certification) : ?>
-                            <img src="<?php echo esc_url($image_certification['url']); ?>" alt="<?php echo esc_attr($image_certification['alt'] ?? ''); ?>">
-                        <?php endif; ?>
-                        <div class="Paragraphe-referent-handicap wysiwyg">
-                            <?php echo $texte_referent_handicap; ?>
-                        </div>
-                        <div class="btns-engagement">
-                            <?php if ($bouton_reglement_interieur) : ?>
-                                <a href="<?php echo esc_url($bouton_reglement_interieur['url']); ?>" target="<?php echo esc_attr($bouton_reglement_interieur['target'] ?? '_self'); ?>" class="btn-secondary">
-                                    <?php echo esc_html($bouton_reglement_interieur['title']); ?>
-                                </a>
-                            <?php endif; ?>
-
-                            <?php if ($bouton_condition_generale_de_vente) : ?>
-                                <a href="<?php echo esc_url($bouton_condition_generale_de_vente['url']); ?>" target="<?php echo esc_attr($bouton_condition_generale_de_vente['target'] ?? '_self'); ?>" class="btn-secondary">
-                                    <?php echo esc_html($bouton_condition_generale_de_vente['title']); ?>
-                                </a>
-                            <?php endif; ?>
-
-                            <?php if ($bouton_registre_daccessibilite) : ?>
-                                <a href="<?php echo esc_url($bouton_registre_daccessibilite['url']); ?>" target="<?php echo esc_attr($bouton_registre_daccessibilite['target'] ?? '_self'); ?>" class="btn-secondary">
-                                    <?php echo esc_html($bouton_registre_daccessibilite['title']); ?>
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                    </div>    
+               <section class="section-engagement">
+    <div class="container-engagement">
+        <h2><?php echo esc_html($titre_engagement); ?></h2>
+        
+        <div class="contenu-principal">
+            <?php if ($image_certification) : ?>
+                <img src="<?php echo esc_url($image_certification['url']); ?>" alt="<?php echo esc_attr($image_certification['alt'] ?? ''); ?>">
+            <?php endif; ?>
+            
+            <div class="Paragraphe-referent-handicap wysiwyg">
+                <?php echo $texte_referent_handicap; ?>
+            </div>
+        </div>
+        
+        <div class="btns-engagement">
+            <?php if ($bouton_reglement_interieur) : ?>
+                <a href="<?php echo esc_url($bouton_reglement_interieur['url']); ?>" target="<?php echo esc_attr($bouton_reglement_interieur['target'] ?? '_self'); ?>" class="btn-secondary">
+                    <?php echo esc_html($bouton_reglement_interieur['title']); ?>
+                </a>
+            <?php endif; ?>
+            <?php if ($bouton_condition_generale_de_vente) : ?>
+                <a href="<?php echo esc_url($bouton_condition_generale_de_vente['url']); ?>" target="<?php echo esc_attr($bouton_condition_generale_de_vente['target'] ?? '_self'); ?>" class="btn-secondary">
+                    <?php echo esc_html($bouton_condition_generale_de_vente['title']); ?>
+                </a>
+            <?php endif; ?>
+            <?php if ($bouton_registre_daccessibilite) : ?>
+                <a href="<?php echo esc_url($bouton_registre_daccessibilite['url']); ?>" target="<?php echo esc_attr($bouton_registre_daccessibilite['target'] ?? '_self'); ?>" class="btn-secondary">
+                    <?php echo esc_html($bouton_registre_daccessibilite['title']); ?>
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>    
+</section>
             <?php endif; ?>
     </main>
 <?php

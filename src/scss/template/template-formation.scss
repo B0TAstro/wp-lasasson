@@ -1,3 +1,316 @@
 @use "../global" as g;
 
 /* Section 1 */
+.section-formation {
+    padding: 90px 30px;
+
+  .container-formation {
+    margin: 0 auto;
+    text-align: center;
+
+    // Boutons en haut (professionnels et salariés)
+    .btn-secondary.btn-formation {
+      display: inline-block;
+      padding: 12px 110px;
+      margin: 0 10px 90px 10px;
+      background-color: g.$primary-color;
+      color: g.$color-black;
+      text-decoration: none;
+      font-weight: g.$font-weight-bold;
+      font-family: g.$font-family-base;
+      font-size: g.$font-size-base;
+      text-transform: uppercase;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+      border: none;
+
+      &:hover {
+        background-color: g.$color-black;
+        color: g.$color-white;
+      }
+    }
+
+    // Titre h2 "Former pour mieux accompagner"
+    h2 {
+      font-size: g.$font-size-xl;
+      font-family: g.$font-family-base;
+      font-weight: g.$font-weight-bold;
+      color: g.$color-black;
+      margin: 0px 0 30px 0;
+    }
+
+    // Paragraphe principal de formation
+    .Paragraphe-formation.wysiwyg {
+        max-width: 70%;
+        margin: 0 auto 30px auto;
+        text-align: center;
+        font-size: g.$font-size-md;
+        font-family: g.$font-family-base;
+        font-weight: g.$font-weight-medium;
+        margin-bottom: 20px;
+    }
+
+    // Section des objectifs
+    .Paragraphe-objectifs.wysiwyg {
+        max-width: 70%;
+        margin: 0 auto;
+        text-align: left;
+        font-size: g.$font-size-md;
+        font-family: g.$font-family-base;
+        font-weight: g.$font-weight-medium;
+        margin-bottom: 15px;
+
+        &:first-child {
+          margin-bottom: 20px;
+      }
+
+      ul {
+        margin: 30px 25px;
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    padding: 40px 0;
+
+    .container-formation {
+      padding: 0 15px;
+
+      .btn-secondary.btn-formation {
+        display: block;
+        margin: 0 auto 20px auto;
+        max-width: 280px;
+        padding: 15px 30px;
+
+        &:first-of-type {
+          margin-right: auto;
+        }
+      }
+
+      .Paragraphe-formation.wysiwyg,
+      .Paragraphe-objectifs.wysiwyg {
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container-formation {
+      .btn-secondary.btn-formation {
+        font-size: 13px;
+        padding: 12px 25px;
+      }
+    }
+  }
+}
+
+/*section 2*/
+
+.section-aqui {
+  padding: 90px 30px;
+
+  .container-aqui {
+    margin: 0 auto;
+
+    // Titre principal centré
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #333;
+      text-align: center;
+      margin: 0 0 50px 0;
+    }
+
+    // Conteneur pour les deux blocs
+    .blocs-container {
+      display: flex;
+      gap: 30px;
+      justify-content: space-between;
+      align-items: stretch;
+      max-width: 75%;
+        margin: 0 auto;
+
+      // Paragraphe de gauche (professionnels)
+      .Paragraphe-de-gauche.wysiwyg {
+        flex: 1;
+        background-color: #D3D3D3;
+        padding: 10px 10px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 120px;
+
+        p {
+          font-size: 1rem;
+          line-height: 1.5;
+          color: #333;
+          margin: 0;
+          font-weight: 600;
+
+          @media (max-width: 768px) {
+            font-size: 0.95rem;
+          }
+        }
+      }
+
+      // Paragraphe de droite (futurs travailleurs)
+      .Paragraphe-de-droite.wysiwyg {
+        flex: 1;
+        background-color: #C0C0C0;
+        padding: 10px 10px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 120px;
+
+        p {
+          font-size: 1rem;
+          line-height: 1.5;
+          color: #333;
+          margin: 0;
+          font-weight: 600;
+
+          @media (max-width: 768px) {
+            font-size: 0.95rem;
+          }
+        }
+      }
+
+      // Responsive - passage en colonne sur mobile
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+
+        .Paragraphe-de-gauche.wysiwyg,
+        .Paragraphe-de-droite.wysiwyg {
+          padding: 30px 20px;
+          min-height: 100px;
+        }
+      }
+    }
+
+    @media (max-width: 480px) {
+      padding: 0 15px;
+
+      .blocs-container {
+        .Paragraphe-de-gauche.wysiwyg,
+        .Paragraphe-de-droite.wysiwyg {
+          padding: 25px 15px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 0;
+  }
+}
+
+/*section 5*/
+.section-engagement {
+  padding: 90px 30px;
+
+
+  .container-engagement {
+    margin: 0 auto;
+    text-align: center;
+
+    // Titre principal
+    h2 {
+        font-size: g.$font-size-xl;
+        font-family: g.$font-family-base;
+        font-weight: g.$font-weight-bold;
+        margin: 0 0 40px 0;
+    }
+
+    // Conteneur principal avec logo et texte côte à côte
+    .contenu-principal {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      justify-content: space-around;
+      max-width: 75%;
+      margin:60px auto;
+
+      // Logo Qualiopi
+      img {
+        max-width: 200px;
+        height: auto;
+      }
+
+      // Bloc texte référent handicap
+      .Paragraphe-referent-handicap.wysiwyg {
+        background-color: #d3d3d3;
+        padding: 25px 30px;
+        border-radius: 8px;
+        max-width: 45%;
+        text-align: center;
+
+        p {
+          font-size: 0.95rem;
+          line-height: 1.5;
+          color: #333;
+          margin: 0 0 10px 0;
+          font-weight: 500;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          strong {
+            font-weight: 700;
+            color: #000;
+          }
+        }
+
+        @media (max-width: 768px) {
+          max-width: 100%;
+          padding: 20px 25px;
+
+          p {
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 25px;
+      }
+    }
+
+    // Conteneur des boutons
+    .btns-engagement {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .btn-secondary {
+         display: inline-block;
+      padding: 12px 30px;
+      background-color: g.$primary-color;
+      color: g.$color-black;
+      text-decoration: none;
+      font-weight: g.$font-weight-bold;
+      font-family: g.$font-family-base;
+      font-size: g.$font-size-base;
+      transition: all 0.3s ease;
+      border: none;
+
+
+        &:hover {
+          background-color: #FFC107;
+          box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+          color: #000;
+        }
+      }
+    }
+  }
+}
