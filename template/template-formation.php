@@ -121,7 +121,7 @@ get_header();
                                             <h4 class="item-title"><?php echo esc_html($formation['type_de_formations']); ?></h4>
                                             <div class="item-text wysiwyg"><?php echo wp_kses_post($formation['texte_formation']); ?></div>
                                             <a class="pdf-link" href="<?php echo esc_url($formation['fichier_pdf']['url']); ?>" target="_blank" rel="noopener noreferrer">
-                                                Télécharger le PDF
+                                                <p class="item-text"><?php echo esc_html($formation['texte_du_bouton_pdf']); ?></p>
                                             </a>
                                         </div>
                                     <?php endforeach; ?>
