@@ -79,7 +79,7 @@ get_header();
 
             <div class="bandeauformation">
                 <?php 
-                // bandeau entre la section 1 et 2
+                // bandeau entre la section 2 et 3
                     $bandeau_2_aquiapproche = get_field('bandeau_2_aquiapproche');
                 ?>
                     <img src="<?php echo esc_url($bandeau_2_aquiapproche['url']); ?>" alt="<?php echo esc_attr($bandeau_2_aquiapproche['alt'] ?? ''); ?>">
@@ -98,31 +98,34 @@ get_header();
 
                     <section class="approche">
                         <div class="container">
-
-                            <div class="approche-header">
-                                <h2 class="section-title"><?php echo esc_html($titre_approche); ?></h2>
-                            </div>
+                                <h2><?php echo esc_html($titre_approche); ?></h2>                  
 
                             <div class="approche-introduction">
                                 <div class="intro-text wysiwyg">
                                     <?php echo wp_kses_post($texte_approche); ?>
+                                </div>
+                                <div class="second-text wysiwyg">
                                     <?php echo wp_kses_post($texte_2_approche); ?>
                                 </div>
                             </div>
 
                             <div class="approche-formations">
-                                <div class="formations-title">
-                                    <h3 class="sub-title"><?php echo esc_html($titre_nos_formation_phares); ?></h3>
-                                </div>
+                                <h3><?php echo esc_html($titre_nos_formation_phares); ?></h3>
 
                                 <div class="formations-list">
                                     <?php foreach ($formations as $formation): ?>
                                         <div class="formation-item">
-                                            <h4 class="item-title"><?php echo esc_html($formation['type_de_formations']); ?></h4>
-                                            <div class="item-text wysiwyg"><?php echo wp_kses_post($formation['texte_formation']); ?></div>
-                                            <a class="pdf-link" href="<?php echo esc_url($formation['fichier_pdf']['url']); ?>" target="_blank" rel="noopener noreferrer">
-                                                <p class="item-text"><?php echo esc_html($formation['texte_du_bouton_pdf']); ?></p>
-                                            </a>
+                                            <h4><?php echo esc_html($formation['type_de_formations']); ?></h4>
+
+                                            <div class="item-text wysiwyg">
+                                                <?php echo wp_kses_post($formation['texte_formation']); ?>
+            
+                                                <?php echo wp_kses_post($formation['texte_duree']); ?>
+                                            </div>
+
+                                                <a href="<?php echo esc_url($formation['fichier_pdf']['url']); ?>" target="_blank" rel="noopener noreferrer">
+                                                    <?php echo esc_html($formation['texte_du_bouton_pdf']); ?>
+                                                </a>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>

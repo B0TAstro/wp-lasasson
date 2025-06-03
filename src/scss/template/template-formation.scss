@@ -21,8 +21,7 @@
   .container-formation {
     margin: 0 auto;
     text-align: center;
-
-    
+ 
     .btn-secondary.btn-formation {
       display: inline-block;
       padding: 12px 110px;
@@ -53,15 +52,15 @@
       margin: 0px 0 30px 0;
     }
  
-    .Paragraphe-formation.wysiwyg {
-        max-width: 70%;
-        margin: 0 auto 30px auto;
-        text-align: center;
-        font-size: g.$font-size-md;
-        font-family: g.$font-family-base;
-        font-weight: g.$font-weight-medium;
-        margin-bottom: 20px;
-    }
+      .Paragraphe-formation.wysiwyg {
+          max-width: 70%;
+          margin: 0 auto 30px auto;
+          text-align: center;
+          font-size: g.$font-size-md;
+          font-family: g.$font-family-base;
+          font-weight: g.$font-weight-medium;
+          margin-bottom: 20px;
+      }
  
     .Paragraphe-objectifs.wysiwyg {
         max-width: 70%;
@@ -76,7 +75,7 @@
       }
           
       ul {
-        margin: 30px 25px;
+        margin: 30px 25px 0 25px;
 
         li:last-child {
           margin-bottom: 0; // enlever la marge pour le dernier élément de la liste
@@ -126,7 +125,6 @@
 
   .container-aqui {
     margin: 0 auto;
-
    
     h2 {
       font-size: g.$font-size-xl;
@@ -135,16 +133,13 @@
       text-align: center;
       margin: 0 0 50px 0;
     }
-
     
     .blocs-container {
       display: flex;
       gap: 30px;
       justify-content: space-between;
-      align-items: stretch;
       max-width: 75%;
       margin: 0 auto;
-
      
       .Paragraphe-de-gauche.wysiwyg {
         flex: 1;
@@ -203,31 +198,36 @@
 
   /*section 3*/
   .approche {
-  padding: 90px 30px;
+    padding: 90px 30px;
   
   .container {
     margin: 0 auto;
-  }
   
-  // Header section
-  .approche-header {
-    text-align: center;
-    margin-bottom: 60px;
-    
-    .section-title {
+    h2 {
       font-size: g.$font-size-xl;
       font-family: g.$font-family-base;
       font-weight: g.$font-weight-bold;
       color: g.$color-black;
       margin: 0;
+      text-align: center;
+      margin-bottom: 60px;
     }
-  }
   
-  // Introduction section
   .approche-introduction {
     margin-bottom: 80px;
+
+    .second-text{
+      max-width: 75%;
+      margin: 0 auto;
+      text-align: center;
+
+      p {
+        font-size: g.$font-size-base;
+        margin: 30px 0 0px 0;
+      }
+    }
     
-    .intro-text.wysiwyg {
+    .intro-text {
       max-width: 75%;
       margin: 0 auto;
       text-align: left;
@@ -240,55 +240,20 @@
           margin-bottom: 0;
         }
       }
-      
-      // Style pour les listes à puces avec flèches
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0;
-        
-        li {
-          position: relative;
-          padding-left: 20px;
-          margin-bottom: 8px;
-          font-size: g.$font-size-base;
-          
-          &:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: g.$primary-color;
-            font-weight: bold;
-          }
-        }
-      }
-      
-      // Texte en italique centré
-      .highlight-text {
-        font-style: italic;
-        text-align: center;
-        margin: 30px 0;
-        padding: 20px;
-        background-color: rgba(255, 215, 0, 0.1);
-        border-radius: 8px;
-      }
     }
   }
   
   // Section formations
   .approche-formations {
-    .formations-title {
-      text-align: center;
-      margin-bottom: 50px;
-      
-      .sub-title {
-        font-size: g.$font-size-lg;
+
+      h3{
+        font-size: g.$font-size-xl;
         font-family: g.$font-family-base;
         font-weight: g.$font-weight-bold;
-        color: g.$color-black;
         margin: 0;
+        text-align: center;
+        margin-bottom: 50px;
       }
-    }
     
     .formations-list {
       display: grid;
@@ -299,10 +264,8 @@
         background-color: g.$color-gray;
         border-radius: 12px;
         padding: 30px;
-        transition: all 0.3s ease;
         
-        
-        .item-title {
+        h4 {
           font-size: g.$font-size-md;
           font-family: g.$font-family-base;
           font-weight: g.$font-weight-bold;
@@ -310,58 +273,32 @@
           margin: 0 0 20px 0;
         }
         
-        .item-text.wysiwyg {
+        .item-text{
           margin-bottom: 25px;
           
           p {
-            font-size: 0.95rem;
-            color: #333;
+            font-size: g.$font-size-sm;
+            font-family: g.$font-family-base;
+            font-weight: g.$font-weight-regular;
             margin: 0 0 15px 0;
             
             &:last-child {
               margin-bottom: 0;
             }
           }
-          
-          // Style pour les infos durée et public
-          ul {
-            list-style: none;
-            padding: 0;
-            margin: 15px 0 0 0;
-            
-            li {
-              display: flex;
-              align-items: center;
-              margin-bottom: 8px;
-              font-size: 0.9rem;
-              color: #555;
-              
-              &:before {
-                content: "•";
-                margin-right: 8px;
-                color: g.$primary-color;
-                font-weight: bold;
-              }
-              
-              strong {
-                font-weight: g.$font-weight-bold;
-                margin-right: 5px;
-              }
-            }
-          }
         }
-        
-        .pdf-link {
+      
+        a {
           display: inline-flex;
           align-items: center;
           color: g.$color-black;
-          text-decoration: none;
-          font-size: 0.9rem;
-          border-radius: 6px;
-          transition: all 0.3s ease;
+          font-size: g.$font-size-xs;
+          font-family: g.$font-family-base;
+          font-weight: g.$font-weight-medium;
         }
       }
-      
+    }
+
       // Responsive
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
@@ -447,6 +384,7 @@
 /*section 4*/
 .section-formulaire{
   padding:90px 30px;
+
   .container-formulaire{
     margin: 0 auto;
 
@@ -478,7 +416,6 @@
     margin: 0 auto;
     text-align: center;
     
-    // Titre principal
     h2 {
       font-size: g.$font-size-xl;
       font-family: g.$font-family-base;
@@ -486,7 +423,6 @@
       margin: 0 0 40px 0;
     }
     
-    // Conteneur principal avec logo et texte côte à côte
     .contenu-principal {
       display: flex;
       align-items: center;
@@ -494,13 +430,11 @@
       max-width: 75%;
       margin: 60px auto;
       
-      // Logo Qualiopi
       img {
         max-width: 220px;
         height: auto;
       }
       
-      // Bloc texte référent handicap
       .Paragraphe-referent-handicap.wysiwyg {
         background-color: g.$color-gray;
         border-radius: 8px;
@@ -540,17 +474,15 @@
       }
     }
     
-    // Conteneur des boutons
     .btns-engagement {
       display: flex;
       gap: 20px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 50px;
       
       .btn-secondary {
         display: inline-block;
-        background-color: g.$primary-color;
+        background-color: g.$primary-contrast-color;
         color: g.$color-black;
         text-decoration: none;
         font-weight: g.$font-weight-bold;
@@ -558,11 +490,9 @@
         font-size: g.$font-size-base;
         transition: all 0.3s ease;
         border: none;
-        border-radius: 4px;
         
         &:hover {
-          background-color: #FFC107;
-          box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+          background-color: g.$primary-color;
           color: #000;
         }
       }
