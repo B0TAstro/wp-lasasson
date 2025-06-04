@@ -20,11 +20,11 @@ get_header();
                 $section_1_former = get_field('section_1_former');
 
                 if ($section_1_former) :
-                    $bouton_professionnels = $section_1_former['bouton_professionnels'] ?? null;
-                    $bouton_salaries = $section_1_former['bouton_salaries'] ?? null;
-                    $titre_former = $section_1_former['titre_former'] ?? null;
-                    $texte_former = $section_1_former['texte_former'] ?? null;
-                    $texte_objectifs = $section_1_former['texte_objectifs'] ?? null;
+                    $bouton_professionnels = $section_1_former['bouton_professionnels'];
+                    $bouton_salaries = $section_1_former['bouton_salaries'];
+                    $titre_former = $section_1_former['titre_former'];
+                    $texte_former = $section_1_former['texte_former'];
+                    $texte_objectifs = $section_1_former['texte_objectifs'];
                 ?>
                 <section class="section-formation">
                     <div class="container-formation">  
@@ -58,8 +58,8 @@ get_header();
                 $section_2_aqui = get_field('section_2_aqui');
 
                 if ($section_2_aqui) :
-                    $titre_a_qui = $section_2_aqui['titre_a_qui'] ?? null;
-                    $texte_de_droite = $section_2_aqui['texte_de_droite'] ?? null;
+                    $titre_a_qui = $section_2_aqui['titre_a_qui'];
+                    $texte_de_droite = $section_2_aqui['texte_de_droite'];
                     $texte_de_gauche = $section_2_aqui['texte_de_gauche'] ?? [];
                 ?>
                 <section class="section-aqui">
@@ -146,9 +146,9 @@ get_header();
                 $section_4_formulaire = get_field('section_4_formulaire');
 
                 if ($section_4_formulaire) :
-                    $titre_contact = $section_4_formulaire['titre_contact'] ?? null;
-                    $texte_contact = $section_4_formulaire['texte_contact'] ?? null;
-                    $mentions_a_remplir = $section_4_formulaire['mentions_a_remplir'] ?? null;
+                    $titre_contact = $section_4_formulaire['titre_contact'];
+                    $texte_contact = $section_4_formulaire['texte_contact'];
+                    $mentions_a_remplir = $section_4_formulaire['mentions_a_remplir'];
                 ?>
                 <section class="section-formulaire">
                     <div class="container-formulaire">
@@ -176,12 +176,12 @@ get_header();
             $section_5_engagement = get_field('section_5_engagement');
 
             if ($section_5_engagement) :
-                $titre_engagement = $section_5_engagement['titre_engagement'] ?? null;
-                $image_certification = $section_5_engagement['image_certification'] ?? null;
-                $texte_referent_handicap = $section_5_engagement['texte_referent_handicap'] ?? null;
-                $bouton_reglement_interieur = $section_5_engagement['bouton_reglement_interieur'] ?? null;
-                $bouton_condition_generale_de_vente = $section_5_engagement['bouton_condition_generale_de_vente'] ?? null;
-                $bouton_registre_daccessibilite = $section_5_engagement['bouton_registre_daccessibilite'] ?? null;
+                $titre_engagement = $section_5_engagement['titre_engagement'];
+                $image_certification = $section_5_engagement['image_certification'];
+                $texte_referent_handicap = $section_5_engagement['texte_referent_handicap'];
+                $bouton_reglement_interieur = $section_5_engagement['bouton_reglement_interieur'];
+                $bouton_condition_generale_de_vente = $section_5_engagement['bouton_condition_generale_de_vente'];
+                $bouton_registre_daccessibilite = $section_5_engagement['bouton_registre_daccessibilite'];
             ?>
 
             <section class="section-engagement">

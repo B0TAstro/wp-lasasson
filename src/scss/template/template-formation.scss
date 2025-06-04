@@ -85,16 +85,19 @@
   }
 
   // Responsive Design
-  @media (max-width: 768px) {
-    padding: 40px 0;
-
+  @media (max-width: 1024px) {
     .container-formation {
-      padding: 0 15px;
+      .btn-secondary.btn-formation {
+        padding: 12px 45px;
+      }
+    }
+  }
 
+  @media (max-width: 768px) {
+    .container-formation {
       .btn-secondary.btn-formation {
         display: block;
-        margin: 0 auto 20px auto;
-        max-width: 280px;
+        margin: 0 auto 40px auto;
         padding: 15px 30px;
 
         &:first-of-type {
@@ -104,16 +107,7 @@
 
       .Paragraphe-formation.wysiwyg,
       .Paragraphe-objectifs.wysiwyg {
-        max-width: 100%;
-      }
-    }
-  }
-
-  @media (max-width: 480px) {
-    .container-formation {
-      .btn-secondary.btn-formation {
-        font-size: 13px;
-        padding: 12px 25px;
+        max-width: 90%;
       }
     }
   }
@@ -184,7 +178,7 @@
     }
   }
 
-  @media (max-width: 468px) {
+  @media (max-width: 768px) {
     .section-aqui {
       .container-aqui {
         .blocs-container {
@@ -199,10 +193,10 @@
   /*section 3*/
   .approche {
     padding: 90px 30px;
-  
+
   .container {
     margin: 0 auto;
-  
+
     h2 {
       font-size: g.$font-size-xl;
       font-family: g.$font-family-base;
@@ -212,41 +206,39 @@
       text-align: center;
       margin-bottom: 60px;
     }
-  
-  .approche-introduction {
-    margin-bottom: 80px;
 
-    .second-text{
-      max-width: 75%;
-      margin: 0 auto;
-      text-align: center;
+    .approche-introduction {
+      margin-bottom: 80px;
 
-      p {
-        font-size: g.$font-size-base;
-        margin: 30px 0 0px 0;
+      .second-text {
+        max-width: 75%;
+        margin: 0 auto;
+        text-align: center;
+
+        p {
+          font-size: g.$font-size-base;
+          margin: 30px 0 0;
+        }
       }
-    }
-    
-    .intro-text {
-      max-width: 75%;
-      margin: 0 auto;
-      text-align: left;
-      
-      p {
-        font-size: g.$font-size-base;
-        margin: 0 0 20px 0;
-        
-        &:last-child {
-          margin-bottom: 0;
+
+      .intro-text {
+        max-width: 75%;
+        margin: 0 auto;
+        text-align: left;
+
+        p {
+          font-size: g.$font-size-base;
+          margin: 0 0 20px 0;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
         }
       }
     }
-  }
-  
-  // Section formations
-  .approche-formations {
 
-      h3{
+    .approche-formations {
+      h3 {
         font-size: g.$font-size-xl;
         font-family: g.$font-family-base;
         font-weight: g.$font-weight-bold;
@@ -254,132 +246,77 @@
         text-align: center;
         margin-bottom: 50px;
       }
-    
-    .formations-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      
-      .formation-item {
-        background-color: g.$color-gray;
-        border-radius: 12px;
-        padding: 30px;
-        
-        h4 {
-          font-size: g.$font-size-md;
-          font-family: g.$font-family-base;
-          font-weight: g.$font-weight-bold;
-          color: g.$color-black;
-          margin: 0 0 20px 0;
-        }
-        
-        .item-text{
-          margin-bottom: 25px;
-          
-          p {
-            font-size: g.$font-size-sm;
-            font-family: g.$font-family-base;
-            font-weight: g.$font-weight-regular;
-            margin: 0 0 15px 0;
-            
-            &:last-child {
-              margin-bottom: 0;
-            }
-          }
-        }
-      
-        a {
-          display: inline-flex;
-          align-items: center;
-          color: g.$color-black;
-          font-size: g.$font-size-xs;
-          font-family: g.$font-family-base;
-          font-weight: g.$font-weight-medium;
-        }
-      }
-    }
 
-      // Responsive
-      @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        
+      .formations-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+
         .formation-item {
-          padding: 25px;
-          
-          .item-title {
-            font-size: g.$font-size-base;
+          background-color: g.$color-gray;
+          border-radius: 12px;
+          padding: 30px;
+
+          h4 {
+            font-size: g.$font-size-md;
+            font-family: g.$font-family-base;
+            font-weight: g.$font-weight-bold;
+            color: g.$color-black;
+            margin: 0 0 20px 0;
           }
-          
-          .item-text.wysiwyg {
+
+          .item-text {
+            margin-bottom: 25px;
+
             p {
-              font-size: 0.9rem;
-            }
-            
-            ul li {
-              font-size: 0.85rem;
+              font-size: g.$font-size-sm;
+              font-family: g.$font-family-base;
+              font-weight: g.$font-weight-regular;
+              margin: 0 0 15px 0;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
             }
           }
-          
-          .pdf-link {
-            padding: 8px 16px;
-            font-size: 0.85rem;
+
+          a {
+            display: inline-flex;
+            align-items: center;
+            color: g.$color-black;
+            font-size: g.$font-size-xs;
+            font-family: g.$font-family-base;
+            font-weight: g.$font-weight-medium;
           }
-        }
-      }
-    }
-  }
-  
-  // Responsive général
-  @media (max-width: 768px) {
-    padding: 60px 20px;
-    
-    .approche-header {
-      margin-bottom: 40px;
-      
-      .section-title {
-        font-size: g.$font-size-lg;
-      }
-    }
-    
-    .approche-introduction {
-      margin-bottom: 50px;
-      
-      .intro-text.wysiwyg {
-        p {
-          font-size: 0.95rem;
-        }
-        
-        ul li {
-          font-size: 0.95rem;
-        }
-      }
-    }
-    
-    .approche-formations {
-      .formations-title {
-        margin-bottom: 30px;
-        
-        .sub-title {
-          font-size: g.$font-size-md;
-        }
-      }
-    }
-  }
-  
-  @media (max-width: 480px) {
-    padding: 40px 15px;
-    
-    .approche-introduction {
-      .intro-text.wysiwyg {
-        ul li {
-          padding-left: 15px;
-          font-size: 0.9rem;
         }
       }
     }
   }
 }
+
+  @media (max-width: 768px) {
+    .approche{
+      .container{
+        .approche-introduction {
+          .intro-text, .second-text {
+            max-width: 90%;
+            margin: 0 auto;
+          }
+        }
+        .approche-formations {
+          .formations-list {
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+          }
+
+          .formation-item {
+            padding: 25px;
+          }
+        }
+      }
+    }
+  }
+
 
 /*section 4*/
 .section-formulaire{
@@ -403,6 +340,11 @@
       font-weight:g.$font-weight-medium;
       max-width: 75%;
       margin: 0 auto 50px auto;
+    }
+
+    .mentions-a-remplir{
+      max-width: 75%;
+      margin: 0 auto;
     }
   }
 }
