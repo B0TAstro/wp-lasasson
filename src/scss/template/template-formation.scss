@@ -319,34 +319,113 @@
 
 
 /*section 4*/
-.section-formulaire{
-  padding:90px 30px;
+.section-formulaire {
+    padding: 90px 30px;
 
-  .container-formulaire{
-    margin: 0 auto;
+    .container-formulaire {
+        max-width: 75%;
+        margin: 0 auto;
 
-    h2{
-      font-size:g.$font-size-xl;
-      font-family:g.$font-family-base;
-      font-weight:g.$font-weight-bold;
-      text-align: center;
-      margin-bottom:30px;
+        h2 {
+            text-align: center;
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-xl;
+            font-weight: g.$font-weight-bold;
+            color: g.$color-black;
+            margin-bottom: 30px;
+        }
+
+        .Paragraphe-contact {
+            text-align: center;
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-base;
+            font-weight: g.$font-weight-light;
+            color: g.$color-black;
+            margin-bottom: 60px;
+        }
+
+        .required {
+            font-family: g.$font-family-base;
+            font-size: g.$font-size-base;
+            font-weight: g.$font-weight-light;
+            color: g.$color-black;
+            margin-bottom: 15px;
+        }
+
+        .formation-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .form-two-elements {
+                display: flex;
+                gap: 30px;
+
+                .form-element {
+                    flex: 1;
+                }
+
+                @media (max-width: 1024px) {
+                    flex-direction: column;
+                }
+            }
+
+            .form-element {
+                input[type="text"],
+                input[type="email"],
+                input[type="tel"],
+                textarea {
+                    width: 100%;
+                    padding: 12px 30px;
+                    border: none;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                    background-color: g.$color-gray;
+                    color: g.$color-black;
+                    font-family: g.$font-family-base;
+                    font-size: g.$font-size-base;
+                    font-weight: g.$font-weight-regular;
+                    transition: border-color 0.3s;
+                }
+            }
+
+            .form-element.checkbox {
+              display: flex;
+              align-items: flex-start;
+              gap: 10px;
+              margin-bottom:80px;
+
+                input[type="checkbox"] {
+                    margin-top: 11px;
+                    cursor: pointer;
+                }
+
+                label {
+                    font-family: g.$font-family-base;
+                    font-size: g.$font-size-base;
+                    font-weight: g.$font-weight-light;
+                    color: g.$color-black;
+                }
+            }
+
+            .btn-submit {
+                padding: 12px 30px;
+                border: none;
+                border-radius: 5px;
+                font-family: g.$font-family-base;
+                font-size: g.$font-size-base;
+                font-weight: g.$font-weight-bold;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+        }
     }
-
-    .Paragraphe-contact{
-      text-align: center;
-      font-size:g.$font-size-md;
-      font-family:g.$font-family-base;
-      font-weight:g.$font-weight-medium;
-      max-width: 75%;
-      margin: 0 auto 50px auto;
-    }
-
-    .mentions-a-remplir{
-      max-width: 75%;
-      margin: 0 auto;
-    }
-  }
 }
 
 
@@ -377,41 +456,47 @@
         height: auto;
       }
       
-      .Paragraphe-referent-handicap.wysiwyg {
+      .Paragraphe-referent-handicap {
         background-color: g.$color-gray;
         border-radius: 8px;
         padding: 25px;
         text-align: center;
-        max-width: 45%;
+        max-width: 40%;
         
-        p {
+        // Cibler le premier paragraphe (titre)
+        p:first-child {
           font-size: g.$font-size-md;
           font-family: g.$font-family-base;
-          font-weight: g.$font-weight-medium;
-          margin: 0 0 10px 0;
-          
+          font-weight: g.$font-weight-regular;
+          margin: 0 0 15px 0;
+        }
+        // Cibler le deuxième paragraphe (nom)
+        p:nth-child(2) {
+          font-size: g.$font-size-md;
+          font-family: g.$font-family-base;
+          font-weight: g.$font-weight-bold;
+          margin: 0 0 30px 0;
+        }
+        // Cibler les paragraphes de contact (téléphone et email)
+        p:nth-child(3),
+        p:nth-child(4) {
+          font-size: g.$font-size-md;
+          font-family: g.$font-family-base;
+          font-weight: g.$font-weight-bold;
+          margin: 0 0 8px 0;
           &:last-child {
             margin-bottom: 0;
           }
         }
-      }
-      
-      @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 30px;
-        max-width: 100%;
-        
-        img {
-          max-width: 180px;
-        }
-        
-        .Paragraphe-referent-handicap.wysiwyg {
-          padding: 20px 25px;
-          max-width: 100%;
-          
-          p {
-            font-size: 0.9rem;
+        // Style général pour tous les paragraphes
+        p {
+          &:last-child {
+            margin-bottom: 0;
           }
+        }
+        // Si le contenu est dans des balises strong/b
+        strong, b {
+          font-weight: g.$font-weight-bold;
         }
       }
     }
@@ -430,31 +515,108 @@
         font-weight: g.$font-weight-bold;
         font-family: g.$font-family-base;
         font-size: g.$font-size-base;
+        padding: 12px 24px;
+        border-radius: 6px;
         transition: all 0.3s ease;
         border: none;
+        cursor: pointer;
         
         &:hover {
           background-color: g.$primary-color;
           color: #000;
         }
       }
+    }
+  }
+  
+  // Media Queries pour le responsive
+  
+  // Tablettes (768px et moins)
+  @media (max-width: 768px) {
+    
+    .container-engagement {
+      h2 {
+        font-size: g.$font-size-lg;
+        margin: 0 0 30px 0;
+      }
       
-      @media (max-width: 768px) {
-        gap: 15px;
+      .contenu-principal {
+        flex-direction: column;
+        max-width: 100%;
+        margin: 40px auto;
+        gap: 30px;
         
-        .btn-secondary {
-          padding: 12px 25px;
-          font-size: 0.9rem;
+        img {
+          order: 1;
+        }
+        
+        .Paragraphe-referent-handicap {
+          max-width: 100%;
+          order: 2;
+          padding: 20px;
+          
+          p:first-child,
+          p:nth-child(2),
+          p:nth-child(3),
+          p:nth-child(4) {
+            font-size: g.$font-size-sm;
+          }
         }
       }
       
-      @media (max-width: 480px) {
-        flex-direction: column;
-        align-items: center;
+      .btns-engagement {
+        gap: 15px;
         
         .btn-secondary {
-          width: 100%;
-          max-width: 300px;
+          font-size: g.$font-size-sm;
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+  
+  // Mobiles (480px et moins)
+  @media (max-width: 480px) {
+    
+    .container-engagement {
+      h2 {
+        font-size: g.$font-size-md;
+        margin: 0 0 25px 0;
+      }
+      
+      .contenu-principal {
+        margin: 30px auto;
+        gap: 25px;
+      
+        
+        .Paragraphe-referent-handicap {
+          padding: 15px;
+          border-radius: 6px;
+          
+          p:first-child {
+            margin: 0 0 10px 0;
+          }
+          
+          p:nth-child(2) {
+            margin: 0 0 20px 0;
+          }
+          
+          p:nth-child(3),
+          p:nth-child(4) {
+            margin: 0 0 6px 0;
+            font-size: g.$font-size-xs;
+          }
+        }
+      }
+      
+      .btns-engagement {
+        flex-direction: column;
+        align-items: left;
+        gap: 12px;
+        
+        .btn-secondary {
+          max-width: 100%;
+          text-align:center;
         }
       }
     }

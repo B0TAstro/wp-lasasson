@@ -148,25 +148,69 @@ get_header();
                 if ($section_4_formulaire) :
                     $titre_contact = $section_4_formulaire['titre_contact'];
                     $texte_contact = $section_4_formulaire['texte_contact'];
-                    $mentions_a_remplir = $section_4_formulaire['mentions_a_remplir'];
+                    $nom_formulaire = $section_4_formulaire['nom_formulaire'];
+                    $prenom_formulaire = $section_4_formulaire['prenom_formulaire'];
+                    $mail_formulaire = $section_4_formulaire['mail_formulaire'];
+                    $telephone_formulaire = $section_4_formulaire['telephone_formulaire'];
+                    $message_formulaire = $section_4_formulaire['message_formulaire'];
+                    $texte_bouton_envoi = $section_4_formulaire['texte_bouton_envoi'];
+                    
                 ?>
                 <section class="section-formulaire">
                     <div class="container-formulaire">
                         <h2><?php echo esc_html($titre_contact); ?></h2>
+
                         <div class="Paragraphe-contact wysiwyg">
                             <?php echo $texte_contact; ?>
                         </div>
-                        <div class="mentions-a-remplir wysiwyg">
-                            <?php echo $mentions_a_remplir; ?>
-                        </div>
-                    </div> 
-                </section>   
-            <?php endif; ?>
 
+                        <form class="formation-form" id="formationForm">
+                            <p class="required">* mentions à remplir obligatoirement</p>
+
+                            <div class="form">
+                                <div class="form-element">
+                                    <input type="text" id="nom" name="nom" placeholder="<?php echo esc_html($nom_formulaire); ?> *" required>
+                                </div>
+                            </div>
+
+                            <div class="form">
+                                <div class="form-element">
+                                    <input type="text" id="prenom" name="prenom" placeholder="<?php echo esc_html($prenom_formulaire); ?> *" required>
+                                </div>
+                            </div>
+
+                            <div class="form-two-elements">
+                                <div class="form-element">
+                                    <input type="email" id="email" name="email" placeholder="<?php echo esc_html($mail_formulaire); ?> *" required>
+                                </div>
+
+                                <div class="form-element">
+                                    <input type="tel" id="telephone" name="telephone" placeholder="<?php echo esc_html($telephone_formulaire); ?>">
+                                </div>
+                            </div>
+
+                            <div class="form">
+                                <div class="form-element">
+                                    <textarea id="messager" name="messager" rows="8" placeholder="<?php echo esc_html($message_formulaire); ?> *"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form">
+                                <div class="form-element checkbox">
+                                    <input type="checkbox" id="consentement" name="consentement" required>
+                                    <label for="consentement">En soumettant ce formulaire, j’accepte que les informations saisies soient exploitées et stockées dans le cadre de ma demande</label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-primary btn-submit"><?php echo esc_html($texte_bouton_envoi); ?></button>
+                        </form>
+                    </div>
+                </section>
+            <?php endif; ?>
             
              <div class="bandeauformation">
                 <?php 
-                // bandeau entre la section 1 et 2
+                // bandeau entre la section 4 et 5
                     $bandeau_4_formulaireengagement = get_field('bandeau_4_formulaireengagement');
                 ?>
                     <img src="<?php echo esc_url($bandeau_4_formulaireengagement['url']); ?>" alt="<?php echo esc_attr($bandeau_4_formulaireengagement['alt'] ?? ''); ?>">
