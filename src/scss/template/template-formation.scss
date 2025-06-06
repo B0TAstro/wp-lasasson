@@ -377,40 +377,70 @@
             }
 
             .form-element {
+
                 input[type="text"],
                 input[type="email"],
                 input[type="tel"],
+                select,
                 textarea {
                     width: 100%;
                     padding: 12px 30px;
                     border: none;
                     border-radius: 5px;
                     box-sizing: border-box;
-                    background-color: g.$color-gray;
+                    background-color:g.$color-gray;
                     color: g.$color-black;
                     font-family: g.$font-family-base;
                     font-size: g.$font-size-base;
                     font-weight: g.$font-weight-regular;
                     transition: border-color 0.3s;
-                }
-            }
 
-            .form-element.checkbox {
-              display: flex;
-              align-items: flex-start;
-              gap: 10px;
-              margin-bottom:80px;
-
-                input[type="checkbox"] {
-                    margin-top: 11px;
-                    cursor: pointer;
+                    &:focus {
+                        outline: none;
+                    }
                 }
 
-                label {
-                    font-family: g.$font-family-base;
-                    font-size: g.$font-size-base;
-                    font-weight: g.$font-weight-light;
-                    color: g.$color-black;
+                &.checkbox {
+                    display: flex;
+                    align-items: center;
+
+                    input[type="checkbox"] {
+                        margin-top: 4px;
+                        margin-right: 10px;
+                    }
+
+                    label {
+                        margin-left: 10px;
+                        font-family: g.$font-family-base;
+                        font-size: g.$font-size-xs;
+                        font-weight: g.$font-weight-light;
+                        color: g.$color-black;
+                    }
+                }
+
+                .select-wrapper {
+                    position: relative;
+                    background-color: white;
+                    border-radius: 5px;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        right: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 0;
+                        height: 0;
+                        border-left: 6px solid transparent;
+                        border-right: 6px solid transparent;
+                        border-top: 6px solid g.$color-black;
+                        pointer-events: none;
+                    }
+
+                    select {
+                        appearance: none;
+                        padding-right: 30px;
+                    }
                 }
             }
 

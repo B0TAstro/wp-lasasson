@@ -154,6 +154,9 @@ get_header();
                     $telephone_formulaire = $section_4_formulaire['telephone_formulaire'];
                     $message_formulaire = $section_4_formulaire['message_formulaire'];
                     $texte_bouton_envoi = $section_4_formulaire['texte_bouton_envoi'];
+                    $statut_formulaire = $section_4_formulaire['statut_formulaire'];
+                    $formation_concernee_formulaire = $section_4_formulaire['formation_concernee_formulaire'];
+                   
                     
                 ?>
                 <section class="section-formulaire">
@@ -186,6 +189,44 @@ get_header();
 
                                 <div class="form-element">
                                     <input type="tel" id="telephone" name="telephone" placeholder="<?php echo esc_html($telephone_formulaire); ?>">
+                                </div>
+                            </div>
+
+                            <div class="form">
+                                <div class="form-element">
+                                    <div class="select-container">
+                                        <select id="statut" name="statut" required>
+                                            <option value="" disabled selected>
+                                                <?php echo esc_html($section_4_formulaire['statut_formulaire']); ?> *
+                                            </option>
+
+                                                <?php foreach ($section_4_formulaire['status'] as $row) : ?>
+                                                        <option value="<?php echo esc_attr($row['statut_option']); ?>">
+                                                            <?php echo esc_html($row['statut_option']); ?>
+                                                        </option>
+                                                    <?php
+                                                endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form">
+                                <div class="form-element">
+                                    <div class="select-container">
+                                        <select id="formation" name="formation" required>
+                                            <option value="" disabled selected>
+                                                <?php echo esc_html($section_4_formulaire['formation_concernee_formulaire']); ?> *
+                                            </option>
+
+                                                <?php foreach ($section_4_formulaire['formation_concernee'] as $row) :?>
+                                                        <option value="<?php echo esc_attr($row['formations']); ?>">
+                                                            <?php echo esc_html($row['formations']); ?>
+                                                        </option>
+                                                    <?php
+                                                endforeach; ?>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
