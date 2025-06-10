@@ -275,6 +275,140 @@ function send_dynamic_form()
   }
 }
 
+// ================= Fonction AJAX pour le formulaire de formation =================//
+add_action('wp_ajax_send_formation_form', 'send_formation_form');
+add_action('wp_ajax_nopriv_send_formation_form', 'send_formation_form');
+
+function send_formation_form()
+{
+    // Liste des champs du formulaire
+    $fields = [
+        'nom',
+        'prenom', 
+        'email',
+        'telephone',
+        'statut',
+        'objetdemande',
+        'formation',
+        'date_suggestion',
+        'date_formation',
+        'messager', // Note: votre textarea s'appelle "messager"
+        'consentement'
+    ];
+
+    // Sanitisation des données
+    foreach ($fields as $field) {
+        $$field = sanitize_text_field($_POST[$field] ?? '');
+    }
+
+    // Validation des champs obligatoires de base
+    if (!$nom || !$prenom || !$email || !$objetdemande || !$messager || !$consentement) {
+        wp_send_json_error('Tous les champs obligatoires doivent être remplis.');
+    }
+
+    // Validation conditionnelle selon l'objet de la demande
+    if ($objetdemande === 'Suggestion' || $objetdemande === 'suggestion') {
+        if (!$date_suggestion) {
+            wp_send_json_error('La date de suggestion est obligatoire pour ce type de demande.');
+        }
+    } elseif ($objetdemande === 'Réclamation' || $objetdemande === 'reclamation' || $objetdemande === 'Reclamation') {
+        if (!$formation || !$date_formation) {
+            wp_send_json_error('La formation concernée et la date de formation sont obligatoires pour une réclamation.');
+        }
+    } elseif ($objetdemande === 'Formation' || $objetdemande === 'formation') {
+        if (!$formation) {
+            wp_send_json_error('La formation concernée est obligatoire pour ce type de demande.');
+        }
+    }
+
+    // Configuration des en-têtes pour l'email administrateur
+    $headers = [
+        'Content-Type: text/html; charset=UTF-8',
+        "From: Site Web - Formulaire de Formation<benjamin.boget73@gmail.com>", // Remplacez par votre email
+        "Reply-To: $email"
+    ];
+
+    $subject = "Nouvelle demande de formation | $objetdemande";
+
+    // Construction du corps de l'email administrateur
+    $body = <<<HTML
+    <html>
+        <body>
+            <p>Bonjour,</p>
+            <p>Vous avez reçu une nouvelle demande depuis le formulaire de formation du site <strong>La Sasson</strong> :</p>
+            <br><hr><br>
+            
+            <table cellpadding="5" cellspacing="0" border="0" style="margin-top: 10px;">
+                <tr><td><strong>Nom :</strong></td><td>$nom</td></tr>
+                <tr><td><strong>Prénom :</strong></td><td>$prenom</td></tr>
+                <tr><td><strong>Email :</strong></td><td>$email</td></tr>
+                <tr><td><strong>Téléphone :</strong></td><td>$telephone</td></tr>
+                <tr><td><strong>Statut :</strong></td><td>$statut</td></tr>
+                <tr><td><strong>Objet de la demande :</strong></td><td>$objetdemande</td></tr>
+HTML;
+
+    // Ajout conditionnel des champs selon le type de demande
+    if ($formation) {
+        $body .= "<tr><td><strong>Formation concernée :</strong></td><td>$formation</td></tr>";
+    }
+    if ($date_suggestion) {
+        $body .= "<tr><td><strong>Date de suggestion :</strong></td><td>$date_suggestion</td></tr>";
+    }
+    if ($date_formation) {
+        $body .= "<tr><td><strong>Date de formation :</strong></td><td>$date_formation</td></tr>";
+    }
+
+    $body .= <<<HTML
+            </table>
+            
+            <p style="margin-top: 20px; margin-bottom: 20px;"><strong>Message :</strong></p>
+            <div style="margin-left: 20px; padding: 10px; background-color: #f9f9f9; border-left: 5px solid #FFCA23;">
+                <p style="white-space: pre-line;">$messager</p>
+            </div>
+            
+            <br><hr><br>
+            <p style="margin-top: 20px; margin-bottom: 20px;">Vous pouvez répondre à cette personne via cet e-mail ➝ <a href="mailto:$email">$email</a></p>
+        </body>
+    </html>
+HTML;
+
+    // Envoi de l'email à l'administrateur (remplacez l'adresse par la vôtre)
+    $admin_email = 'benjamin.boget73@gmail.com'; // Remplacez par l'email de destination
+    $sent = wp_mail($admin_email, $subject, $body, $headers);
+
+    // Configuration de l'email de confirmation pour l'utilisateur
+    $user_headers = [
+        'Content-Type: text/html; charset=UTF-8',
+        "From: Association La Sasson<benjamin.boget73@gmail.com>", // Remplacez par votre email
+    ];
+
+    $user_subject = "Confirmation de réception de votre demande de formation";
+    
+    $user_body = <<<HTML
+    <html>
+        <body>
+            <p>Bonjour $prenom $nom,</p>
+            <p>Merci d'avoir pris contact avec nous via le formulaire de formation du site web de <strong>La Sasson</strong>.</p>
+            <p>Votre demande concernant <strong>$objetdemande</strong> a bien été transmise à notre service. Nous reviendrons vers vous dans les meilleurs délais en fonction de votre demande.</p>
+            <p>En attendant, vous pouvez retrouver plus d'informations sur nos formations sur notre site internet.</p>
+            <p style="margin-top: 30px;">Bonne journée à vous,<br>
+            <strong>L'équipe La Sasson</strong></p>
+        </body>
+    </html>
+HTML;
+
+    // Envoi de l'email de confirmation à l'utilisateur
+    wp_mail($email, $user_subject, $user_body, $user_headers);
+
+    // Réponse selon le succès de l'envoi
+    if ($sent) {
+        wp_send_json_success("Votre demande de formation a bien été envoyée.");
+    } else {
+        wp_send_json_error("Erreur lors de l'envoi de la demande. Vérifiez les logs ou les paramètres SMTP.");
+    }
+}
+
+// ================= Fonction AJAX pour le formulaire de candidature =================//
 add_action('wp_ajax_send_candidature_form', 'send_candidature_form');
 add_action('wp_ajax_nopriv_send_candidature_form', 'send_candidature_form');
 
