@@ -361,6 +361,11 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+
+            #date-formation-container,
+            #date-suggestion-container {
+                display:none;
+            }
             }
 
             .form-two-elements {

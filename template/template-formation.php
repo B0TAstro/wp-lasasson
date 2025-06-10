@@ -159,7 +159,7 @@ get_header();
                    
                     
                 ?>
-                <section class="section-formulaire">
+              <section class="section-formulaire">
                     <div class="container-formulaire">
                         <h2><?php echo esc_html($titre_contact); ?></h2>
 
@@ -200,12 +200,11 @@ get_header();
                                                 <?php echo esc_html($section_4_formulaire['statut_formulaire']); ?> *
                                             </option>
 
-                                                <?php foreach ($section_4_formulaire['status'] as $row) : ?>
-                                                        <option value="<?php echo esc_attr($row['statut_option']); ?>">
-                                                            <?php echo esc_html($row['statut_option']); ?>
-                                                        </option>
-                                                    <?php
-                                                endforeach; ?>
+                                            <?php foreach ($section_4_formulaire['status'] as $row) : ?>
+                                                <option value="<?php echo esc_attr($row['statut_option']); ?>">
+                                                    <?php echo esc_html($row['statut_option']); ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -214,19 +213,48 @@ get_header();
                             <div class="form">
                                 <div class="form-element">
                                     <div class="select-container">
+                                        <select id="objetdemande" name="objetdemande" required>
+                                            <option value="" disabled selected>
+                                                <?php echo esc_html($section_4_formulaire['formation_formulaire']); ?> *
+                                            </option>
+
+                                            <?php foreach ($section_4_formulaire['objetdelademande'] as $row) :?>
+                                                <option value="<?php echo esc_attr($row['demande']); ?>">
+                                                    <?php echo esc_html($row['demande']); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form" id="formation-container">
+                                <div class="form-element">
+                                    <div class="select-container">
                                         <select id="formation" name="formation" required>
                                             <option value="" disabled selected>
                                                 <?php echo esc_html($section_4_formulaire['formation_concernee_formulaire']); ?> *
                                             </option>
 
-                                                <?php foreach ($section_4_formulaire['formation_concernee'] as $row) :?>
-                                                        <option value="<?php echo esc_attr($row['formations']); ?>">
-                                                            <?php echo esc_html($row['formations']); ?>
-                                                        </option>
-                                                    <?php
-                                                endforeach; ?>
+                                            <?php foreach ($section_4_formulaire['formation_concernee'] as $row) :?>
+                                                <option value="<?php echo esc_attr($row['formations']); ?>">
+                                                    <?php echo esc_html($row['formations']); ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="form" id="date-suggestion-container">
+                                <div class="form-element">
+                                    <input type="text" id="date_suggestion" name="date_suggestion" placeholder="<?php echo esc_html($section_4_formulaire['date_de_la_suggestion']); ?> *">
+                                </div>
+                            </div>
+
+                            <div class="form" id="date-formation-container">
+                                <div class="form-element">
+                                    <input type="text" id="date_formation" name="date_formation" placeholder="<?php echo esc_html($section_4_formulaire['date_de_la_formation']); ?> *">
                                 </div>
                             </div>
 
@@ -239,7 +267,7 @@ get_header();
                             <div class="form">
                                 <div class="form-element checkbox">
                                     <input type="checkbox" id="consentement" name="consentement" required>
-                                    <label for="consentement">En soumettant ce formulaire, j’accepte que les informations saisies soient exploitées et stockées dans le cadre de ma demande</label>
+                                    <label for="consentement">En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées et stockées dans le cadre de ma demande</label>
                                 </div>
                             </div>
 
