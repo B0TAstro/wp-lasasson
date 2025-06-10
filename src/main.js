@@ -14,6 +14,7 @@ import './js/contact-form.js'
 import './js/dispositif-slider.js'
 import './js/accordeon.js'
 import './js/candidature-form.js'
+import './js/formation-form.js'
 import './js/job-application-link.js'
 import Router from './utils/Router'
 
