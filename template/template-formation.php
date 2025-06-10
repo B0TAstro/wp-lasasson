@@ -155,11 +155,16 @@ get_header();
                     $message_formulaire = $section_4_formulaire['message_formulaire'];
                     $texte_bouton_envoi = $section_4_formulaire['texte_bouton_envoi'];
                     $statut_formulaire = $section_4_formulaire['statut_formulaire'];
+                    $status = $section_4_formulaire['status'];
+                    $formation_formulaire = $section_4_formulaire['formation_formulaire'];
+                    $objetdelademande = $section_4_formulaire['objetdelademande'];
+                    $date_de_la_formation = $section_4_formulaire['date_de_la_formation'];
+                    $date_de_la_suggestion = $section_4_formulaire['date_de_la_suggestion'];
                     $formation_concernee_formulaire = $section_4_formulaire['formation_concernee_formulaire'];
-                   
-                    
+                    $formation_concernee = $section_4_formulaire['formation_concernee'];  
                 ?>
-              <section class="section-formulaire">
+
+                <section class="section-formulaire">
                     <div class="container-formulaire">
                         <h2><?php echo esc_html($titre_contact); ?></h2>
 
@@ -248,19 +253,19 @@ get_header();
 
                             <div class="form" id="date-suggestion-container">
                                 <div class="form-element">
-                                    <input type="text" id="date_suggestion" name="date_suggestion" placeholder="<?php echo esc_html($section_4_formulaire['date_de_la_suggestion']); ?> *">
+                                    <input type="text" id="date_suggestion" name="date_suggestion" placeholder="<?php echo esc_html($section_4_formulaire['date_de_la_suggestion']); ?> *" required>
                                 </div>
                             </div>
 
                             <div class="form" id="date-formation-container">
                                 <div class="form-element">
-                                    <input type="text" id="date_formation" name="date_formation" placeholder="<?php echo esc_html($section_4_formulaire['date_de_la_formation']); ?> *">
+                                    <input type="text" id="date_formation" name="date_formation" placeholder="<?php echo esc_html($section_4_formulaire['date_de_la_formation']); ?> *" required>
                                 </div>
                             </div>
 
                             <div class="form">
                                 <div class="form-element">
-                                    <textarea id="messager" name="messager" rows="8" placeholder="<?php echo esc_html($message_formulaire); ?> *"></textarea>
+                                    <textarea id="messager" name="messager" rows="8" placeholder="<?php echo esc_html($message_formulaire); ?> *"  required></textarea>
                                 </div>
                             </div>
 
@@ -285,8 +290,8 @@ get_header();
                     <img src="<?php echo esc_url($bandeau_4_formulaireengagement['url']); ?>" alt="<?php echo esc_attr($bandeau_4_formulaireengagement['alt'] ?? ''); ?>">
             </div>
 
-        <?php
-            $section_5_engagement = get_field('section_5_engagement');
+            <?php
+                $section_5_engagement = get_field('section_5_engagement');
 
             if ($section_5_engagement) :
                 $titre_engagement = $section_5_engagement['titre_engagement'];
