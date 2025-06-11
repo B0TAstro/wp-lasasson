@@ -464,6 +464,16 @@
     }
 }
 
+// Responsive Design
+@media (max-width: 768px) {
+    .section-formulaire {
+        padding : 90px 0px;
+        .container-formulaire {
+          max-width: 85%;
+        }
+    }
+}
+
 
 /*section 5*/
 .section-engagement {
