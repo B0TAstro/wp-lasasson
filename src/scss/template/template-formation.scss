@@ -258,11 +258,11 @@
           padding: 30px;
 
           h4 {
-            font-size: g.$font-size-md;
+            font-size: g.$font-size-lg;
             font-family: g.$font-family-base;
             font-weight: g.$font-weight-bold;
             color: g.$color-black;
-            margin: 0 0 20px 0;
+            margin: 0 0 30px 0;
           }
 
           .item-text {
@@ -272,7 +272,7 @@
               font-size: g.$font-size-sm;
               font-family: g.$font-family-base;
               font-weight: g.$font-weight-regular;
-              margin: 0 0 15px 0;
+              margin: 0 0 25px 0;
 
               &:last-child {
                 margin-bottom: 0;
@@ -417,7 +417,7 @@
                     label {
                         margin-left: 10px;
                         font-family: g.$font-family-base;
-                        font-size: g.$font-size-xs;
+                        font-size: g.$font-size-md;
                         font-weight: g.$font-weight-light;
                         color: g.$color-black;
                     }
