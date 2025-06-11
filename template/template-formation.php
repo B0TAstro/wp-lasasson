@@ -300,6 +300,9 @@ get_header();
                 $bouton_reglement_interieur = $section_5_engagement['bouton_reglement_interieur'];
                 $bouton_condition_generale_de_vente = $section_5_engagement['bouton_condition_generale_de_vente'];
                 $bouton_registre_daccessibilite = $section_5_engagement['bouton_registre_daccessibilite'];
+                $conditions = $section_5_engagement['conditions'];
+                $registre = $section_5_engagement['registre'];
+                $reglement_interieur = $section_5_engagement['reglement_interieur'];
             ?>
 
             <section class="section-engagement">
@@ -317,29 +320,23 @@ get_header();
                     </div>
                     
                     <div class="btns-engagement">
-                        <?php if (!empty($bouton_reglement_interieur)) : ?>
-                            <a class="btn-secondary btn-infos"
+                        <a class="btn-secondary"
                             href="<?php echo esc_url($bouton_reglement_interieur['url']); ?>"
                             target="_blank" rel="noopener noreferrer">
-                                <?php echo esc_html($reglement_interieur ?? 'Règlement intérieur'); ?>
-                            </a>
-                        <?php endif; ?>
-
-                        <?php if (!empty($bouton_condition_generale_de_vente)) : ?>
-                            <a class="btn-secondary btn-infos"
+                                <?php echo esc_html($reglement_interieur); ?>
+                        </a>
+      
+                        <a class="btn-secondary"
                             href="<?php echo esc_url($bouton_condition_generale_de_vente['url']); ?>"
                             target="_blank" rel="noopener noreferrer">
-                                <?php echo esc_html($conditions ?? 'Conditions générales'); ?>
-                            </a>
-                        <?php endif; ?>
+                                <?php echo esc_html($conditions); ?>
+                        </a>
 
-                        <?php if (!empty($bouton_registre_daccessibilite)) : ?>
-                            <a class="btn-secondary btn-infos"
+                        <a class="btn-secondary"
                             href="<?php echo esc_url($bouton_registre_daccessibilite['url']); ?>"
-                            target="_blank" download>
-                                <?php echo esc_html($registre ?? 'Registre d’accessibilité'); ?>
-                            </a>
-                        <?php endif; ?>
+                            target="_blank" rel="noopener noreferrer">>
+                                <?php echo esc_html($registre); ?>
+                        </a>
                     </div>
                 </div>    
             </section>
