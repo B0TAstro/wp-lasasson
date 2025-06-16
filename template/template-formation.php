@@ -334,7 +334,7 @@ get_header();
 
                         <a class="btn-secondary"
                             href="<?php echo esc_url($bouton_registre_daccessibilite['url']); ?>"
-                            target="_blank" rel="noopener noreferrer">>
+                            target="_blank" rel="noopener noreferrer">
                                 <?php echo esc_html($registre); ?>
                         </a>
                     </div>
